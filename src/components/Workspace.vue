@@ -23,8 +23,9 @@ main {
   margin: 0 auto;
   padding: 0.1em;
   width: fit-content;
-  min-width: calc(120px + 1em);
-  min-height: calc(60px + 1em);
+  min-width: calc(8em + 4px);
+  min-height: calc(4.5em + 4px);
   background-color: lightgray;
+  border-radius: 15px;
 }
 </style>

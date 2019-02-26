@@ -38,8 +38,8 @@ body {
   background-color: white;
   margin: 0.5em;
   padding: 0.5em;
-  width: 100px;
-  height: 40px;
+  width: 6em;
+  height: 2.5em;
   border: solid black 2px;
   border-radius: 15px;
 }
