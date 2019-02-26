@@ -52,4 +52,9 @@ button {
   box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+@font-face {
+  font-family: "Avenir";
+  src: url("assets/AvenirLTStd-Roman.otf"); /* IE9 Compat Modes */
+}
 </style>
