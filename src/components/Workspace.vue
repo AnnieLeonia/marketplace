@@ -14,14 +14,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 main {
-  border: 1px solid purple;
   text-align: center;
 }
 
 .workspace {
-  width: fit-content;
   margin: 0 auto;
+  padding: 0.1em;
+  width: fit-content;
+  min-width: calc(120px + 1em);
+  min-height: calc(60px + 1em);
+  background-color: lightgray;
 }
 </style>

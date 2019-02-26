@@ -30,6 +30,26 @@ export default {
 }
 
 body {
-  margin: 0px;
+  /*background-image: url("assets/clouds.jpg");*/
+  margin: 150px 0 56px 0;
+}
+
+.option {
+  background-color: white;
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 100px;
+  height: 40px;
+  border: solid black 2px;
+  border-radius: 15px;
+}
+
+button {
+  width: 120px;
+  height: 32px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

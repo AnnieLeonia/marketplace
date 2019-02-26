@@ -1,19 +1,23 @@
 <template>
-  <div>
+  <header>
     <div class="titleBar">
-      <label>Title:</label>
-      <input type="text" name="title" placeholder="Enter title...">
+      <label for="title">Title:</label>
+      <input type="text" id="title" placeholder="Enter title...">
+      <button class="btnOverview">Overview</button>
     </div>
     <nav>
-      <p class="optionTitle">Options</p>
+      <p class="menuTitle">Options</p>
       <draggable
         class="menu"
         :options="{group:{ name:'options',  pull:'clone', put: false }, sort: false}"
       >
-        <div class="option" v-for="option in menuOptions" v-bind:key="option.name">{{option.name}}</div>
+        <div class="option" v-for="option in menuOptions" v-bind:key="option.name">
+          <img class="optionIcon" v-bind:src="option.path" alt="icon">
+          <p class="optionTitle">{{option.name}}</p>
+        </div>
       </draggable>
     </nav>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -25,50 +29,75 @@ export default {
   data() {
     return {
       menuOptions: [
-        { name: "Product", path: "img" },
-        { name: "Discount", path: "img" },
-        { name: "Promotion", path: "img" },
-        { name: "Message", path: "img" },
-        { name: "Routes", path: "img" },
-        { name: "Dates", path: "img" },
-        { name: "Time", path: "img" },
-        { name: "Inventory", path: "img" }
+        { name: "Product", path: require("../assets/product.svg") },
+        { name: "Discount", path: require("../assets/discount.svg") },
+        { name: "Promotion", path: require("../assets/promotion.svg") },
+        { name: "Routes", path: require("../assets/routes.svg") },
+        { name: "Dates", path: require("../assets/dates.svg") },
+        { name: "Time", path: require("../assets/time.svg") },
+        { name: "Inventory", path: require("../assets/inventory.svg") }
       ]
     };
   }
 };
 </script>
 
-<style>
+<style scoped>
+header {
+  position: fixed;
+  height: 150px;
+  width: 100%;
+  top: 0;
+}
+
 .titleBar {
+  background-color: white;
   padding: 0.5em;
   font-size: 1.5em;
+  height: 32px;
 }
 
 input[type="text"] {
-  font-size: 1.5em;
+  font-size: 1em;
+  padding-left: 5px;
+  border: none;
+  border-bottom: solid 2px #888;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-bottom: solid 3px darkblue;
+}
+
+.btnOverview {
+  float: right;
+  background-color: #b3dcff;
+  border-right-color: #c5c5ff;
+  border-bottom-color: #c5c5ff;
 }
 
 nav {
-  border: 1px solid black;
+  background-color: darkblue;
   text-align: center;
 }
 
-.optionTitle {
-}
-.menu {
-}
-
-.option {
-  border: solid black 2px;
-  padding: 0.5em;
-  width: 100px;
-  height: 40px;
-  border-radius: 15px;
+.menuTitle {
+  margin: 0 0 -10px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px;
+  color: white;
 }
 
 .menu > .option {
   display: inline-block;
-  margin: 0.5em;
+}
+
+.optionTitle {
+  margin: -4px 0 0 0;
+}
+
+.optionIcon {
+  height: 30px;
 }
 </style>
