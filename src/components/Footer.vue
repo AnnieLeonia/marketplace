@@ -12,7 +12,7 @@ export default {};
  <style scoped>
 footer {
   background-color: white;
-  border: 1.5px solid black;
+  border-top: 1.5px solid black;
   position: fixed;
   width: 100%;
   height: 56px;

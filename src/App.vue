@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Menu/>
-    <Workspace/>
-    <Footer/>
+    <Menu />
+    <Workspace />
+    <Footer />
   </div>
 </template>
 
@@ -45,8 +45,8 @@ body {
 }
 
 button {
-  width: 120px;
-  height: 32px;
+  width: 6em;
+  height: 1.7em;
   font-size: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.2),
