@@ -33,7 +33,7 @@ body {
   /* background-image: url("assets/clouds2.jpg");
   background-size: cover;
   background-attachment: fixed; */
-  margin: 150px 0 56px 0;
+  margin: 10em 0 56px 0;
 }
 
 .option {
@@ -47,7 +47,7 @@ body {
 }
 
 .ghostOption {
-  visibility: hidden;
+  opacity: 0.2;
 }
 
 button {

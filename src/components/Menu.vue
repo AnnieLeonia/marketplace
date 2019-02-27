@@ -57,7 +57,7 @@ export default {
 <style scoped>
 header {
   position: fixed;
-  height: 150px;
+  height: 10em;
   width: 100%;
   top: 0;
 }
