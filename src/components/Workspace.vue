@@ -1,9 +1,10 @@
 <template>
   <main>
-    <p>Drag and drop area</p>
+    <div v-bind:class="[ placeholderVisibility ? 'placeholder' : 'invisible' ]">Drag option here</div>
     <draggable
       class="workspace"
       :options="{group:{ name:'options'},  ghostClass: 'ghostOption', animation: 400}"
+      @add="hello('add')"
     ></draggable>
   </main>
 </template>
@@ -13,6 +14,18 @@ import draggable from "vuedraggable";
 export default {
   components: {
     draggable
+  },
+  data() {
+    return {
+      list: [],
+      placeholderVisibility: true
+    };
+  },
+  methods: {
+    hello: function(word) {
+      this.placeholderVisibility = false;
+      console.log("Logg:", word);
+    }
   }
 };
 </script>
@@ -30,5 +43,15 @@ main {
   min-height: calc(4.5em + 4px);
   background-color: lightgray;
   border-radius: 15px;
+}
+
+.placeholder {
+  color: gray;
+  position: relative;
+  top: 2.5em;
+}
+
+.invisible {
+  visibility: hidden;
 }
 </style>
