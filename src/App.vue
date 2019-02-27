@@ -50,6 +50,57 @@ body {
   opacity: 0.2;
 }
 
+.optionTitle {
+  margin: -0.3em 0 0 0;
+}
+
+.optionIcon {
+  height: 1.7em;
+}
+
+.btnCanel {
+  float: left;
+}
+
+.btnConfirm {
+  float: right;
+  background-color: limegreen;
+}
+
+.v--modal {
+  margin: 10em auto;
+  width: 60em;
+  height: 40em;
+}
+
+.modalHeader {
+  display: flex;
+}
+
+.modalIcon {
+  height: 3.5em;
+  padding: 1em;
+}
+
+.modalFooter {
+  position: absolute;
+  bottom: 0em;
+  width: calc(100% - 2em);
+  margin: 1em;
+}
+
+h1 {
+  font-size: 2.7em;
+  font-family: "Avenir";
+  margin-bottom: 0;
+}
+
+hr {
+  height: 0.2em;
+  background-color: black;
+  margin: 0 1em;
+}
+
 button {
   width: 6em;
   height: 1.7em;

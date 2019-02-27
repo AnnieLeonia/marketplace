@@ -23,10 +23,6 @@ button {
   margin: 12px;
 }
 
-.btnCanel {
-  float: left;
-}
-
 .btnSave {
   float: right;
   background-color: #b3dcff;

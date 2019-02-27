@@ -9,6 +9,7 @@
       <p class="menuTitle">Options</p>
       <draggable
         class="menu"
+        :list="menuOptions"
         :options="{group:{ name:'options',  pull:'clone', put: false }, sort: false}"
       >
         <div class="option" v-for="option in menuOptions" v-bind:key="option.name">
@@ -92,13 +93,5 @@ nav {
 
 .menu > .option {
   display: inline-block;
-}
-
-.optionTitle {
-  margin: -0.3em 0 0 0;
-}
-
-.optionIcon {
-  height: 30px;
 }
 </style>
