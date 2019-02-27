@@ -1,7 +1,10 @@
 <template>
   <main>
     <p>Drag and drop area</p>
-    <draggable class="workspace" :options="{group:{ name:'options'}}"></draggable>
+    <draggable
+      class="workspace"
+      :options="{group:{ name:'options'},  ghostClass: 'ghostOption', animation: 400}"
+    ></draggable>
   </main>
 </template>
 
