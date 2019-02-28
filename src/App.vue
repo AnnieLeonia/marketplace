@@ -81,11 +81,6 @@ body {
   padding: 1em;
 }
 
-.modalBody {
-  overflow: auto;
-  height: 20em;
-}
-
 .modalFooter {
   position: absolute;
   bottom: 0em;

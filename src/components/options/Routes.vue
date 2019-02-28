@@ -14,9 +14,14 @@
     <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
       <tr>
         <td>
-          <table cellspacing="0" cellpadding="1" width="765">
+          <table cellspacing="0" cellpadding="1" width="777">
             <tr class="header">
-              <th class="box">Box</th>
+              <th>
+                <label class="form-checkbox">
+                  <input type="checkbox" name="checkAll" v-model="selectAll" @click="select">
+                  <i class="form-icon"></i>
+                </label>
+              </th>
               <th class="from">From</th>
               <th class="to">To</th>
               <th class="description">Description</th>
@@ -27,20 +32,26 @@
       <tr>
         <td>
           <div class="modalBody">
-            <table cellspacing="0" cellpadding="1" width="300">
+            <table cellspacing="0" cellpadding="1" width="777">
               <tr class="body" v-for="option in routes" v-bind:key="option.id">
                 <td>
-                  <input type="checkbox" id="checkbox_1">
+                  <label class="form-checkbox">
+                    <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
+                  </label>
+                  <i class="form-icon" :for="option.id">hej</i>
                 </td>
-                <td class="optionFrom">{{option.from}}</td>
-                <td class="optionTo">{{option.to}}</td>
-                <td class="optionDescription">{{option.description}}</td>
+                <label class="optionText" :for="option.id">
+                  <td class="optionFrom">{{option.from}}</td>
+                  <td class="optionTo">{{option.to}}</td>
+                  <td class="optionDescription">{{option.description}}</td>
+                </label>
               </tr>
             </table>
           </div>
         </td>
       </tr>
     </table>
+    <span>Selected id: {{ selected }}</span>
     <div class="modalFooter">
       <button class="btnCancel">Cancel</button>
       <button class="btnConfirm">Confirm</button>
@@ -70,9 +81,22 @@ export default {
         { id: 14, from: "SFO", to: "SIN", description: "London to Boston" },
         { id: 15, from: "SFO", to: "SIN", description: "London to Boston" },
         { id: 16, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 17, from: "SFO", to: "SIN", description: "London to Boston" }
-      ]
+        { id: 17, from: "SFO", to: "BOS", description: "London to Boston" }
+      ],
+      selected: [],
+      selectAll: false
     };
+  },
+  methods: {
+    select() {
+      this.selected = [];
+      if (!this.selectAll) {
+        for (let i in this.routes) {
+          //this.selectRoute(i);
+          this.selected.push(this.routes[i].id);
+        }
+      }
+    }
   }
 };
 </script>
@@ -101,51 +125,70 @@ input[type="text"]:focus {
   border-bottom: solid 3px darkblue;
 }
 
-.modalBody {
-  width: 765px;
-  overflow: auto;
-}
-
 .wholeTable {
   table-layout: fixed;
-  width: 80%;
-  margin: 1em 0 0 4em;
+  width: 65%;
+  margin: 1em 0 0 8em;
+  height: 20em;
 }
 .header {
   color: white;
   background-color: gray;
-  display: table-cell;
+  font-size: 24px;
+  height: 1.5em;
 }
-.box {
-  width: 0.1em;
+input[type="checkbox"] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  margin-left: 1em;
 }
+
+input[type="checkbox"]:checked ~ .form-icon {
+  color: #f00;
+  font-style: normal;
+}
+
 .from {
-  padding-left: 3em;
-  width: 4.5em;
+  padding-left: 0.5em;
+  width: 3.8em;
 }
 
 .to {
   margin: none;
-  width: 4.5em;
+  width: 4em;
+  padding-left: 0.3em;
 }
 
 .description {
-  padding-left: 4em;
+  padding-left: 3.2em;
 }
 
+.modalBody {
+  width: 799px;
+  overflow: auto;
+  height: 25em;
+}
+.body {
+  font-size: 20px;
+}
 .body:hover {
   background-color: #f5f5f5;
 }
 .optionFrom {
-  padding-left: 3.5em;
+  padding: 0.4em 0 0 2.5em;
   width: 4.5em;
 }
 .optionTo {
-  margin: none;
+  padding-left: 0.4em;
+  width: 4.5em;
 }
 
 .optionDescription {
-  padding-left: 3.5em;
+  padding-left: 4em;
   width: 10em;
+  display: inline-block;
 }
 </style>
