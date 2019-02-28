@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Menu />
-    <Workspace />
-    <Footer />
+    <Menu/>
+    <Workspace/>
+    <Footer/>
   </div>
 </template>
 
@@ -69,7 +69,7 @@ body {
 
 .v--modal {
   width: 60em;
-  height: 40em;
+  min-height: 20em;
 }
 
 .modalHeader {
@@ -79,6 +79,11 @@ body {
 .modalIcon {
   height: 3.5em;
   padding: 1em;
+}
+
+.modalBody {
+  overflow: auto;
+  height: 20em;
 }
 
 .modalFooter {
