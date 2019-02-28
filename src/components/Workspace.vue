@@ -54,25 +54,25 @@ export default {
       console.log("OPEN:", option);
       switch (option) {
         case "Dates":
-          this.$modal.show(Dates, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Dates, {}, { width: "1000px", height: "600px" });
           break;
         case "Discount":
-          this.$modal.show(Discount, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Discount, {}, { width: "1000px", height: "600px" });
           break;
         case "Inventory":
-          this.$modal.show(Inventory, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Inventory, {}, { width: "1000px", height: "600px" });
           break;
         case "Product":
-          this.$modal.show(Product, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Product, {}, { width: "1000px", height: "600px" });
           break;
         case "Promotion":
-          this.$modal.show(Promotion, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Promotion, {}, { width: "1000px", height: "600px" });
           break;
         case "Routes":
-          this.$modal.show(Routes, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Routes, {}, { width: "1000px", height: "600px" });
           break;
         case "Time":
-          this.$modal.show(Time, {}, { width: "1200px", height: "800px" });
+          this.$modal.show(Time, {}, { width: "1000px", height: "600px" });
           break;
         default:
         // code block

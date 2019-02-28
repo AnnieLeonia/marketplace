@@ -7,7 +7,11 @@ import VCalendar from "v-calendar";
 import "v-calendar/lib/v-calendar.min.css";
 
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
-Vue.use(VCalendar, { firstDayOfWeek: 2 });
+Vue.use(VCalendar, {
+  firstDayOfWeek: 2,
+  paneWidth: 400,
+  datePickerShowDayPopover: false
+});
 
 Vue.config.productionTip = false;
 

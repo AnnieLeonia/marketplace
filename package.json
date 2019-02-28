@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "dateformat": "^3.0.3",
     "i": "^0.3.6",
     "npm": "^6.8.0",
     "v-calendar": "^0.9.7",
