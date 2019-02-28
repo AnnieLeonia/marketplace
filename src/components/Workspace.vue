@@ -13,7 +13,11 @@
         v-bind:key="option.name"
         v-on:click="open(option.name)"
       >
-        <img class="optionIcon" v-bind:src="option.path" alt="icon">
+        <img
+          class="optionIcon"
+          v-bind:src="option.path"
+          alt="icon"
+        >
         <p class="optionTitle">{{option.name}}</p>
       </div>
     </draggable>
@@ -50,25 +54,25 @@ export default {
       console.log("OPEN:", option);
       switch (option) {
         case "Dates":
-          this.$modal.show(Dates, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Dates, {}, { width: "1200px", height: "800px" });
           break;
         case "Discount":
-          this.$modal.show(Discount, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Discount, {}, { width: "1200px", height: "800px" });
           break;
         case "Inventory":
-          this.$modal.show(Inventory, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Inventory, {}, { width: "1200px", height: "800px" });
           break;
         case "Product":
-          this.$modal.show(Product, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Product, {}, { width: "1200px", height: "800px" });
           break;
         case "Promotion":
-          this.$modal.show(Promotion, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Promotion, {}, { width: "1200px", height: "800px" });
           break;
         case "Routes":
-          this.$modal.show(Routes, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Routes, {}, { width: "1200px", height: "800px" });
           break;
         case "Time":
-          this.$modal.show(Time, {}, { width: "60em", height: "40em" });
+          this.$modal.show(Time, {}, { width: "1200px", height: "800px" });
           break;
         default:
         // code block

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Menu/>
-    <Workspace/>
-    <Footer/>
+    <Menu />
+    <Workspace />
+    <Footer />
   </div>
 </template>
 
@@ -68,7 +68,6 @@ body {
 }
 
 .v--modal {
-  margin: 10em auto;
   width: 60em;
   height: 40em;
 }
@@ -86,7 +85,8 @@ body {
   position: absolute;
   bottom: 0em;
   width: calc(100% - 2em);
-  margin: 1em;
+  padding: 1em;
+  background-color: white;
 }
 
 h1 {
