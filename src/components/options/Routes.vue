@@ -37,13 +37,26 @@
                 <td>
                   <label class="form-checkbox">
                     <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
+                    <i class="form-icon" :for="option.id"></i>
                   </label>
-                  <i class="form-icon" :for="option.id">hej</i>
                 </td>
                 <label class="optionText" :for="option.id">
-                  <td class="optionFrom">{{option.from}}</td>
-                  <td class="optionTo">{{option.to}}</td>
-                  <td class="optionDescription">{{option.description}}</td>
+                  <div class="bolded" v-if="selected.includes(option.id)">
+                    <td class="optionFrom" id="optionFrom">
+                      <b>{{option.from}}</b>
+                    </td>
+                    <td class="optionTo" id="optionTo">
+                      <b>{{option.to}}</b>
+                    </td>
+                    <td class="optionDescription" id="optionDescription">
+                      <b>{{option.description}}</b>
+                    </td>
+                  </div>
+                  <div class="notBolded" v-else>
+                    <td class="optionFrom">{{option.from}}</td>
+                    <td class="optionTo">{{option.to}}</td>
+                    <td class="optionDescription">{{option.description}}</td>
+                  </div>
                 </label>
               </tr>
             </table>
@@ -92,7 +105,6 @@ export default {
       this.selected = [];
       if (!this.selectAll) {
         for (let i in this.routes) {
-          //this.selectRoute(i);
           this.selected.push(this.routes[i].id);
         }
       }
@@ -127,7 +139,7 @@ input[type="text"]:focus {
 
 .wholeTable {
   table-layout: fixed;
-  width: 65%;
+  width: 78%;
   margin: 1em 0 0 8em;
   height: 20em;
 }
@@ -144,11 +156,6 @@ input[type="checkbox"] {
   -webkit-transform: scale(2); /* Safari and Chrome */
   -o-transform: scale(2); /* Opera */
   margin-left: 1em;
-}
-
-input[type="checkbox"]:checked ~ .form-icon {
-  color: #f00;
-  font-style: normal;
 }
 
 .from {
@@ -169,7 +176,7 @@ input[type="checkbox"]:checked ~ .form-icon {
 .modalBody {
   width: 799px;
   overflow: auto;
-  height: 25em;
+  height: 16em;
 }
 .body {
   font-size: 20px;
@@ -190,5 +197,10 @@ input[type="checkbox"]:checked ~ .form-icon {
   padding-left: 4em;
   width: 10em;
   display: inline-block;
+}
+
+.bolded,
+.notBolded {
+  display: inline-table;
 }
 </style>
