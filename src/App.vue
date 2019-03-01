@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Menu/>
-    <Workspace/>
-    <Footer/>
+    <Menu />
+    <Workspace />
+    <Footer />
   </div>
 </template>
 
@@ -54,8 +54,18 @@ body {
   margin: -0.3em 0 0 0;
 }
 
+.optionValue {
+  margin: 0;
+  font-size: 0.66em;
+}
+
 .optionIcon {
   height: 1.7em;
+}
+
+.optionIconSmall {
+  float: left;
+  height: 1em;
 }
 
 .btnCanel {

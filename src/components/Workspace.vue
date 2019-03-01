@@ -5,20 +5,30 @@
       class="workspace"
       :list="list"
       :options="{group:{ name:'options'},  ghostClass: 'ghostOption', animation: 400}"
-      @add="hello('add')"
+      @add="add($event)"
     >
       <div
         class="option"
         v-for="option in list"
-        v-bind:key="option.name"
-        v-on:click="open(option.name)"
+        v-bind:key="option.id"
+        v-on:click="open(option)"
       >
-        <img
-          class="optionIcon"
-          v-bind:src="option.path"
-          alt="icon"
-        >
-        <p class="optionTitle">{{option.name}}</p>
+        <div v-if="!option.edited">
+          <img
+            class="optionIcon"
+            v-bind:src="option.path"
+            alt="icon"
+          >
+          <p class="optionTitle">{{option.name}}</p>
+        </div>
+        <div v-else>
+          <img
+            class="optionIconSmall"
+            v-bind:src="option.path"
+            alt="icon"
+          >
+          <p class="optionValue">{{option.value}}</p>
+        </div>
       </div>
     </draggable>
     <modal name="hello-world">hello, world!</modal>
@@ -45,16 +55,18 @@ export default {
     };
   },
   methods: {
-    hello: function(word) {
+    add: function(event) {
       this.placeholderVisibility = false;
-      console.log("Logg:", word);
-      console.log(this.list);
+      console.log("Event:", event);
     },
     open: function(option) {
-      console.log("OPEN:", option);
-      switch (option) {
+      switch (option.name) {
         case "Dates":
-          this.$modal.show(Dates, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Dates,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Discount":
           this.$modal.show(Discount, {}, { width: "1000px", height: "600px" });

@@ -2,7 +2,11 @@
   <header>
     <div class="titleBar">
       <label for="title">Title:</label>
-      <input type="text" id="title" placeholder="Enter title...">
+      <input
+        type="text"
+        id="title"
+        placeholder="Enter title..."
+      >
       <button class="btnOverview">Overview</button>
     </div>
     <nav>
@@ -12,8 +16,16 @@
         :list="menuOptions"
         :options="{group:{ name:'options',  pull:'clone', put: false }, sort: false}"
       >
-        <div class="option" v-for="option in menuOptions" v-bind:key="option.name">
-          <img class="optionIcon" v-bind:src="option.path" alt="icon">
+        <div
+          class="option"
+          v-for="option in menuOptions"
+          v-bind:key="option.name"
+        >
+          <img
+            class="optionIcon"
+            v-bind:src="option.path"
+            alt="icon"
+          >
           <p class="optionTitle">{{option.name}}</p>
         </div>
       </draggable>
@@ -30,13 +42,55 @@ export default {
   data() {
     return {
       menuOptions: [
-        { name: "Product", path: require("../assets/product.svg") },
-        { name: "Discount", path: require("../assets/discount.svg") },
-        { name: "Promotion", path: require("../assets/promotion.svg") },
-        { name: "Routes", path: require("../assets/routes.svg") },
-        { name: "Dates", path: require("../assets/dates.svg") },
-        { name: "Time", path: require("../assets/time.svg") },
-        { name: "Inventory", path: require("../assets/inventory.svg") }
+        {
+          id: 0,
+          name: "Product",
+          path: require("../assets/product.svg"),
+          edited: false,
+          value: ""
+        },
+        {
+          id: 0,
+          name: "Discount",
+          path: require("../assets/discount.svg"),
+          edited: false,
+          value: ""
+        },
+        {
+          id: 0,
+          name: "Promotion",
+          path: require("../assets/promotion.svg"),
+          edited: false,
+          value: ""
+        },
+        {
+          id: 0,
+          name: "Routes",
+          path: require("../assets/routes.svg"),
+          edited: false,
+          value: ""
+        },
+        {
+          id: 0,
+          name: "Dates",
+          path: require("../assets/dates.svg"),
+          edited: false,
+          value: ""
+        },
+        {
+          id: 0,
+          name: "Time",
+          path: require("../assets/time.svg"),
+          edited: false,
+          value: ""
+        },
+        {
+          id: 0,
+          name: "Inventory",
+          path: require("../assets/inventory.svg"),
+          edited: false,
+          value: ""
+        }
       ]
     };
   }

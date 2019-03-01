@@ -37,8 +37,14 @@
       </li>
     </ul>
     <div class="modalFooter">
-      <button class="btnCancel">Cancel</button>
-      <button class="btnConfirm">Confirm</button>
+      <button
+        class="btnCancel"
+        v-on:click="close()"
+      >Cancel</button>
+      <button
+        class="btnConfirm"
+        v-on:click="confirm()"
+      >Confirm</button>
     </div>
   </div>
 </template>
@@ -50,6 +56,7 @@ export default {
   components: {
     Datepicker
   },
+  props: ["option"],
   data() {
     return {
       value: null,
@@ -73,6 +80,20 @@ export default {
         dateToDisplay += DateFormat(date.end, "mmmm dS, yyyy");
       }
       return dateToDisplay;
+    },
+    confirm: function() {
+      this.$props.option.edited = true;
+      let returnValue = this.displayDate(this.dates[0]);
+      if (this.dates.length > 1) {
+        returnValue += " + "
+          .concat(this.dates.length - 1)
+          .concat(" more dates");
+      }
+      this.$props.option.value = returnValue;
+      this.$emit("close");
+    },
+    close: function() {
+      this.$emit("close");
     }
   }
 };
