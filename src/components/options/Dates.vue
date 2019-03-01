@@ -19,18 +19,22 @@
     <ul>
       <p
         class="placeholder"
-        v-if="selectedDates.length == 0"
-      >No dates added<p>
-          <li
-            v-for="(date, index) in this.selectedDates"
-            :key=index
-          >
-            <p class="listDate">{{displayDate(date)}}</p>
-            <button
-              class="btnRemove"
-              v-on:click="removeDates(index)"
-            >X</button>
-          </li>
+        v-if="dates.length == 0"
+      >
+        No dates added
+      </p>
+      <li
+        v-for="(date, index) in this.dates"
+        :key=index
+      >
+        <img
+          class="removeIcon"
+          src="../../assets/remove.svg"
+          alt="icon"
+          v-on:click="removeDates(index)"
+        >
+        <p class="listDate">{{displayDate(date)}}</p>
+      </li>
     </ul>
     <div class="modalFooter">
       <button class="btnCancel">Cancel</button>
@@ -49,21 +53,18 @@ export default {
   data() {
     return {
       value: null,
-      selectedDates: []
+      dates: []
     };
   },
   methods: {
-    hello: function(word) {
-      console.log(this.selectedDates);
-    },
     addDates: function(newDate) {
-      this.selectedDates.push(newDate);
-      this.selectedDates.sort(function compare(a, b) {
+      this.dates.push(newDate);
+      this.dates.sort(function compare(a, b) {
         return a.start - b.start;
       });
     },
     removeDates: function(index) {
-      this.selectedDates.splice(index, 1);
+      this.dates.splice(index, 1);
     },
     displayDate(date) {
       let dateToDisplay = DateFormat(date.start, "mmmm dS, yyyy");
@@ -83,24 +84,29 @@ export default {
   margin: 1em;
 }
 
-.calendar .c-day-content {
-  background-color: antiquewhite;
-}
-
 ul {
-  padding: 1em;
+  color: #393d46;
+  padding: 0;
   margin: 1em;
-  height: 300px;
+  height: 334px;
   overflow: auto;
-  border: solid red 2px;
+  border: 1px solid rgb(218, 218, 218);
 }
 
 li {
-  display: flex;
-  margin: 0.5em;
+  padding: 0.5em;
+  margin: 1px;
+}
+
+li:nth-child(even) {
+  background-color: rgb(250, 250, 250);
+}
+li:nth-child(odd) {
+  background: #fff;
 }
 
 .placeholder {
+  margin: 2em 0;
   text-align: center;
   color: #555;
   font-size: 24px;
@@ -110,11 +116,22 @@ li {
 .listDate {
   width: 100%;
   margin: 0;
-  font-size: 22px;
   font-family: "Avenir";
+  font-size: 0.9rem;
 }
 
-.btnRemove {
-  width: 2em;
+.removeIcon {
+  height: 1.2em;
+  float: right;
+}
+
+.removeIcon:hover + .listDate {
+  text-decoration: line-through;
+  color: darkgray;
+}
+
+.removeIcon:hover {
+  height: 1.3em;
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
 }
 </style>
