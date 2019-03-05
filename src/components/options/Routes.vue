@@ -7,14 +7,14 @@
     <hr>
     <div class="inputField">
       <label for="title">From:</label>
-      <input type="text" fromTo="from" placeholder="Enter depature...">
+      <input type="text" fromTo="from" v-model="searchFrom" placeholder="Enter depature...">
       <label for="title">To:</label>
-      <input type="text" fromTo="to" placeholder="Enter destination...">
+      <input type="text" fromTo="to" v-model="searchTo" placeholder="Enter destination...">
     </div>
     <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
       <tr>
         <td>
-          <table cellspacing="0" cellpadding="1" width="777">
+          <table cellspacing="0" cellpadding="0" width="777">
             <tr class="header">
               <th>
                 <label class="form-checkbox">
@@ -22,8 +22,8 @@
                   <i class="form-icon"></i>
                 </label>
               </th>
-              <th class="from">From</th>
-              <th class="to">To</th>
+              <th class="from" @click="sort('from')">From</th>
+              <th class="to" @click="sort('to')">To</th>
               <th class="description">Description</th>
             </tr>
           </table>
@@ -33,7 +33,7 @@
         <td>
           <div class="modalBody">
             <table cellspacing="0" cellpadding="1" width="777">
-              <tr class="body" v-for="option in routes" v-bind:key="option.id">
+              <tr class="body" v-for="option in sortedRoutes" v-bind:key="option.id">
                 <td>
                   <label class="form-checkbox">
                     <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
@@ -78,16 +78,41 @@ export default {
     return {
       routes: [
         { id: 0, from: "LHR", to: "BOS", description: "London to Boston" },
-        { id: 1, from: "LHR", to: "CIC", description: "London to Chicago" },
-        { id: 2, from: "NRT", to: "SFO", description: "London to Boston" },
-        { id: 3, from: "SFO", to: "ARN", description: "London to Boston" },
-        { id: 4, from: "SFO", to: "BFL", description: "London to Boston" },
-        { id: 5, from: "SFO", to: "BOS", description: "London to Boston" },
-        { id: 6, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 7, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 8, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 9, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 10, from: "SFO", to: "SIN", description: "London to Boston" },
+        { id: 1, from: "ARN", to: "CIC", description: "Stockholm to Chicago" },
+        {
+          id: 2,
+          from: "NRT",
+          to: "SFO",
+          description: "Tokyo to San Francisco"
+        },
+        {
+          id: 3,
+          from: "SFO",
+          to: "ARN",
+          description: "San Francisco to Stockholm"
+        },
+        {
+          id: 4,
+          from: "SFO",
+          to: "BFL",
+          description: "San Francisco to Bakersfield"
+        },
+        {
+          id: 5,
+          from: "SFO",
+          to: "BOS",
+          description: "San Francisco to Boston"
+        },
+        {
+          id: 6,
+          from: "SFO",
+          to: "AMS",
+          description: "San Francisco to Amsterdam"
+        },
+        { id: 7, from: "ARN", to: "BUD", description: "Stockholm to Budapest" },
+        { id: 8, from: "ARN", to: "PRG", description: "Stockholm to Prag" },
+        { id: 9, from: "LHR", to: "BJS", description: "London to Beijing" },
+        { id: 10, from: "LHR", to: "AMS", description: "London to Amsterdam" },
         { id: 11, from: "SFO", to: "SIN", description: "London to Boston" },
         { id: 12, from: "SFO", to: "SIN", description: "London to Boston" },
         { id: 13, from: "SFO", to: "SIN", description: "London to Boston" },
@@ -97,8 +122,47 @@ export default {
         { id: 17, from: "SFO", to: "BOS", description: "London to Boston" }
       ],
       selected: [],
-      selectAll: false
+      selectAll: false,
+      currentSort: "from",
+      currentSortDir: "asc",
+      searchFrom: "",
+      searchTo: ""
     };
+  },
+  computed: {
+    sortedRoutes: function() {
+      let result = this.routes;
+      if (this.searchFrom) {
+        result = result.filter(item =>
+          item.from.toLowerCase().includes(this.searchFrom)
+        );
+      }
+      if (this.searchTo) {
+        result = result.filter(item =>
+          item.to.toLowerCase().includes(this.searchTo)
+        );
+      }
+      return result.sort((a, b) => {
+        let modifier = 1;
+        if (this.currentSortDir === "desc") modifier = -1;
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      });
+    },
+    displayRoutes: function() {
+      let modifier = 1;
+      if (this.currentSortDir === "desc") modifier = -1;
+      function surnameName(a, b) {
+        if (a.from < b.from) return -1;
+        if (a.from > b.from) return 1;
+        if (a.to < b.to) return -1;
+        if (a.to > b.to) return 1;
+        return 0;
+      }
+      // return this.users.sort(surnameName); // sorts in-place
+      return this.routes.sort(surnameName); // shallow clone + sort
+    }
   },
   methods: {
     select() {
@@ -108,7 +172,17 @@ export default {
           this.selected.push(this.routes[i].id);
         }
       }
+    },
+    sort: function(s) {
+      //if s == current sort, reverse
+      if (s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === "asc" ? "desc" : "asc";
+      }
+      this.currentSort = s;
     }
+  },
+  beforeMount() {
+    this.displayRoutes;
   }
 };
 </script>
@@ -147,7 +221,7 @@ input[type="text"]:focus {
   color: white;
   background-color: gray;
   font-size: 24px;
-  height: 1.5em;
+  height: 2.2em;
 }
 input[type="checkbox"] {
   /* Double-sized Checkboxes */
@@ -161,12 +235,14 @@ input[type="checkbox"] {
 .from {
   padding-left: 0.5em;
   width: 3.8em;
+  cursor: pointer;
 }
 
 .to {
   margin: none;
   width: 4em;
   padding-left: 0.3em;
+  cursor: pointer;
 }
 
 .description {
@@ -176,7 +252,7 @@ input[type="checkbox"] {
 .modalBody {
   width: 799px;
   overflow: auto;
-  height: 16em;
+  height: 17em;
 }
 .body {
   font-size: 20px;
@@ -195,7 +271,7 @@ input[type="checkbox"] {
 
 .optionDescription {
   padding-left: 4em;
-  width: 10em;
+  width: 13em;
   display: inline-block;
 }
 
