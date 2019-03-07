@@ -22,8 +22,15 @@
                   <i class="form-icon"></i>
                 </label>
               </th>
-              <th class="from" @click="sort('from')">From</th>
-              <th class="to" @click="sort('to')">To</th>
+              <th class="from" @click="sort('from')">From
+                <div
+                  v-if="'from' == sortColumn"
+                  v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"
+                ></div>
+              </th>
+              <th class="to" @click="sort('to')">To
+                <div v-if="'to' == sortColumn" v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"></div>
+              </th>
               <th class="description">Description</th>
             </tr>
           </table>
@@ -123,10 +130,10 @@ export default {
       ],
       selected: [],
       selectAll: false,
-      currentSort: "from",
-      currentSortDir: "asc",
       searchFrom: "",
-      searchTo: ""
+      searchTo: "",
+      ascending: true,
+      sortColumn: "from"
     };
   },
   computed: {
@@ -142,17 +149,19 @@ export default {
           item.to.toLowerCase().includes(this.searchTo)
         );
       }
+      var ascending = this.ascending;
       return result.sort((a, b) => {
-        let modifier = 1;
-        if (this.currentSortDir === "desc") modifier = -1;
-        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        if (a[this.sortColumn] > b[this.sortColumn]) {
+          return ascending ? 1 : -1;
+        } else if (a[this.sortColumn] < b[this.sortColumn]) {
+          return ascending ? -1 : 1;
+        }
         return 0;
       });
     },
     displayRoutes: function() {
       let modifier = 1;
-      if (this.currentSortDir === "desc") modifier = -1;
+      if (!this.ascending) modifier = -1;
       function surnameName(a, b) {
         if (a.from < b.from) return -1;
         if (a.from > b.from) return 1;
@@ -173,12 +182,13 @@ export default {
         }
       }
     },
-    sort: function(s) {
-      //if s == current sort, reverse
-      if (s === this.currentSort) {
-        this.currentSortDir = this.currentSortDir === "asc" ? "desc" : "asc";
+    sort: function(col) {
+      if (this.sortColumn === col) {
+        this.ascending = !this.ascending;
+      } else {
+        this.ascending = true;
+        this.sortColumn = col;
       }
-      this.currentSort = s;
     }
   },
   beforeMount() {
@@ -233,16 +243,35 @@ input[type="checkbox"] {
 }
 
 .from {
-  padding-left: 0.5em;
-  width: 3.8em;
+  padding-left: 0.4em;
+  width: 3.4em;
   cursor: pointer;
 }
 
 .to {
   margin: none;
-  width: 4em;
-  padding-left: 0.3em;
+  width: 2em;
+  padding-left: 1em;
   cursor: pointer;
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  float: right;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid black;
+  margin-top: 0.5em;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  float: right;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid black;
+  margin-top: 0.5em;
 }
 
 .description {
@@ -265,12 +294,12 @@ input[type="checkbox"] {
   width: 4.5em;
 }
 .optionTo {
-  padding-left: 0.4em;
+  padding-left: 0.6em;
   width: 4.5em;
 }
 
 .optionDescription {
-  padding-left: 4em;
+  padding-left: 1.7em;
   width: 13em;
   display: inline-block;
 }
