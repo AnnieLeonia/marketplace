@@ -197,15 +197,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .inputField {
   padding: 0.5em;
   font-size: 1.5em;
   height: 32px;
-}
-
-.from {
-  margin-right: 1.5em;
 }
 
 input[type="text"] {
@@ -279,7 +275,7 @@ input[type="checkbox"] {
 }
 
 .modalBody {
-  width: 799px;
+  width: 794px;
   overflow: auto;
   height: 17em;
 }
