@@ -7,26 +7,13 @@
       :options="{group:{ name:'options'},  ghostClass: 'ghostOption', animation: 400}"
       @add="add($event)"
     >
-      <div
-        class="option"
-        v-for="option in list"
-        v-bind:key="option.id"
-        v-on:click="open(option)"
-      >
+      <div class="option" v-for="option in list" v-bind:key="option.id" v-on:click="open(option)">
         <div v-if="!option.edited">
-          <img
-            class="optionIcon"
-            v-bind:src="option.path"
-            alt="icon"
-          >
+          <img class="optionIcon" v-bind:src="option.path" alt="icon">
           <p class="optionTitle">{{option.name}}</p>
         </div>
         <div v-else>
-          <img
-            class="optionIconSmall"
-            v-bind:src="option.path"
-            alt="icon"
-          >
+          <img class="optionIconSmall" v-bind:src="option.path" alt="icon">
           <p class="optionValue">{{option.value}}</p>
         </div>
       </div>
@@ -81,7 +68,11 @@ export default {
           this.$modal.show(Promotion, {}, { width: "1000px", height: "600px" });
           break;
         case "Routes":
-          this.$modal.show(Routes, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Routes,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Time":
           this.$modal.show(Time, {}, { width: "1000px", height: "600px" });

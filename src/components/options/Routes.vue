@@ -73,14 +73,15 @@
     </table>
     <span>Selected id: {{ selected }}</span>
     <div class="modalFooter">
-      <button class="btnCancel">Cancel</button>
-      <button class="btnConfirm">Confirm</button>
+      <button class="btnCancel" v-on:click="close()">Cancel</button>
+      <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["option"],
   data() {
     return {
       routes: [
@@ -189,6 +190,23 @@ export default {
         this.ascending = true;
         this.sortColumn = col;
       }
+    },
+    confirm: function() {
+      this.$props.option.edited = true;
+      let returnValue = this.routes.find(o => o.id === this.selected[0]).from;
+      returnValue += " - ".concat(
+        this.routes.find(o => o.id === this.selected[0]).to
+      );
+      if (this.selected.length > 1) {
+        returnValue += " + "
+          .concat(this.selected.length - 1)
+          .concat(" more routes");
+      }
+      this.$props.option.value = returnValue;
+      this.$emit("close");
+    },
+    close: function() {
+      this.$emit("close");
     }
   },
   beforeMount() {
