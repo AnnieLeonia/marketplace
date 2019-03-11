@@ -2,12 +2,12 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon" src="../../assets/time.svg" alt="icon" />
-      <h1>Time</h1>
+      <h1 v-on:click="addTime()">Time</h1>
     </div>
     <hr />
     <div class="modalBody">
       <div class="radioOption">
-        <el-radio v-model="radio" label="1">Time from take off </el-radio>
+        <el-radio v-model="radio" :label="1">Time from take off </el-radio>
         <el-input-number
           v-model="num1"
           :min="1"
@@ -16,7 +16,7 @@
         />
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" label="2">Time to destination</el-radio>
+        <el-radio v-model="radio" :label="2">Time to destination</el-radio>
         <el-input-number
           v-model="num2"
           :min="1"
@@ -25,7 +25,7 @@
         />
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" label="3">Altitude</el-radio>
+        <el-radio v-model="radio" :label="3">Altitude</el-radio>
         <el-input-number
           v-model="num3"
           :min="15000"
@@ -35,13 +35,13 @@
         />
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" label="4">Meal served</el-radio>
+        <el-radio v-model="radio" :label="4">Meal served</el-radio>
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" label="5">Doors closed</el-radio>
+        <el-radio v-model="radio" :label="5">Doors closed</el-radio>
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" label="6">Weight on wheels</el-radio>
+        <el-radio v-model="radio" :label="6">Weight on wheels</el-radio>
       </div>
     </div>
     <div class="modalFooter">
@@ -56,7 +56,7 @@ export default {
   props: ["option"],
   data() {
     return {
-      radio: null,
+      radio: 0,
       num1: 1,
       num2: 1,
       num3: 15000,
@@ -67,13 +67,42 @@ export default {
     addTime: function() {},
     removeTime: function() {},
 
-    displayTime() {
-      return "3 hours";
+    displayTime(number) {
+      console.log(number, typeof number);
+      switch (number) {
+        case 1: {
+          return this.num1 > 1
+            ? this.num1 + " hours from take off"
+            : this.num1 + " hour from take off";
+        }
+        case 2: {
+          return this.num2 > 1
+            ? this.num2 + " hours to destination"
+            : this.num2 + " hour to destination";
+        }
+        case 3: {
+          return this.num3 + "ft above sea level";
+        }
+        case 4: {
+          return "Meal served";
+        }
+        case 5: {
+          return "Doors closed";
+        }
+        case 6: {
+          return "Weight on wheels";
+        }
+      }
+      console.log(returnValue);
+
+      return returnValue;
     },
     confirm: function() {
-      this.$props.option.edited = true;
-      let returnValue = this.displayTime();
-      this.$props.option.value = returnValue;
+      if (this.radio != null) {
+        this.$props.option.edited = true;
+        let returnValue = this.displayTime(this.radio);
+        this.$props.option.value = returnValue;
+      }
       this.$emit("close");
     },
     close: function() {
