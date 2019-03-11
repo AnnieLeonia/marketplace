@@ -67,16 +67,32 @@ export default {
           );
           break;
         case "Discount":
-          this.$modal.show(Discount, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Discount,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Inventory":
-          this.$modal.show(Inventory, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Inventory,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Product":
-          this.$modal.show(Product, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Product,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Promotion":
-          this.$modal.show(Promotion, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Promotion,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Routes":
           this.$modal.show(
@@ -86,7 +102,11 @@ export default {
           );
           break;
         case "Time":
-          this.$modal.show(Time, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Time,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         default:
         // code block
