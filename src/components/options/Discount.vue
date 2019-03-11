@@ -29,7 +29,7 @@ export default {
       return value + "% discount";
     },
     confirm: function() {
-      if (this.radio != 0) {
+      if (this.value !== 0) {
         this.$props.option.edited = true;
         let returnValue = this.displayDiscount(this.value);
         this.$props.option.value = returnValue;
@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modalBody {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin: 1em;

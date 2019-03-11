@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-on:click="show()">
     <div v-bind:class="[placeholderVisibility ? 'placeholder' : 'invisible']">
       Drag option here
     </div>
@@ -42,6 +42,7 @@ import Product from "./options/Product";
 import Promotion from "./options/Promotion";
 import Routes from "./options/Routes";
 import Time from "./options/Time";
+import Vue from "vue";
 export default {
   components: {
     draggable
@@ -55,7 +56,6 @@ export default {
   methods: {
     add: function(event) {
       this.placeholderVisibility = false;
-      console.log("Event:", event);
     },
     open: function(option) {
       switch (option.name) {

@@ -105,7 +105,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modalBody {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin: 1em;
