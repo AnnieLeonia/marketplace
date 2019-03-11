@@ -64,11 +64,7 @@ export default {
     };
   },
   methods: {
-    addTime: function() {},
-    removeTime: function() {},
-
     displayTime(number) {
-      console.log(number, typeof number);
       switch (number) {
         case 1: {
           return this.num1 > 1
@@ -93,12 +89,9 @@ export default {
           return "Weight on wheels";
         }
       }
-      console.log(returnValue);
-
-      return returnValue;
     },
     confirm: function() {
-      if (this.radio != null) {
+      if (this.radio != 0) {
         this.$props.option.edited = true;
         let returnValue = this.displayTime(this.radio);
         this.$props.option.value = returnValue;
