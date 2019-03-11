@@ -1,50 +1,36 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img
-        class="modalIcon"
-        src="../../assets/dates.svg"
-        alt="icon"
-      >
+      <img class="modalIcon" src="../../assets/dates.svg" alt="icon" />
       <h1>Dates</h1>
     </div>
     <hr />
-    <v-date-picker
-      is-inline
-      class="calendar"
-      mode='range'
-      :value=value
-      @input=addDates($event)
-    />
-    <ul>
-      <p
-        class="placeholder"
-        v-if="dates.length == 0"
-      >
-        No dates added
-      </p>
-      <li
-        v-for="(date, index) in this.dates"
-        :key=index
-      >
-        <img
-          class="removeIcon"
-          src="../../assets/remove.svg"
-          alt="icon"
-          v-on:click="removeDates(index)"
-        >
-        <p class="listDate">{{displayDate(date)}}</p>
-      </li>
-    </ul>
+    <div class="modalBody">
+      <v-date-picker
+        is-inline
+        class="calendar"
+        mode="range"
+        :value="value"
+        @input="addDates($event)"
+      />
+      <ul>
+        <p class="placeholder" v-if="dates.length == 0">
+          No dates added
+        </p>
+        <li v-for="(date, index) in this.dates" :key="index">
+          <img
+            class="removeIcon"
+            src="../../assets/remove.svg"
+            alt="icon"
+            v-on:click="removeDates(index)"
+          />
+          <p class="listDate">{{ displayDate(date) }}</p>
+        </li>
+      </ul>
+    </div>
     <div class="modalFooter">
-      <button
-        class="btnCancel"
-        v-on:click="close()"
-      >Cancel</button>
-      <button
-        class="btnConfirm"
-        v-on:click="confirm()"
-      >Confirm</button>
+      <button class="btnCancel" v-on:click="close()">Cancel</button>
+      <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
     </div>
   </div>
 </template>
@@ -100,21 +86,26 @@ export default {
 </script>
 
 <style scoped>
+.modalBody {
+  margin: 1em;
+}
+
 .calendar {
   float: left;
-  margin: 1em;
+  height: 382px;
 }
 
 ul {
   color: #393d46;
   padding: 0;
-  margin: 1em;
-  height: 334px;
+  margin-left: 1em;
+  height: 380px;
   overflow: auto;
   border: 1px solid rgb(218, 218, 218);
 }
 
 li {
+  list-style: none;
   padding: 0.5em;
   margin: 1px;
 }

@@ -1,20 +1,31 @@
 <template>
   <main>
-    <div v-bind:class="[ placeholderVisibility ? 'placeholder' : 'invisible' ]">Drag option here</div>
+    <div v-bind:class="[placeholderVisibility ? 'placeholder' : 'invisible']">
+      Drag option here
+    </div>
     <draggable
       class="workspace"
       :list="list"
-      :options="{group:{ name:'options'},  ghostClass: 'ghostOption', animation: 400}"
+      :options="{
+        group: { name: 'options' },
+        ghostClass: 'ghostOption',
+        animation: 400
+      }"
       @add="add($event)"
     >
-      <div class="option" v-for="option in list" v-bind:key="option.id" v-on:click="open(option)">
+      <div
+        class="option"
+        v-for="option in list"
+        v-bind:key="option.id"
+        v-on:click="open(option)"
+      >
         <div v-if="!option.edited">
-          <img class="optionIcon" v-bind:src="option.path" alt="icon">
-          <p class="optionTitle">{{option.name}}</p>
+          <img class="optionIcon" v-bind:src="option.path" alt="icon" />
+          <p class="optionTitle">{{ option.name }}</p>
         </div>
         <div v-else>
-          <img class="optionIconSmall" v-bind:src="option.path" alt="icon">
-          <p class="optionValue">{{option.value}}</p>
+          <img class="optionIconSmall" v-bind:src="option.path" alt="icon" />
+          <p class="optionValue">{{ option.value }}</p>
         </div>
       </div>
     </draggable>

@@ -14,6 +14,7 @@
       <draggable
         class="menu"
         :list="menuOptions"
+        :clone="clone"
         :options="{group:{ name:'options',  pull:'clone', put: false }, sort: false}"
       >
         <div
@@ -93,6 +94,13 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    clone: function(option) {
+      const uniqueOption = JSON.parse(JSON.stringify(option));
+      uniqueOption.id = new Date().getTime();
+      return uniqueOption;
+    }
   }
 };
 </script>
