@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/dates.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/dates.svg" alt="icon">
       <h1>Dates</h1>
     </div>
-    <hr />
+    <hr>
     <div class="modalBody">
       <v-date-picker
         is-inline
@@ -14,16 +14,14 @@
         @input="addDates($event)"
       />
       <ul>
-        <p class="placeholder" v-if="dates.length == 0">
-          No dates added
-        </p>
+        <p class="placeholder" v-if="dates.length == 0">No dates added</p>
         <li v-for="(date, index) in this.dates" :key="index">
           <img
             class="removeIcon"
             src="../../assets/remove.svg"
             alt="icon"
             v-on:click="removeDates(index)"
-          />
+          >
           <p class="listDate">{{ displayDate(date) }}</p>
         </li>
       </ul>
