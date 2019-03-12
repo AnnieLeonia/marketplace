@@ -46,11 +46,21 @@ export default {
         returnValue = "Movie page";
       }
       returnValue += " - ".concat(this.textarea);
-      this.$props.option.value = returnValue;
+      this.$props.option.display = returnValue;
+      this.$props.option.value = {
+        radio: this.radio,
+        txt: this.textarea
+      };
       this.$emit("close");
     },
     close: function() {
       this.$emit("close");
+    }
+  },
+  created: function() {
+    if (this.$props.option.edited) {
+      this.radio = this.$props.option.value.radio;
+      this.textarea = this.$props.option.value.txt;
     }
   }
 };

@@ -66,7 +66,7 @@
                     <label class="optionText" :for="option.id">
                       <div
                         class="bolded"
-                        v-if="collectionSelected.includes(option.id) && optionSelected.includes(1)"
+                        v-if="collectionSelected.includes(option.collection) && optionSelected.includes(1)"
                       >
                         <td class="optionColl" id="optionFrom">
                           <b>{{option.collection}}</b>
@@ -121,7 +121,7 @@
                   <label class="optionText" :for="option.id">
                     <div
                       class="bolded"
-                      v-if="categorieSelected.includes(option.id) && optionSelected.includes(2)"
+                      v-if="categorieSelected.includes(option.categories) && optionSelected.includes(2)"
                     >
                       <td class="optionCat" id="optionFrom">
                         <b>{{option.categories}}</b>
@@ -322,14 +322,14 @@ export default {
       this.productSelected = "";
       this.categorieSelected = [];
       this.collectionSelected = [];
-      this.collectionSelected.push(s.id);
+      this.collectionSelected.push(s.collection);
     },
     selectCategories: function(s) {
       this.optionSelected = "2";
       this.categorieSelected = [];
       this.productSelected = "";
       this.collectionSelected = [];
-      this.categorieSelected.push(s.id);
+      this.categorieSelected.push(s.categories);
     },
     confirm: function() {
       this.$props.option.edited = true;
@@ -343,16 +343,20 @@ export default {
         ).path;
       } else if (this.optionSelected.includes(1)) {
         returnValue = this.collections.find(
-          o => o.id === this.collectionSelected[0]
+          o => o.collection === this.collectionSelected[0]
         ).collection;
         this.$props.option.path = require("../../assets/product.svg");
       } else if (this.optionSelected.includes(2)) {
         returnValue = this.categories.find(
-          o => o.id === this.categorieSelected[0]
+          o => o.categories === this.categorieSelected[0]
         ).categories;
         this.$props.option.path = require("../../assets/product.svg");
       }
       this.$props.option.display = returnValue;
+      this.$props.option.value = {
+        radio: this.optionSelected,
+        pro: returnValue
+      };
       this.$emit("close");
     },
     close: function() {
@@ -360,7 +364,17 @@ export default {
     }
   },
   created: function() {
-    console.log("this.?? = this.$props.option.value");
+    if (this.$props.option.edited) {
+      this.optionSelected = this.$props.option.value.radio;
+      if (this.optionSelected.includes(0)) {
+        this.productSelected = this.$props.option.value.pro;
+      } else if (this.optionSelected.includes(1)) {
+        this.collectionSelected = [this.$props.option.value.pro];
+      } else if (this.optionSelected.includes(2)) {
+        this.categorieSelected = [this.$props.option.value.pro];
+      }
+      // this.selected = this.$props.option.value;
+    }
   }
 };
 </script>
