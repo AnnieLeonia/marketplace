@@ -50,7 +50,8 @@ export default {
   data() {
     return {
       list: [],
-      placeholderVisibility: true
+      placeholderVisibility: true,
+      attr: { width: "1000px", height: "600px" }
     };
   },
   methods: {
@@ -60,58 +61,33 @@ export default {
     open: function(option) {
       switch (option.name) {
         case "Dates":
-          this.$modal.show(
-            Dates,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Dates, { option }, this.attr);
           break;
         case "Discount":
-          this.$modal.show(
-            Discount,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Discount, { option }, this.attr);
           break;
         case "Inventory":
-          this.$modal.show(
-            Inventory,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Inventory, { option }, this.attr);
           break;
         case "Product":
-          this.$modal.show(
-            Product,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Product, { option }, this.attr);
           break;
         case "Promotion":
-          this.$modal.show(
-            Promotion,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Promotion, { option }, this.attr);
           break;
         case "Routes":
-          this.$modal.show(
-            Routes,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Routes, { option }, this.attr);
           break;
         case "Time":
-          this.$modal.show(
-            Time,
-            { option },
-            { width: "1000px", height: "600px" }
-          );
+          this.$modal.show(Time, { option }, this.attr);
           break;
         default:
         // code block
       }
     }
+  },
+  created: function() {
+    this.list = this.$store.state.tree;
   }
 };
 </script>

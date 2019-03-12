@@ -5,6 +5,7 @@ import App from "./App";
 import ElementUI from "element-ui";
 import VModal from "vue-js-modal";
 import VCalendar from "v-calendar";
+import { Store } from "./store";
 
 import "element-ui/lib/theme-chalk/index.css";
 import "v-calendar/lib/v-calendar.min.css";
@@ -23,5 +24,6 @@ Vue.config.productionTip = false;
 new Vue({
   el: "#app",
   components: { App },
+  store: Store,
   template: "<App/>"
 });

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/dates.svg" alt="icon">
+      <img class="modalIcon" src="../../assets/dates.svg" alt="icon" />
       <h1>Dates</h1>
     </div>
-    <hr>
+    <hr />
     <div class="modalBody">
       <v-date-picker
         is-inline
@@ -21,7 +21,7 @@
             src="../../assets/remove.svg"
             alt="icon"
             v-on:click="removeDates(index)"
-          >
+          />
           <p class="listDate">{{ displayDate(date) }}</p>
         </li>
       </ul>
@@ -66,8 +66,11 @@ export default {
       return dateToDisplay;
     },
     confirm: function() {
-      this.$props.option.edited = true;
-      let returnValue = this.displayDate(this.dates[0]);
+      let returnValue;
+      if (this.dates.length !== 0) {
+        this.$props.option.edited = true;
+        returnValue = this.displayDate(this.dates[0]);
+      }
       if (this.dates.length > 1) {
         returnValue += " + "
           .concat(this.dates.length - 1)
