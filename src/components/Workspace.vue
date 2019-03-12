@@ -1,5 +1,5 @@
 <template>
-  <main v-on:click="show()">
+  <main>
     <div v-bind:class="[placeholderVisibility ? 'placeholder' : 'invisible']">
       Drag option here
     </div>
