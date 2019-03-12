@@ -16,29 +16,22 @@
           placeholder="Search product by name"
         >
           <div class="two">
-            <span class="onePro">Product</span>
+            <span class="one">Product</span>
             <span class="one">Vendors</span>
-            <span class="oneCat">Category</span>
-            <span class="oneTag">Tags</span>
+            <span class="one">Category</span>
+            <span class="one">Tags</span>
           </div>
-          <template v-if="productSelected.length > 0" slot="prefix">
-            <img class="prefix" :src="products.find(o => o.product === productSelected).path">
-          </template>
-          <template v-else slot="prefix"></template>
           <el-option
-            class="searchField"
             v-for="item in productList"
-            :key="item.id"
+            :key="item.product"
             :label="item.product"
-            :photo="item.path"
             :value="item.product"
           >
-            <div class="proText" @click="selectProduct()">
-              <img class="optionIcon" v-bind:src="item.path" alt="icon">
+            <div @click="selectProduct()">
               <span class="one">{{ item.product }}</span>
               <span class="one">{{ item.vendors }}</span>
-              <span class="oneCat">{{ item.category }}</span>
-              <span class="oneTag">{{ item.tags }}</span>
+              <span class="one">{{ item.category }}</span>
+              <span class="one">{{ item.tags }}</span>
             </div>
           </el-option>
         </el-select>
@@ -166,7 +159,6 @@ export default {
       products: [
         {
           id: 0,
-          path: require("../../assets/mensbeauty-aquadiparma.jpg"),
           product: "Acqua Di Parma",
           vendors: "PanaShop",
           category: "Beauty",
@@ -174,7 +166,6 @@ export default {
         },
         {
           id: 1,
-          path: require("../../assets/mensbeauty-victorrolf.jpg"),
           product: "Victor & Rolf Spicebomb",
           vendors: "PanaShop",
           category: "Beauty",
@@ -182,27 +173,10 @@ export default {
         },
         {
           id: 2,
-          path: require("../../assets/mensbeauty-lacostel12.jpg"),
           product: "Lacoste L.12.12 Neon",
           vendors: "PanaShop",
           category: "Beauty",
           tags: "For her"
-        },
-        {
-          id: 3,
-          path: require("../../assets/mensbuty-jackblacktravelerkit.jpg"),
-          product: "Jack Black SuperFly",
-          vendors: "PanaShop",
-          category: "Beauty",
-          tags: "For him"
-        },
-        {
-          id: 4,
-          path: require("../../assets/clothing-bosshugojonnetexture.jpg"),
-          product: "Hugo Boss Jonne Shirt",
-          vendors: "PanaShop",
-          category: "Apparel",
-          tags: "Men's clothing"
         }
       ],
       collections: [
@@ -338,29 +312,21 @@ export default {
         returnValue = this.products.find(
           o => o.product === this.productSelected
         ).product;
-        this.$props.option.path = this.products.find(
-          o => o.product === this.productSelected
-        ).path;
       } else if (this.optionSelected.includes(1)) {
         returnValue = this.collections.find(
           o => o.id === this.collectionSelected[0]
         ).collection;
-        this.$props.option.path = require("../../assets/product.svg");
       } else if (this.optionSelected.includes(2)) {
         returnValue = this.categories.find(
           o => o.id === this.categorieSelected[0]
         ).categories;
-        this.$props.option.path = require("../../assets/product.svg");
       }
-      this.$props.option.display = returnValue;
+      this.$props.option.value = returnValue;
       this.$emit("close");
     },
     close: function() {
       this.$emit("close");
     }
-  },
-  created: function(){
-    console.log('this.?? = this.$props.option.value')
   }
 };
 </script>
@@ -374,47 +340,17 @@ export default {
   margin: 0.1em 0 0 1.5em;
 }
 .search {
-  width: 44em;
-}
-.prefix {
-  width: 2em;
-  height: 2em;
-  margin-top: 0.4em;
-  margin-left: -0.2em;
-}
-.onePro {
-  display: inline-grid;
-  width: 160px;
-  padding-right: 2.7em;
-}
-.oneCat {
-  display: inline-grid;
-  width: 150px;
-}
-.oneTag {
-  display: inline-grid;
-  width: 74px;
+  width: 45em;
 }
 .one {
   display: inline-grid;
-  width: 180px;
-  padding: 0.3em 0 0 0.3em;
+  width: 160px;
 }
 .two {
-  padding: 0 25px;
+  padding: 0 20px;
   background-color: gray;
-  height: 1.6em;
+  height: 1.3em;
   padding-top: 0.5em;
-}
-.optionIcon {
-  margin-top: 0.5em;
-  float: left;
-}
-.searchField {
-  height: 3em;
-}
-.proText {
-  font-size: 16px;
 }
 .collection {
   margin-top: -1em;

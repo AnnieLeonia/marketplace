@@ -1,84 +1,74 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/promotion.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/promotion.svg" alt="icon">
       <h1>Promotion</h1>
     </div>
-    <hr />
+    <hr>
     <div class="modalBody">
-      <el-select v-model="value6" filterable placeholder="Select">
-        <span class="one"> First</span>
-        <span class="one">Second</span>
-        <span class="one">Third</span>
-        <el-option
-          v-for="item in cities"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-          <span class="one">{{ item.value }}</span>
-          <span class="one">{{ item.label }}</span>
-          <span class="one">{{ item.song }}</span>
-        </el-option>
-      </el-select>
+      <p class="label">Chose placement and text for promotion</p>
+      <div class="radioOption">
+        <el-radio v-model="radio" :label="1">Home page</el-radio>
+      </div>
+      <div class="radioOption">
+        <el-radio v-model="radio" :label="2">Game page</el-radio>
+      </div>
+      <div class="radioOption">
+        <el-radio v-model="radio" :label="3">Movie page</el-radio>
+      </div>
+      <el-input type="textarea" :rows="4" placeholder="Write promotion..." v-model="textarea"></el-input>
     </div>
     <div class="modalFooter">
-      <button class="btnCancel">Cancel</button>
-      <button class="btnConfirm">Confirm</button>
+      <button class="btnCancel" v-on:click="close()">Cancel</button>
+      <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["option"],
   data() {
     return {
-      cities: [
-        {
-          value: "Beijing",
-          label: "Beijing",
-          song: "Hello"
-        },
-        {
-          value: "Shanghai",
-          label: "Shanghai",
-          song: "Hello again"
-        },
-        {
-          value: "Nanjing",
-          label: "Nanjing",
-          song: "Hey"
-        },
-        {
-          value: "Chengdu",
-          label: "Chengdu",
-          song: "Tjo"
-        },
-        {
-          value: "Shenzhen",
-          label: "Shenzhen",
-          song: "Lol"
-        },
-        {
-          value: "Guangzhou",
-          label: "Guangzhou",
-          song: "Ok"
-        }
-      ],
-      value6: ""
+      radio: 0,
+      textarea: ""
     };
+  },
+  methods: {
+    confirm: function() {
+      this.$props.option.edited = true;
+      let returnValue = "";
+      if (this.radio === 1) {
+        returnValue = "Home page";
+      } else if (this.radio === 2) {
+        returnValue = "Game page";
+      } else if (this.radio === 3) {
+        returnValue = "Movie page";
+      }
+      returnValue += " - ".concat(this.textarea);
+      this.$props.option.value = returnValue;
+      this.$emit("close");
+    },
+    close: function() {
+      this.$emit("close");
+    }
   }
 };
 </script>
 
-<style >
+<style scoped>
 .modalBody {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin: 1em;
 }
-
-.one {
-  display: inline-grid;
-  width: 100px;
+.label {
+  margin-left: 1em;
+  font-size: 20px;
+}
+.radioOption {
+  margin: 1em;
+}
+.el-radio__label {
+  color: purple;
+  font-size: 24px;
 }
 </style>
