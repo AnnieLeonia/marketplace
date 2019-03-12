@@ -352,12 +352,15 @@ export default {
         ).categories;
         this.$props.option.path = require("../../assets/product.svg");
       }
-      this.$props.option.value = returnValue;
+      this.$props.option.display = returnValue;
       this.$emit("close");
     },
     close: function() {
       this.$emit("close");
     }
+  },
+  created: function(){
+    console.log('this.?? = this.$props.option.value')
   }
 };
 </script>

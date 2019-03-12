@@ -2,11 +2,7 @@
   <header>
     <div class="titleBar">
       <label for="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        placeholder="Enter title..."
-      >
+      <input type="text" id="title" placeholder="Enter title..." />
       <button class="btnOverview">Overview</button>
     </div>
     <nav>
@@ -15,19 +11,18 @@
         class="menu"
         :list="menuOptions"
         :clone="clone"
-        :options="{group:{ name:'options',  pull:'clone', put: false }, sort: false}"
+        :options="{
+          group: { name: 'options', pull: 'clone', put: false },
+          sort: false
+        }"
       >
         <div
           class="option"
           v-for="option in menuOptions"
           v-bind:key="option.name"
         >
-          <img
-            class="optionIcon"
-            v-bind:src="option.path"
-            alt="icon"
-          >
-          <p class="optionTitle">{{option.name}}</p>
+          <img class="optionIcon" v-bind:src="option.path" alt="icon" />
+          <p class="optionTitle">{{ option.name }}</p>
         </div>
       </draggable>
     </nav>
@@ -48,6 +43,7 @@ export default {
           name: "Product",
           path: require("../assets/product.svg"),
           edited: false,
+          display: "",
           value: ""
         },
         {
@@ -55,6 +51,7 @@ export default {
           name: "Discount",
           path: require("../assets/discount.svg"),
           edited: false,
+          display: "",
           value: ""
         },
         {
@@ -62,6 +59,7 @@ export default {
           name: "Promotion",
           path: require("../assets/promotion.svg"),
           edited: false,
+          display: "",
           value: ""
         },
         {
@@ -69,6 +67,7 @@ export default {
           name: "Routes",
           path: require("../assets/routes.svg"),
           edited: false,
+          display: "",
           value: ""
         },
         {
@@ -76,6 +75,7 @@ export default {
           name: "Dates",
           path: require("../assets/dates.svg"),
           edited: false,
+          display: "",
           value: ""
         },
         {
@@ -83,6 +83,7 @@ export default {
           name: "Time",
           path: require("../assets/time.svg"),
           edited: false,
+          display: "",
           value: ""
         },
         {
@@ -90,6 +91,7 @@ export default {
           name: "Inventory",
           path: require("../assets/inventory.svg"),
           edited: false,
+          display: "",
           value: ""
         }
       ]

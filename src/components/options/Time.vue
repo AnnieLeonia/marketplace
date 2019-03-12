@@ -7,9 +7,21 @@
     <hr />
     <div class="modalBody">
       <div class="radioOption">
-        <el-radio v-model="radio" :label="1">Time from take off </el-radio>
+        <el-radio v-model="radio" :label="0">Time from take off </el-radio>
         <el-input-number
-          v-model="num1"
+          v-model="nbrs[0]"
+          :min="1"
+          :max="10"
+          :disabled="this.radio == 0 ? false : true"
+        />
+        <span v-bind:class="this.radio == 0 ? 'suffix' : 'suffix hidden'"
+          >h</span
+        >
+      </div>
+      <div class="radioOption">
+        <el-radio v-model="radio" :label="1">Time to destination</el-radio>
+        <el-input-number
+          v-model="nbrs[1]"
           :min="1"
           :max="10"
           :disabled="this.radio == 1 ? false : true"
@@ -19,38 +31,26 @@
         >
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" :label="2">Time to destination</el-radio>
+        <el-radio v-model="radio" :label="2">Altitude</el-radio>
         <el-input-number
-          v-model="num2"
-          :min="1"
-          :max="10"
-          :disabled="this.radio == 2 ? false : true"
-        />
-        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix hidden'"
-          >h</span
-        >
-      </div>
-      <div class="radioOption">
-        <el-radio v-model="radio" :label="3">Altitude</el-radio>
-        <el-input-number
-          v-model="num3"
+          v-model="nbrs[2]"
           :min="15000"
           :max="30000"
           :step="5000"
-          :disabled="this.radio == 3 ? false : true"
+          :disabled="this.radio == 2 ? false : true"
         />
-        <span v-bind:class="this.radio == 3 ? 'suffix' : 'suffix hidden'"
+        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix hidden'"
           >ft</span
         >
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" :label="4">Meal served</el-radio>
+        <el-radio v-model="radio" :label="3">Meal served</el-radio>
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" :label="5">Doors closed</el-radio>
+        <el-radio v-model="radio" :label="4">Doors closed</el-radio>
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" :label="6">Weight on wheels</el-radio>
+        <el-radio v-model="radio" :label="5">Weight on wheels</el-radio>
       </div>
     </div>
     <div class="modalFooter">
@@ -65,50 +65,57 @@ export default {
   props: ["option"],
   data() {
     return {
-      radio: 0,
-      num1: 1,
-      num2: 1,
-      num3: 15000,
-      time: ""
+      radio: -1,
+      nbrs: [1, 1, 15000]
     };
   },
   methods: {
     displayTime(number) {
       switch (number) {
+        case 0: {
+          return this.nbrs[0] > 1
+            ? this.nbrs[0] + " hours from take off"
+            : this.nbrs[0] + " hour from take off";
+        }
         case 1: {
-          return this.num1 > 1
-            ? this.num1 + " hours from take off"
-            : this.num1 + " hour from take off";
+          return this.nbrs[1] > 1
+            ? this.nbrs[1] + " hours to destination"
+            : this.nbrs[1] + " hour to destination";
         }
         case 2: {
-          return this.num2 > 1
-            ? this.num2 + " hours to destination"
-            : this.num2 + " hour to destination";
+          return this.nbrs[2] + "ft above sea level";
         }
         case 3: {
-          return this.num3 + "ft above sea level";
-        }
-        case 4: {
           return "Meal served";
         }
-        case 5: {
+        case 4: {
           return "Doors closed";
         }
-        case 6: {
+        case 5: {
           return "Weight on wheels";
         }
       }
     },
     confirm: function() {
-      if (this.radio != 0) {
+      if (this.radio != -1) {
         this.$props.option.edited = true;
         let returnValue = this.displayTime(this.radio);
-        this.$props.option.value = returnValue;
+        this.$props.option.display = returnValue;
+        this.$props.option.value = {
+          radio: this.radio,
+          nbr: this.nbrs[this.radio]
+        };
       }
       this.$emit("close");
     },
     close: function() {
       this.$emit("close");
+    }
+  },
+  created: function() {
+    if (this.$props.option.edited) {
+      this.radio = this.$props.option.value.radio;
+      this.nbrs[this.radio] = this.$props.option.value.nbr;
     }
   }
 };

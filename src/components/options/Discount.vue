@@ -9,7 +9,7 @@
       <h2>Select discount</h2>
       <div class="discount">
         <el-slider v-model="value" :step="5"> </el-slider>
-        <el-input-number v-model="value" :min="1" :max="100"></el-input-number>
+        <el-input-number v-model="value" :min="0" :max="100"></el-input-number>
         <span class="suffix">%</span>
       </div>
     </div>
@@ -36,12 +36,18 @@ export default {
       if (this.value !== 0) {
         this.$props.option.edited = true;
         let returnValue = this.displayDiscount(this.value);
-        this.$props.option.value = returnValue;
+        this.$props.option.display = returnValue;
+        this.$props.option.value = this.value;
       }
       this.$emit("close");
     },
     close: function() {
       this.$emit("close");
+    }
+  },
+  created: function() {
+    if (this.$props.option.edited) {
+      this.value = this.$props.option.value;
     }
   }
 };

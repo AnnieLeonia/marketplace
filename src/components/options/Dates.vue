@@ -76,11 +76,17 @@ export default {
           .concat(this.dates.length - 1)
           .concat(" more dates");
       }
-      this.$props.option.value = returnValue;
+      this.$props.option.display = returnValue;
+      this.$props.option.value = this.dates;
       this.$emit("close");
     },
     close: function() {
       this.$emit("close");
+    }
+  },
+  created: function() {
+    if (this.$props.option.edited) {
+      this.dates = this.$props.option.value;
     }
   }
 };

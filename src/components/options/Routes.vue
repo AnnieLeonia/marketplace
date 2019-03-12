@@ -1,35 +1,61 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/routes.svg" alt="icon">
+      <img class="modalIcon" src="../../assets/routes.svg" alt="icon" />
       <h1>Select Routes</h1>
     </div>
-    <hr>
+    <hr />
     <div class="inputField">
       <label for="title">From:</label>
-      <input type="text" fromTo="from" v-model="searchFrom" placeholder="Enter depature...">
+      <input
+        type="text"
+        fromTo="from"
+        v-model="searchFrom"
+        placeholder="Enter depature..."
+      />
       <label for="title">To:</label>
-      <input type="text" fromTo="to" v-model="searchTo" placeholder="Enter destination...">
+      <input
+        type="text"
+        fromTo="to"
+        v-model="searchTo"
+        placeholder="Enter destination..."
+      />
     </div>
-    <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
+    <table
+      class="wholeTable"
+      cellspacing="0"
+      cellpadding="0"
+      border="1"
+      width="325"
+    >
       <tr>
         <td>
           <table cellspacing="0" cellpadding="0" width="777">
             <tr class="header">
               <th>
                 <label class="form-checkbox">
-                  <input type="checkbox" name="checkAll" v-model="selectAll" @click="select">
+                  <input
+                    type="checkbox"
+                    name="checkAll"
+                    v-model="selectAll"
+                    @click="select"
+                  />
                   <i class="form-icon"></i>
                 </label>
               </th>
-              <th class="from" @click="sort('from')">From
+              <th class="from" @click="sort('from')">
+                From
                 <div
                   v-if="'from' == sortColumn"
                   v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"
                 ></div>
               </th>
-              <th class="to" @click="sort('to')">To
-                <div v-if="'to' == sortColumn" v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"></div>
+              <th class="to" @click="sort('to')">
+                To
+                <div
+                  v-if="'to' == sortColumn"
+                  v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"
+                ></div>
               </th>
               <th class="description">Description</th>
             </tr>
@@ -40,29 +66,38 @@
         <td>
           <div class="modalBody">
             <table cellspacing="0" cellpadding="1" width="777">
-              <tr class="body" v-for="option in sortedRoutes" v-bind:key="option.id">
+              <tr
+                class="body"
+                v-for="option in sortedRoutes"
+                v-bind:key="option.id"
+              >
                 <td>
                   <label class="form-checkbox">
-                    <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
+                    <input
+                      type="checkbox"
+                      :value="option.id"
+                      :id="option.id"
+                      v-model="selected"
+                    />
                     <i class="form-icon" :for="option.id"></i>
                   </label>
                 </td>
                 <label class="optionText" :for="option.id">
                   <div class="bolded" v-if="selected.includes(option.id)">
                     <td class="optionFrom" id="optionFrom">
-                      <b>{{option.from}}</b>
+                      <b>{{ option.from }}</b>
                     </td>
                     <td class="optionTo" id="optionTo">
-                      <b>{{option.to}}</b>
+                      <b>{{ option.to }}</b>
                     </td>
                     <td class="optionDescription" id="optionDescription">
-                      <b>{{option.description}}</b>
+                      <b>{{ option.description }}</b>
                     </td>
                   </div>
                   <div class="notBolded" v-else>
-                    <td class="optionFrom">{{option.from}}</td>
-                    <td class="optionTo">{{option.to}}</td>
-                    <td class="optionDescription">{{option.description}}</td>
+                    <td class="optionFrom">{{ option.from }}</td>
+                    <td class="optionTo">{{ option.to }}</td>
+                    <td class="optionDescription">{{ option.description }}</td>
                   </div>
                 </label>
               </tr>
@@ -71,6 +106,7 @@
         </td>
       </tr>
     </table>
+
     <span>Selected id: {{ selected }}</span>
     <div class="modalFooter">
       <button class="btnCancel" v-on:click="close()">Cancel</button>
@@ -202,7 +238,8 @@ export default {
           .concat(this.selected.length - 1)
           .concat(" more routes");
       }
-      this.$props.option.value = returnValue;
+      this.$props.option.display = returnValue;
+      this.$props.option.value = this.selected;
       this.$emit("close");
     },
     close: function() {
@@ -211,6 +248,11 @@ export default {
   },
   beforeMount() {
     this.displayRoutes;
+  },
+  created: function() {
+    if (this.$props.option.edited) {
+      this.selected = this.$props.option.value;
+    }
   }
 };
 </script>

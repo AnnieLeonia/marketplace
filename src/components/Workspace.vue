@@ -25,11 +25,10 @@
         </div>
         <div v-else>
           <img class="optionIconSmall" v-bind:src="option.path" alt="icon" />
-          <p class="optionValue">{{ option.value }}</p>
+          <p class="optionValue">{{ option.display }}</p>
         </div>
       </div>
     </draggable>
-    <modal name="hello-world">hello, world!</modal>
   </main>
 </template>
 
