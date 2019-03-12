@@ -6,8 +6,9 @@
     </div>
     <hr>
     <div class="radioButtons">
-      <input type="radio" v-model="optionSelected" id="product" value="0">
-      <label for="product" class="label">Single Product</label>
+      <!-- <input type="radio" v-model="optionSelected" id="product" value="0">
+      <label for="product" class="label">Single Product</label>-->
+      <el-radio class="label" v-model="optionSelected" :label="0">Single Product</el-radio>
       <div class="searchBar" for="product">
         <el-select
           class="search"
@@ -43,9 +44,9 @@
           </el-option>
         </el-select>
       </div>
+
       <div class="collection">
-        <input type="radio" class="label" v-model="optionSelected" id="collection" value="1">
-        <label for="collection" class="label">Collections</label>
+        <el-radio class="label" v-model="optionSelected" :label="1">Collections</el-radio>
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
           <tr>
             <td>
@@ -66,7 +67,7 @@
                     <label class="optionText" :for="option.id">
                       <div
                         class="bolded"
-                        v-if="collectionSelected.includes(option.collection) && optionSelected.includes(1)"
+                        v-if="collectionSelected.includes(option.collection) && optionSelected ===1"
                       >
                         <td class="optionColl" id="optionFrom">
                           <b>{{option.collection}}</b>
@@ -80,14 +81,14 @@
                       </div>
                       <div
                         class="notChosen"
-                        v-else-if="collectionSelected.length > 0 && optionSelected.includes(1)"
-                        @click="selectCollection(option)"
+                        v-else-if="collectionSelected.length > 0 && optionSelected===1"
+                        v-on:click="selectCollection(option)"
                       >
                         <td class="optionColl">{{option.collection}}</td>
                         <td class="optionPro">{{option.product}}</td>
                         <td class="optionTag">{{option.tag}}</td>
                       </div>
-                      <div class="beginning" v-else @click="selectCollection(option)">
+                      <div class="beginning" v-else v-on:click="selectCollection(option)">
                         <td class="optionColl">{{option.collection}}</td>
                         <td class="optionPro">{{option.product}}</td>
                         <td class="optionTag">{{option.tag}}</td>
@@ -100,8 +101,7 @@
           </tr>
         </table>
       </div>
-      <input type="radio" v-model="optionSelected" id="categories" value="2">
-      <label for="categories" class="label">Categories</label>
+      <el-radio class="label" v-model="optionSelected" :label="2">Categories</el-radio>
       <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
         <tr>
           <td>
@@ -121,7 +121,7 @@
                   <label class="optionText" :for="option.id">
                     <div
                       class="bolded"
-                      v-if="categorieSelected.includes(option.categories) && optionSelected.includes(2)"
+                      v-if="categorieSelected.includes(option.categories) && optionSelected ===2"
                     >
                       <td class="optionCat" id="optionFrom">
                         <b>{{option.categories}}</b>
@@ -132,7 +132,7 @@
                     </div>
                     <div
                       class="notChosen"
-                      v-else-if="categorieSelected.length > 0 && optionSelected.includes(2)"
+                      v-else-if="categorieSelected.length > 0 && optionSelected ===2"
                       @click="selectCategories(option)"
                     >
                       <td class="optionCat">{{option.categories}}</td>
@@ -150,7 +150,6 @@
         </tr>
       </table>
     </div>
-
     <div class="modalFooter">
       <button class="btnCancel" v-on:click="close()">Cancel</button>
       <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
@@ -238,27 +237,21 @@ export default {
         },
         {
           id: 5,
-          collection: "Meal Deal",
+          collection: "Spring Fragrances",
           product: "3 products",
           tag: "food"
         },
         {
           id: 6,
-          collection: "Meal Deal",
-          product: "3 products",
-          tag: "food"
+          collection: "Kids Menu",
+          product: "4 products",
+          tag: "kids"
         },
         {
           id: 7,
-          collection: "Meal Deal",
-          product: "3 products",
-          tag: "food"
-        },
-        {
-          id: 8,
-          collection: "Meal Deal",
-          product: "3 products",
-          tag: "food"
+          collection: "FF Granola Bars Giveaway",
+          product: "5 products",
+          tag: "granola bars, give away"
         }
       ],
       categories: [
@@ -313,19 +306,19 @@ export default {
   },
   methods: {
     selectProduct: function() {
-      this.optionSelected = "0";
+      this.optionSelected = 0;
       this.collectionSelected = [];
       this.categorieSelected = [];
     },
     selectCollection: function(s) {
-      this.optionSelected = "1";
+      this.optionSelected = 1;
       this.productSelected = "";
       this.categorieSelected = [];
       this.collectionSelected = [];
       this.collectionSelected.push(s.collection);
     },
     selectCategories: function(s) {
-      this.optionSelected = "2";
+      this.optionSelected = 2;
       this.categorieSelected = [];
       this.productSelected = "";
       this.collectionSelected = [];
@@ -334,19 +327,19 @@ export default {
     confirm: function() {
       this.$props.option.edited = true;
       let returnValue = "";
-      if (this.optionSelected.includes(0)) {
+      if (this.optionSelected === 0) {
         returnValue = this.products.find(
           o => o.product === this.productSelected
         ).product;
         this.$props.option.path = this.products.find(
           o => o.product === this.productSelected
         ).path;
-      } else if (this.optionSelected.includes(1)) {
+      } else if (this.optionSelected === 1) {
         returnValue = this.collections.find(
           o => o.collection === this.collectionSelected[0]
         ).collection;
         this.$props.option.path = require("../../assets/product.svg");
-      } else if (this.optionSelected.includes(2)) {
+      } else if (this.optionSelected === 2) {
         returnValue = this.categories.find(
           o => o.categories === this.categorieSelected[0]
         ).categories;
@@ -361,19 +354,21 @@ export default {
     },
     close: function() {
       this.$emit("close");
+    },
+    change: function() {
+      this.optionSelected = 1;
     }
   },
   created: function() {
     if (this.$props.option.edited) {
       this.optionSelected = this.$props.option.value.radio;
-      if (this.optionSelected.includes(0)) {
+      if (this.optionSelected === 0) {
         this.productSelected = this.$props.option.value.pro;
-      } else if (this.optionSelected.includes(1)) {
+      } else if (this.optionSelected === 1) {
         this.collectionSelected = [this.$props.option.value.pro];
-      } else if (this.optionSelected.includes(2)) {
+      } else if (this.optionSelected === 2) {
         this.categorieSelected = [this.$props.option.value.pro];
       }
-      // this.selected = this.$props.option.value;
     }
   }
 };
@@ -382,10 +377,12 @@ export default {
 <style scoped>
 .label {
   font-size: 20px;
-  margin-top: 1.5em;
+}
+.el-radio__label {
+  font-size: 20px;
 }
 .searchBar {
-  margin: 0.1em 0 0 1.5em;
+  margin: 0.1em 0 1.1em 1.5em;
 }
 .search {
   width: 44em;
