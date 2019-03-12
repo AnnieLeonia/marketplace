@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "dateformat": "^3.0.3",
+    "element-ui": "^2.6.1",
     "i": "^0.3.6",
     "npm": "^6.8.0",
     "v-calendar": "^0.9.7",

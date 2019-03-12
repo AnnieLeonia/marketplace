@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-on:click="show()">
     <div v-bind:class="[placeholderVisibility ? 'placeholder' : 'invisible']">
       Drag option here
     </div>
@@ -42,6 +42,7 @@ import Product from "./options/Product";
 import Promotion from "./options/Promotion";
 import Routes from "./options/Routes";
 import Time from "./options/Time";
+import Vue from "vue";
 export default {
   components: {
     draggable
@@ -55,7 +56,6 @@ export default {
   methods: {
     add: function(event) {
       this.placeholderVisibility = false;
-      console.log("Event:", event);
     },
     open: function(option) {
       switch (option.name) {
@@ -67,16 +67,32 @@ export default {
           );
           break;
         case "Discount":
-          this.$modal.show(Discount, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Discount,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Inventory":
-          this.$modal.show(Inventory, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Inventory,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Product":
-          this.$modal.show(Product, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Product,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Promotion":
-          this.$modal.show(Promotion, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Promotion,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         case "Routes":
           this.$modal.show(
@@ -86,7 +102,11 @@ export default {
           );
           break;
         case "Time":
-          this.$modal.show(Time, {}, { width: "1000px", height: "600px" });
+          this.$modal.show(
+            Time,
+            { option },
+            { width: "1000px", height: "600px" }
+          );
           break;
         default:
         // code block
