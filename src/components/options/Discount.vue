@@ -7,7 +7,11 @@
     <hr />
     <div class="modalBody">
       <h2>Select discount</h2>
-      <el-slider v-model="value" show-input :step="5" />
+      <div class="discount">
+        <el-slider v-model="value" :step="5"> </el-slider>
+        <el-input-number v-model="value" :min="1" :max="100"></el-input-number>
+        <span class="suffix">%</span>
+      </div>
     </div>
     <div class="modalFooter">
       <button class="btnCancel" v-on:click="close()">Cancel</button>
@@ -50,14 +54,22 @@ export default {
 }
 
 .el-slider {
-  margin: 3em 0.1em;
+  float: left;
+  margin: 0.3em;
+  width: calc(100% - 200px);
 }
 
-.el-slider__bar {
-  background-color: #409eff;
+.el-input-number {
+  float: right;
+  margin: 0.2em 0.1em;
 }
-.el-slider__button {
-  border-color: #409eff;
+
+.suffix {
+  position: absolute;
+  right: 0;
+  margin: 1.15em 5.5em;
+  z-index: 1;
+  font-size: 14px;
 }
 
 h2 {

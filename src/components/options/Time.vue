@@ -14,6 +14,9 @@
           :max="10"
           :disabled="this.radio == 1 ? false : true"
         />
+        <span v-bind:class="this.radio == 1 ? 'suffix' : 'suffix hidden'"
+          >h</span
+        >
       </div>
       <div class="radioOption">
         <el-radio v-model="radio" :label="2">Time to destination</el-radio>
@@ -23,6 +26,9 @@
           :max="10"
           :disabled="this.radio == 2 ? false : true"
         />
+        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix hidden'"
+          >h</span
+        >
       </div>
       <div class="radioOption">
         <el-radio v-model="radio" :label="3">Altitude</el-radio>
@@ -33,6 +39,9 @@
           :step="5000"
           :disabled="this.radio == 3 ? false : true"
         />
+        <span v-bind:class="this.radio == 3 ? 'suffix' : 'suffix hidden'"
+          >ft</span
+        >
       </div>
       <div class="radioOption">
         <el-radio v-model="radio" :label="4">Meal served</el-radio>
@@ -115,6 +124,18 @@ export default {
   padding: 0.3em;
 }
 
+.suffix {
+  position: absolute;
+  right: 0;
+  margin: 1.3em 5.5em;
+  z-index: 1;
+  font-size: 14px;
+}
+
+.hidden {
+  color: #c0c4cc;
+}
+
 .radioOption:nth-child(odd) {
   background-color: rgb(250, 250, 250);
 }
@@ -126,9 +147,5 @@ export default {
 
 .el-radio {
   padding: 1em 0;
-}
-
-.el-radio__label {
-  font-size: 24px;
 }
 </style>
