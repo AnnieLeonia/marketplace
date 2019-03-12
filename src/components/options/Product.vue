@@ -8,36 +8,34 @@
     <div class="radioButtons">
       <input type="radio" v-model="optionSelected" id="product" value="0">
       <label for="product" class="label">Single Product</label>
-      <input for="product" list="prod" type="text" placeholder="Search product by name">
-      <datalist id="prod">
-        <option class="dropdownHeader">
-          <div class="propro">
-            <b>Product</b>
+      <div class="searchBar" for="product">
+        <el-select
+          class="search"
+          v-model="productSelected"
+          filterable
+          placeholder="Search product by name"
+        >
+          <div class="two">
+            <span class="one">Product</span>
+            <span class="one">Vendors</span>
+            <span class="one">Category</span>
+            <span class="one">Tags</span>
           </div>
-          <div class="propro">
-            <b>Vendor</b>
-          </div>
-          <div class="procat">
-            <b>Category</b>
-          </div>
-          <div class="propro">
-            <b>Tags</b>
-          </div>
-        </option>
-        <option v-for="option in productAlt" v-bind:key="option.id">
-          <div class="propro">{{option.product}}</div>
-          <div class="proven">{{option.vendors}}</div>
-          <div class="procat">{{option.category}}</div>
-          <div class="protag">{{option.tags}}</div>
-        </option>
-      </datalist>
-      <!--<v-select v-model="setProduct" :options="productAlt" :label="'product'"></v-select>
-
-      <select v-model="setProduct" placeholder="Search product by name">
-        <option v-for="option in productAlt" v-bind:key="option.id" :value="option.id">
-          <p>{{option.product}} {{option.category}}</p>
-        </option>
-      </select>-->
+          <el-option
+            v-for="item in productList"
+            :key="item.product"
+            :label="item.product"
+            :value="item.product"
+          >
+            <div @click="selectProduct()">
+              <span class="one">{{ item.product }}</span>
+              <span class="one">{{ item.vendors }}</span>
+              <span class="one">{{ item.category }}</span>
+              <span class="one">{{ item.tags }}</span>
+            </div>
+          </el-option>
+        </el-select>
+      </div>
       <div class="collection">
         <input type="radio" class="label" v-model="optionSelected" id="collection" value="1">
         <label for="collection" class="label">Collections</label>
@@ -147,20 +145,18 @@
     </div>
 
     <div class="modalFooter">
-      <button class="btnCancel">Cancel</button>
-      <button class="btnConfirm">Confirm</button>
+      <button class="btnCancel" v-on:click="close()">Cancel</button>
+      <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
     </div>
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import vSelect from "vue-select";
-Vue.component("v-select", vSelect);
+<script scoped>
 export default {
+  props: ["option"],
   data() {
     return {
-      productAlt: [
+      products: [
         {
           id: 0,
           product: "Acqua Di Parma",
@@ -249,12 +245,23 @@ export default {
       ],
       optionSelected: "",
       ascending: true,
-      setProduct: null,
+      productSelected: [],
       collectionSelected: [],
       categorieSelected: []
     };
   },
   computed: {
+    productList: function() {
+      var ascending = this.ascending;
+      return this.products.sort((a, b) => {
+        if (a.product > b.product) {
+          return ascending ? 1 : -1;
+        } else if (a.product < b.product) {
+          return ascending ? -1 : 1;
+        }
+        return 0;
+      });
+    },
     collectionList: function() {
       var ascending = this.ascending;
       return this.collections.sort((a, b) => {
@@ -279,19 +286,46 @@ export default {
     }
   },
   methods: {
+    selectProduct: function() {
+      this.optionSelected = "0";
+      this.collectionSelected = [];
+      this.categorieSelected = [];
+    },
     selectCollection: function(s) {
       this.optionSelected = "1";
+      this.productSelected = "";
+      this.categorieSelected = [];
       this.collectionSelected = [];
       this.collectionSelected.push(s.id);
     },
     selectCategories: function(s) {
       this.optionSelected = "2";
       this.categorieSelected = [];
+      this.productSelected = "";
+      this.collectionSelected = [];
       this.categorieSelected.push(s.id);
     },
-    getProduct() {
-      let returnValue = this.productAlt.product;
-      console.log("hejsan ", returnValue);
+    confirm: function() {
+      this.$props.option.edited = true;
+      let returnValue = "";
+      if (this.optionSelected.includes(0)) {
+        returnValue = this.products.find(
+          o => o.product === this.productSelected
+        ).product;
+      } else if (this.optionSelected.includes(1)) {
+        returnValue = this.collections.find(
+          o => o.id === this.collectionSelected[0]
+        ).collection;
+      } else if (this.optionSelected.includes(2)) {
+        returnValue = this.categories.find(
+          o => o.id === this.categorieSelected[0]
+        ).categories;
+      }
+      this.$props.option.value = returnValue;
+      this.$emit("close");
+    },
+    close: function() {
+      this.$emit("close");
     }
   }
 };
@@ -302,14 +336,30 @@ export default {
   font-size: 20px;
   margin-top: 1.5em;
 }
-.dropdownHeader {
-  font-weight: bold;
+.searchBar {
+  margin: 0.1em 0 0 1.5em;
+}
+.search {
+  width: 45em;
+}
+.one {
+  display: inline-grid;
+  width: 160px;
+}
+.two {
+  padding: 0 20px;
+  background-color: gray;
+  height: 1.3em;
+  padding-top: 0.5em;
+}
+.collection {
+  margin-top: -1em;
 }
 .wholeTable {
   table-layout: fixed;
   width: 70%;
-  height: 10em;
-  margin: 0.5em 0 0.5em 1.3em;
+  height: 9em;
+  margin: 0.1em 0 0.5em 1.3em;
 }
 
 .header {
