@@ -1,61 +1,35 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/routes.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/routes.svg" alt="icon">
       <h1>Select Routes</h1>
     </div>
-    <hr />
+    <hr>
     <div class="inputField">
       <label for="title">From:</label>
-      <input
-        type="text"
-        fromTo="from"
-        v-model="searchFrom"
-        placeholder="Enter depature..."
-      />
+      <input type="text" fromTo="from" v-model="searchFrom" placeholder="Enter depature...">
       <label for="title">To:</label>
-      <input
-        type="text"
-        fromTo="to"
-        v-model="searchTo"
-        placeholder="Enter destination..."
-      />
+      <input type="text" fromTo="to" v-model="searchTo" placeholder="Enter destination...">
     </div>
-    <table
-      class="wholeTable"
-      cellspacing="0"
-      cellpadding="0"
-      border="1"
-      width="325"
-    >
+    <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
       <tr>
         <td>
           <table cellspacing="0" cellpadding="0" width="777">
             <tr class="header">
               <th>
                 <label class="form-checkbox">
-                  <input
-                    type="checkbox"
-                    name="checkAll"
-                    v-model="selectAll"
-                    @click="select"
-                  />
+                  <input type="checkbox" name="checkAll" v-model="selectAll" @click="select">
                   <i class="form-icon"></i>
                 </label>
               </th>
-              <th class="from" @click="sort('from')">
-                From
+              <th class="from" @click="sort('from')">From
                 <div
                   v-if="'from' == sortColumn"
                   v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"
                 ></div>
               </th>
-              <th class="to" @click="sort('to')">
-                To
-                <div
-                  v-if="'to' == sortColumn"
-                  v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"
-                ></div>
+              <th class="to" @click="sort('to')">To
+                <div v-if="'to' == sortColumn" v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"></div>
               </th>
               <th class="description">Description</th>
             </tr>
@@ -63,22 +37,13 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="noMore">
           <div class="modalBody">
-            <table cellspacing="0" cellpadding="1" width="777">
-              <tr
-                class="body"
-                v-for="option in sortedRoutes"
-                v-bind:key="option.id"
-              >
+            <table cellspacing="0" cellpadding="0" width="777">
+              <tr class="body" v-for="option in sortedRoutes" v-bind:key="option.id">
                 <td>
                   <label class="form-checkbox">
-                    <input
-                      type="checkbox"
-                      :value="option.id"
-                      :id="option.id"
-                      v-model="selected"
-                    />
+                    <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
                     <i class="form-icon" :for="option.id"></i>
                   </label>
                 </td>
@@ -106,8 +71,6 @@
         </td>
       </tr>
     </table>
-
-    <span>Selected id: {{ selected }}</span>
     <div class="modalFooter">
       <button class="btnCancel" v-on:click="close()">Cancel</button>
       <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
@@ -280,8 +243,8 @@ input[type="text"]:focus {
 .wholeTable {
   table-layout: fixed;
   width: 78%;
-  margin: 1em 0 0 8em;
-  height: 20em;
+  margin: 1em 0 0 6em;
+  height: 14em;
 }
 .header {
   color: white;
@@ -333,11 +296,16 @@ input[type="checkbox"] {
 .description {
   padding-left: 3.2em;
 }
-
+.td {
+  padding: 0em;
+}
 .modalBody {
   width: 794px;
   overflow: auto;
-  height: 17em;
+  height: 15em;
+}
+.noMore {
+  padding: 0em;
 }
 .body {
   font-size: 20px;
