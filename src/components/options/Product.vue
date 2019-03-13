@@ -9,44 +9,42 @@
       <!-- <input type="radio" v-model="optionSelected" id="product" value="0">
       <label for="product" class="label">Single Product</label>-->
       <el-radio class="label" v-model="optionSelected" :label="0">Single Product</el-radio>
-      <div class="searchBar" for="product">
-        <el-select
-          class="search"
-          v-model="productSelected"
-          filterable
-          placeholder="Search product by name"
+      <el-select
+        class="search"
+        v-model="productSelected"
+        filterable
+        placeholder="Search product by name"
+      >
+        <div class="two">
+          <span class="onePro">Product</span>
+          <span class="one">Vendors</span>
+          <span class="oneCat">Category</span>
+          <span class="oneTag">Tags</span>
+        </div>
+        <template v-if="productSelected.length > 0" slot="prefix">
+          <img class="prefix" :src="products.find(o => o.product === productSelected).path">
+        </template>
+        <template v-else slot="prefix"></template>
+        <el-option
+          class="searchField"
+          v-for="item in productList"
+          :key="item.id"
+          :label="item.product"
+          :photo="item.path"
+          :value="item.product"
         >
-          <div class="two">
-            <span class="onePro">Product</span>
-            <span class="one">Vendors</span>
-            <span class="oneCat">Category</span>
-            <span class="oneTag">Tags</span>
+          <div class="proText" @click="selectProduct()">
+            <img class="optionIcon" v-bind:src="item.path" alt="icon">
+            <span class="one">{{ item.product }}</span>
+            <span class="one">{{ item.vendors }}</span>
+            <span class="oneCat">{{ item.category }}</span>
+            <span class="oneTag">{{ item.tags }}</span>
           </div>
-          <template v-if="productSelected.length > 0" slot="prefix">
-            <img class="prefix" :src="products.find(o => o.product === productSelected).path">
-          </template>
-          <template v-else slot="prefix"></template>
-          <el-option
-            class="searchField"
-            v-for="item in productList"
-            :key="item.id"
-            :label="item.product"
-            :photo="item.path"
-            :value="item.product"
-          >
-            <div class="proText" @click="selectProduct()">
-              <img class="optionIcon" v-bind:src="item.path" alt="icon">
-              <span class="one">{{ item.product }}</span>
-              <span class="one">{{ item.vendors }}</span>
-              <span class="oneCat">{{ item.category }}</span>
-              <span class="oneTag">{{ item.tags }}</span>
-            </div>
-          </el-option>
-        </el-select>
-      </div>
+        </el-option>
+      </el-select>
 
       <div class="collection">
-        <el-radio class="label" v-model="optionSelected" :label="1">Collections</el-radio>
+        <el-radio class="labelCol" v-model="optionSelected" :label="1">Collections</el-radio>
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
           <tr>
             <td>
@@ -377,15 +375,19 @@ export default {
 <style scoped>
 .label {
   font-size: 20px;
+  margin-left: 1em;
+}
+.labelCol {
+  margin-top: 3em;
+  margin-left: 1.4em;
 }
 .el-radio__label {
   font-size: 20px;
 }
-.searchBar {
-  margin: 0.1em 0 1.1em 1.5em;
-}
 .search {
   width: 44em;
+  margin-top: 0.5em;
+  margin-left: -1.5em;
 }
 .prefix {
   width: 2em;
@@ -434,7 +436,7 @@ export default {
   table-layout: fixed;
   width: 70%;
   height: 9em;
-  margin: 0.1em 0 0.5em 1.3em;
+  margin: -1.5em 0 1em 8.5em;
 }
 .header {
   color: white;
