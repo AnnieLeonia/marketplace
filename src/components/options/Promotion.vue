@@ -5,6 +5,7 @@
       <h1>Promotion</h1>
     </div>
     <hr>
+    <Side/>
     <div class="modalBody">
       <p class="label">Chose placement and text for promotion</p>
       <div class="radioOption">
@@ -16,7 +17,13 @@
       <div class="radioOption">
         <el-radio v-model="radio" :label="3">Movie page</el-radio>
       </div>
-      <el-input type="textarea" :rows="4" placeholder="Write promotion..." v-model="textarea"></el-input>
+      <el-input
+        class="textArea"
+        type="textarea"
+        :rows="4"
+        placeholder="Write promotion..."
+        v-model="textarea"
+      ></el-input>
     </div>
     <div class="modalFooter">
       <button class="btnCancel" v-on:click="close()">Cancel</button>
@@ -26,8 +33,12 @@
 </template>
 
 <script>
+import Side from "../Side";
 export default {
   props: ["option"],
+  components: {
+    Side
+  },
   data() {
     return {
       radio: 0,
@@ -77,8 +88,7 @@ export default {
 .radioOption {
   margin: 1em;
 }
-.el-radio__label {
-  color: purple;
-  font-size: 24px;
+.textArea {
+  width: 45em;
 }
 </style>
