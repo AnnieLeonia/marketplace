@@ -5,6 +5,7 @@
       <h1>Product</h1>
     </div>
     <hr>
+    <Side/>
     <div class="radioButtons">
       <!-- <input type="radio" v-model="optionSelected" id="product" value="0">
       <label for="product" class="label">Single Product</label>-->
@@ -45,10 +46,10 @@
 
       <div class="collection">
         <el-radio class="labelCol" v-model="optionSelected" :label="1">Collections</el-radio>
-        <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
+        <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="300">
           <tr>
             <td>
-              <table cellspacing="0" cellpadding="0" width="696">
+              <table cellspacing="0" cellpadding="0" width="556">
                 <tr class="header">
                   <th class="coll">Collections</th>
                   <th class="pro">Products</th>
@@ -60,7 +61,7 @@
           <tr>
             <td>
               <div class="modalBody">
-                <table cellspacing="0" cellpadding="1" width="696">
+                <table cellspacing="0" cellpadding="1" width="556">
                   <tr class="body" v-for="option in collectionList" v-bind:key="option.id">
                     <label class="optionText" :for="option.id">
                       <div
@@ -103,7 +104,7 @@
       <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
         <tr>
           <td>
-            <table cellspacing="0" cellpadding="0" width="696">
+            <table cellspacing="0" cellpadding="0" width="556">
               <tr class="header">
                 <th class="cat">Categories</th>
                 <th class="proCat">Products</th>
@@ -114,7 +115,7 @@
         <tr>
           <td>
             <div class="modalBody">
-              <table cellspacing="0" cellpadding="1" width="696">
+              <table cellspacing="0" cellpadding="1" width="556">
                 <tr class="body" v-for="option in categorieList" v-bind:key="option.id">
                   <label class="optionText" :for="option.id">
                     <div
@@ -156,8 +157,12 @@
 </template>
 
 <script scoped>
+import Side from "../Side";
 export default {
   props: ["option"],
+  components: {
+    Side
+  },
   data() {
     return {
       products: [
@@ -385,7 +390,7 @@ export default {
   font-size: 20px;
 }
 .search {
-  width: 44em;
+  width: 35em;
   margin-top: 0.5em;
   margin-left: -1.5em;
 }
@@ -434,7 +439,7 @@ export default {
 }
 .wholeTable {
   table-layout: fixed;
-  width: 70%;
+  width: 56%;
   height: 9em;
   margin: -1.5em 0 1em 8.5em;
 }
@@ -458,7 +463,7 @@ export default {
   width: 12.5em;
 }
 .modalBody {
-  width: 713px;
+  width: 575px;
   overflow: auto;
   height: 8em;
 }
