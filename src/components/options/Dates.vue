@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/dates.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/dates.svg" alt="icon">
       <h1>Dates</h1>
     </div>
-    <hr />
+    <hr>
+    <Side/>
     <div class="modalBody">
       <v-date-picker
         is-inline
@@ -21,7 +22,7 @@
             src="../../assets/remove.svg"
             alt="icon"
             v-on:click="removeDates(index)"
-          />
+          >
           <p class="listDate">{{ displayDate(date) }}</p>
         </li>
       </ul>
@@ -36,9 +37,11 @@
 <script>
 import Datepicker from "vuejs-datepicker";
 import DateFormat from "dateformat";
+import Side from "../Side";
 export default {
   components: {
-    Datepicker
+    Datepicker,
+    Side
   },
   props: ["option"],
   data() {

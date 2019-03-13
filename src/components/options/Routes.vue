@@ -5,6 +5,7 @@
       <h1>Select Routes</h1>
     </div>
     <hr>
+    <Side/>
     <div class="inputField">
       <label for="title">From:</label>
       <input type="text" fromTo="from" v-model="searchFrom" placeholder="Enter depature...">
@@ -14,7 +15,7 @@
     <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
       <tr>
         <td>
-          <table cellspacing="0" cellpadding="0" width="777">
+          <table cellspacing="0" cellpadding="0" width="698">
             <tr class="header">
               <th>
                 <label class="form-checkbox">
@@ -39,7 +40,7 @@
       <tr>
         <td class="noMore">
           <div class="modalBody">
-            <table cellspacing="0" cellpadding="0" width="777">
+            <table cellspacing="0" cellpadding="0" width="695">
               <tr class="body" v-for="option in sortedRoutes" v-bind:key="option.id">
                 <td>
                   <label class="form-checkbox">
@@ -79,8 +80,12 @@
 </template>
 
 <script>
+import Side from "../Side";
 export default {
   props: ["option"],
+  components: {
+    Side
+  },
   data() {
     return {
       routes: [
@@ -228,7 +233,7 @@ export default {
 }
 
 input[type="text"] {
-  width: 40%;
+  width: 25%;
   font-size: 1em;
   padding-left: 5px;
   border: none;
@@ -242,8 +247,8 @@ input[type="text"]:focus {
 
 .wholeTable {
   table-layout: fixed;
-  width: 78%;
-  margin: 1em 0 0 6em;
+  width: 70%;
+  margin: 1em 0 0 0.5em;
   height: 14em;
 }
 .header {
@@ -300,7 +305,7 @@ input[type="checkbox"] {
   padding: 0em;
 }
 .modalBody {
-  width: 794px;
+  width: 715px;
   overflow: auto;
   height: 15em;
 }

@@ -1,15 +1,14 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/inventory.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/inventory.svg" alt="icon">
       <h1>Inventory</h1>
     </div>
-    <hr />
+    <hr>
+    <Side/>
     <div class="modalBody">
       <div class="radioOption">
-        <el-radio v-model="radio" :label="0"
-          >Onboard inventory is more than
-        </el-radio>
+        <el-radio v-model="radio" :label="0">Onboard inventory is more than</el-radio>
         <el-input-number
           v-model="nbrs[0]"
           :min="1"
@@ -18,9 +17,7 @@
         />
       </div>
       <div class="radioOption">
-        <el-radio v-model="radio" :label="1"
-          >Onboard inventory is less than
-        </el-radio>
+        <el-radio v-model="radio" :label="1">Onboard inventory is less than</el-radio>
         <el-input-number
           v-model="nbrs[1]"
           :min="1"
@@ -37,8 +34,12 @@
 </template>
 
 <script>
+import Side from "../Side";
 export default {
   props: ["option"],
+  components: {
+    Side
+  },
   data() {
     return {
       radio: -1,
@@ -89,6 +90,7 @@ export default {
 .el-input-number {
   float: right;
   margin-top: 5px;
+  margin-right: 1em;
 }
 
 .el-radio {

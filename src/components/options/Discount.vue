@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/discount.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/discount.svg" alt="icon">
       <h1>Discount</h1>
     </div>
-    <hr />
+    <hr>
+    <Side/>
     <div class="modalBody">
       <h2>Select discount</h2>
       <div class="discount">
-        <el-slider v-model="value" :step="5"> </el-slider>
+        <el-slider v-model="value" :step="5"></el-slider>
         <el-input-number v-model="value" :min="0" :max="100"></el-input-number>
         <span class="suffix">%</span>
       </div>
@@ -21,8 +22,12 @@
 </template>
 
 <script>
+import Side from "../Side";
 export default {
   props: ["option"],
+  components: {
+    Side
+  },
   data() {
     return {
       value: 0
@@ -62,18 +67,18 @@ export default {
 .el-slider {
   float: left;
   margin: 0.3em;
-  width: calc(100% - 210px);
+  width: calc(100% - 450px);
 }
 
 .el-input-number {
   float: right;
-  margin: 0.2em 0.2em;
+  margin: 0.2em 0.6em;
 }
 
 .suffix {
   position: absolute;
   right: 0;
-  margin: 1.15em 5.5em;
+  margin: 1.15em 22.5em;
   z-index: 1;
   font-size: 14px;
 }

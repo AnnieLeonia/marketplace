@@ -3,8 +3,8 @@
     <p class="sideTitle">Summary:</p>
     <div v-for="option in this.$store.state.tree" v-bind:key="option.id">
       <div class="sideOption" v-if="option.display">
-        <img class="optionIcon" v-bind:src="option.path" alt="icon">
-        <p class="optionTitle">{{ option.display }}</p>
+        <img class="iconOption" v-bind:src="option.path" alt="icon">
+        <p class="titleOption">{{ option.display }}</p>
       </div>
     </div>
   </div>
@@ -31,12 +31,12 @@ export default {
 .sideOption {
   padding: 0 0 1.5em 1em;
 }
-.optionIcon {
+.iconOption {
   height: 1.3em;
   float: left;
   margin: 0px 5px 20px 0px;
 }
-.optionTitle {
+.titleOption {
   display: initial;
 }
 </style>
