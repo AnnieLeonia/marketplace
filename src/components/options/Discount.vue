@@ -62,12 +62,12 @@ export default {
 .el-slider {
   float: left;
   margin: 0.3em;
-  width: calc(100% - 200px);
+  width: calc(100% - 210px);
 }
 
 .el-input-number {
   float: right;
-  margin: 0.2em 0.1em;
+  margin: 0.2em 0.2em;
 }
 
 .suffix {

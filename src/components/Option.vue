@@ -1,10 +1,10 @@
 <template>
-  <div v-on:click="open()">
+  <div class="innerOption" v-on:click="open()">
     <div v-if="!option.edited">
       <img class="optionIcon" v-bind:src="option.path" alt="icon" />
       <p class="optionTitle">{{ option.name }}</p>
     </div>
-    <div v-else>
+    <div class="optionBox" v-else>
       <img class="optionIconSmall" v-bind:src="option.path" alt="icon" />
       <p class="optionValue">{{ option.display }}</p>
     </div>
@@ -59,5 +59,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.optionBox {
+  vertical-align: middle;
+  display: table-cell;
+}
 </style>

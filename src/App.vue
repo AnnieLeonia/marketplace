@@ -24,8 +24,6 @@ export default {
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
 
@@ -37,13 +35,18 @@ body {
 }
 
 .option {
+  display: table;
   background-color: white;
   margin: 0.5em;
-  padding: 0.5em;
+  padding: 0 0.5em;
   width: 6em;
-  height: 2.5em;
+  min-height: 3.5em;
   border: solid black 2px;
   border-radius: 15px;
+}
+
+.workspace .option {
+  box-shadow: 5px 10px 18px #888888;
 }
 
 .ghostOption {
@@ -55,17 +58,20 @@ body {
 }
 
 .optionValue {
-  margin: 0;
-  font-size: 0.66em;
+  padding: 0.5em;
+  margin: 0 0 0 2em;
+  font-size: 0.7em;
 }
 
 .optionIcon {
   height: 1.7em;
+  padding-top: 0.5em;
 }
 
 .optionIconSmall {
   float: left;
   height: 1em;
+  padding: 0.5em;
 }
 
 .btnCanel {
@@ -87,7 +93,7 @@ body {
 }
 
 .modalIcon {
-  height: 3.5em;
+  height: 2.5em;
   padding: 1em;
 }
 
@@ -102,7 +108,7 @@ body {
 h1 {
   font-size: 2.7em;
   font-family: "Avenir";
-  margin-bottom: 0;
+  margin: 0.4em 0 0 0;
 }
 
 hr {
