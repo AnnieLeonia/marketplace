@@ -7,7 +7,8 @@ import VModal from "vue-js-modal";
 import VCalendar from "v-calendar";
 import { Store } from "./store";
 
-import "element-ui/lib/theme-chalk/index.css";
+import "../theme/index.css";
+//import "element-ui/lib/theme-chalk/index.css";
 import "v-calendar/lib/v-calendar.min.css";
 
 Vue.use(ElementUI);
