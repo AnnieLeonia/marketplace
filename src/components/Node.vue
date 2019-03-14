@@ -7,16 +7,10 @@
       :options="settings"
       @add="add($event)"
     >
-      <Option
-        class="option"
-        v-for="option in list"
-        v-bind:key="option.id"
-        :editOption="option"
-      />
+      <Option class="option" v-for="option in list" v-bind:key="option.id" :editOption="option"/>
     </draggable>
     <draggable class="workspace horizontal" v-if="this.open">
-      <Node :root="{ options: [], children: [] }" />
-      <Node :root="{ options: [], children: [] }" />
+      <Node v-for="i in 2" v-bind:key="i" :id="createID(i)"/>
     </draggable>
   </div>
 </template>
@@ -25,7 +19,7 @@
 import draggable from "vuedraggable";
 import Option from "./Option";
 export default {
-  props: ["root"],
+  props: ["id"],
   name: "Node",
   components: {
     draggable,
@@ -34,7 +28,7 @@ export default {
   data() {
     return {
       open: false,
-      list: this.root.options,
+      list: [],
       settings: {
         group: { name: "options" },
         ghostClass: "ghostOption",
@@ -45,14 +39,19 @@ export default {
   methods: {
     add: function(event) {
       this.open = true;
-      console.log(this.list);
+      this.$store.state.tree.push({ options: this.list, id: this.id });
+      console.log("id", this.id, "local list", this.list);
+      console.log("STORE", this.$store.state.tree);
     },
-    checkEmpty() {
-      return (
-        this.list.length > 0 || this.$store.state.tree.options.length === 0
-      );
+    checkEmpty: function() {
+      console.log("filled", this.list);
+      return this.list.length > 0 || this.$store.state.tree.length === 0;
+    },
+    createID: function(i) {
+      return this.id + "." + i;
     }
-  }
+  },
+  created: function() {}
 };
 </script>
 

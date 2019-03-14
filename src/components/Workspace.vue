@@ -1,9 +1,7 @@
 <template>
   <main>
-    <div v-bind:class="[emptyList ? 'placeholder' : 'hidden']">
-      Drag option here
-    </div>
-    <Node :root="list" />
+    <div v-bind:class="[emptyList ? 'placeholder' : 'hidden']">Drag option here</div>
+    <Node :id="1"/>
   </main>
 </template>
 
@@ -17,17 +15,14 @@ export default {
   },
   data() {
     return {
-      list: [],
+      id: "1",
       placeholder: true
     };
   },
   computed: {
     emptyList: function() {
-      return this.list.options.length == 0;
+      return this.$store.state.tree.length === 0;
     }
-  },
-  created: function() {
-    this.list = this.$store.state.tree;
   }
 };
 </script>
