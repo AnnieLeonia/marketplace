@@ -8,17 +8,19 @@
     <Side />
     <div class="modalBody">
       <div clas="product">
-        <el-radio v-model="optionSelected" :label="0">Single Product </el-radio>
+        <el-radio class="radio" v-model="optionSelected" :label="0"
+          >Single Product
+        </el-radio>
         <el-select
           v-model="productSelected"
           filterable
           placeholder="Search product by name"
         >
-          <div class="two">
-            <span class="onePro">Product</span>
-            <span class="one">Vendors</span>
-            <span class="oneCat">Category</span>
-            <span class="oneTag">Tags</span>
+          <div class="header">
+            <p>Product</p>
+            <p>Vendors</p>
+            <p>Category</p>
+            <p>Tags</p>
           </div>
           <template v-if="productSelected.length > 0" slot="prefix">
             <img
@@ -36,155 +38,122 @@
             :value="item.product"
           >
             <div class="proText" @click="selectProduct()">
-              <img class="optionIcon" v-bind:src="item.path" alt="icon" />
-              <span class="one">{{ item.product }}</span>
-              <span class="one">{{ item.vendors }}</span>
-              <span class="oneCat">{{ item.category }}</span>
-              <span class="oneTag">{{ item.tags }}</span>
+              <p class="prod">
+                <img class="optionIcon" v-bind:src="item.path" alt="icon" />
+                {{ item.product }}
+              </p>
+              <p>{{ item.vendors }}</p>
+              <p>{{ item.category }}</p>
+              <p>{{ item.tags }}</p>
             </div>
           </el-option>
         </el-select>
       </div>
       <div class="collection">
-        <el-radio v-model="optionSelected" :label="1">
+        <el-radio class="radio" v-model="optionSelected" :label="1">
           Collections
         </el-radio>
+
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
-          <tr>
-            <td>
-              <table cellspacing="0" cellpadding="0">
-                <tr class="header">
-                  <th class="coll">Collections</th>
-                  <th class="pro">Products</th>
-                  <th class="tag">Tags</th>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="tableList">
-                <table cellspacing="0" cellpadding="1">
-                  <tr
-                    class="body"
-                    v-for="option in collectionList"
-                    v-bind:key="option.id"
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <th>Collections</th>
+              <th>Products</th>
+              <th>Tags</th>
+            </tr>
+          </table>
+
+          <div class="tableList">
+            <table cellspacing="0" cellpadding="1">
+              <tr v-for="option in collectionList" v-bind:key="option.id">
+                <label class="optionText" :for="option.id">
+                  <div
+                    class="selected"
+                    v-if="
+                      collectionSelected.includes(option.collection) &&
+                        optionSelected === 1
+                    "
                   >
-                    <label class="optionText" :for="option.id">
-                      <div
-                        class="bolded"
-                        v-if="
-                          collectionSelected.includes(option.collection) &&
-                            optionSelected === 1
-                        "
-                      >
-                        <td class="optionColl" id="optionFrom">
-                          <b>{{ option.collection }}</b>
-                        </td>
-                        <td class="optionPro" id="optionTo">
-                          <b>{{ option.product }}</b>
-                        </td>
-                        <td class="optionTag" id="optionDescription">
-                          <b>{{ option.tag }}</b>
-                        </td>
-                      </div>
-                      <div
-                        class="notChosen"
-                        v-else-if="
-                          collectionSelected.length > 0 && optionSelected === 1
-                        "
-                        v-on:click="selectCollection(option)"
-                      >
-                        <td class="optionColl">{{ option.collection }}</td>
-                        <td class="optionPro">{{ option.product }}</td>
-                        <td class="optionTag">{{ option.tag }}</td>
-                      </div>
-                      <div
-                        class="beginning"
-                        v-else
-                        v-on:click="selectCollection(option)"
-                      >
-                        <td class="optionColl">{{ option.collection }}</td>
-                        <td class="optionPro">{{ option.product }}</td>
-                        <td class="optionTag">{{ option.tag }}</td>
-                      </div>
-                    </label>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
+                    <td id="optionFrom">
+                      {{ option.collection }}
+                    </td>
+                    <td id="optionTo">
+                      {{ option.product }}
+                    </td>
+                    <td id="optionDescription">
+                      {{ option.tag }}
+                    </td>
+                  </div>
+                  <div
+                    class="notChosen"
+                    v-else-if="
+                      collectionSelected.length > 0 && optionSelected === 1
+                    "
+                    v-on:click="selectCollection(option)"
+                  >
+                    <td>{{ option.collection }}</td>
+                    <td>{{ option.product }}</td>
+                    <td>{{ option.tag }}</td>
+                  </div>
+                  <div v-else v-on:click="selectCollection(option)">
+                    <td class="optionColl">{{ option.collection }}</td>
+                    <td>{{ option.product }}</td>
+                    <td>{{ option.tag }}</td>
+                  </div>
+                </label>
+              </tr>
+            </table>
+          </div>
         </table>
       </div>
       <div class="categories">
-        <el-radio class="label" v-model="optionSelected" :label="2"
+        <el-radio class="radio" v-model="optionSelected" :label="2"
           >Categories</el-radio
         >
-        <table
-          class="wholeTable"
-          cellspacing="0"
-          cellpadding="0"
-          border="1"
-          width="325"
-        >
-          <tr>
-            <td>
-              <table cellspacing="0" cellpadding="0">
-                <tr class="header">
-                  <th class="cat">Categories</th>
-                  <th class="proCat">Products</th>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="tableList">
-                <table cellspacing="0" cellpadding="1">
-                  <tr
-                    class="body"
-                    v-for="option in categorieList"
-                    v-bind:key="option.id"
+        <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <th>Categories</th>
+              <th>Products</th>
+            </tr>
+          </table>
+
+          <div class="tableList">
+            <table cellspacing="0" cellpadding="1">
+              <tr v-for="option in categorieList" v-bind:key="option.id">
+                <label class="optionText" :for="option.id">
+                  <div
+                    class="selected"
+                    v-if="
+                      categorieSelected.includes(option.categories) &&
+                        optionSelected === 2
+                    "
                   >
-                    <label class="optionText" :for="option.id">
-                      <div
-                        class="bolded"
-                        v-if="
-                          categorieSelected.includes(option.categories) &&
-                            optionSelected === 2
-                        "
-                      >
-                        <td class="optionCat" id="optionFrom">
-                          <b>{{ option.categories }}</b>
-                        </td>
-                        <td class="optionPro" id="optionTo">
-                          <b>{{ option.product }}</b>
-                        </td>
-                      </div>
-                      <div
-                        class="notChosen"
-                        v-else-if="
-                          categorieSelected.length > 0 && optionSelected === 2
-                        "
-                        @click="selectCategories(option)"
-                      >
-                        <td class="optionCat">{{ option.categories }}</td>
-                        <td class="optionPro">{{ option.product }}</td>
-                      </div>
-                      <div
-                        class="beginning"
-                        v-else
-                        @click="selectCategories(option)"
-                      >
-                        <td class="optionCat">{{ option.categories }}</td>
-                        <td class="optionPro">{{ option.product }}</td>
-                      </div>
-                    </label>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
+                    <td class="optionCat" id="optionFrom">
+                      {{ option.categories }}
+                    </td>
+                    <td class="optionPro2" id="optionTo">
+                      {{ option.product }}
+                    </td>
+                  </div>
+                  <div
+                    class="notChosen"
+                    v-else-if="
+                      categorieSelected.length > 0 && optionSelected === 2
+                    "
+                    @click="selectCategories(option)"
+                  >
+                    <td class="optionCat">{{ option.categories }}</td>
+                    <td class="optionPro2">{{ option.product }}</td>
+                  </div>
+                  <div v-else @click="selectCategories(option)">
+                    <td class="optionCat">{{ option.categories }}</td>
+                    <td class="optionPro2">{{ option.product }}</td>
+                  </div>
+                </label>
+              </tr>
+            </table>
+          </div>
         </table>
       </div>
     </div>
@@ -291,7 +260,7 @@ export default {
         },
         {
           id: 7,
-          collection: "FF Granola Bars Giveaway",
+          collection: "Granola Bars Giveaway",
           product: "5 products",
           tag: "granola bars, give away"
         }
@@ -418,13 +387,14 @@ export default {
 
 <style scoped>
 .modalBody {
+  font-family: "Avenir";
   width: calc(75% - 2em);
   padding: 1em;
 }
 
-el-radio {
-  width: 60px;
-  border: solid red 1px;
+.radio {
+  width: 150px;
+  margin: 0;
 }
 
 el-select {
@@ -433,48 +403,40 @@ el-select {
   margin-left: -1.5em;
 }
 
+.header {
+  padding: 0 1em;
+}
+
+.header,
+.proText {
+  font-family: "Avenir";
+  display: flex;
+}
+
+.header p,
+.proText p {
+  width: 110px;
+}
+
+.header p:first-child,
+.proText p:first-child {
+  width: 200px;
+}
+
+.header p,
+.proText p {
+  margin: 0;
+}
+
 .prefix {
   width: 2em;
   height: 2em;
   margin-top: 0.4em;
 }
 
-table {
-  width: 100%;
-}
-
-.onePro {
-  display: inline-grid;
-  width: 160px;
-  padding-right: 2.7em;
-}
-
-.oneCat {
-  display: inline-grid;
-  width: 150px;
-}
-
-.oneTag {
-  display: inline-grid;
-  width: 74px;
-}
-
-.one {
-  display: inline-grid;
-  /* width: 180px; */
-  padding: 0.3em 0 0 0.3em;
-}
-
-.two {
-  padding: 0 25px;
-  background-color: gray;
-  /* height: 1.6em; */
-  padding-top: 0.5em;
-}
-
 .optionIcon {
-  margin-top: 0.5em;
   float: left;
+  padding-right: 0.5em;
 }
 
 .searchField {
@@ -487,65 +449,50 @@ table {
   display: flex;
 }
 
-.wholeTable {
-  /* table-layout: fixed;*/
-  /* width: 56%; */
-  width: 600px;
-  height: 9em;
-  /* margin: -1.5em 0 1em 8.5em; */
-}
-
-.header {
-  color: white;
-  background-color: gray;
-  font-size: 20px;
-}
-
-.coll,
-.pro,
-.tag {
-  width: calc(100% / 3);
-}
-
-.cat,
-.proCat {
-  width: calc(100% / 2);
-}
-.proCat {
-  width: 12.5em;
+table {
+  width: 100%;
 }
 
 .tableList {
-  /*width: 575px;*/
   overflow: auto;
-  height: 8em;
-}
-
-.body {
   font-size: 16px;
+  height: 8.5em;
 }
 
-.body:hover {
+th {
+  color: white;
+  background-color: gray;
+  padding-left: 0.5em;
+  font-size: 20px;
+  padding: 0.2em 0.5em;
+}
+
+.collection th {
+  width: calc(100% / 3);
+}
+
+.categories th {
+  width: calc(100% / 2);
+}
+
+td {
+  padding: 0.5em 0.5em;
+}
+
+.collection td {
+  width: 200px;
+}
+
+.categories td {
+  width: 300px;
+}
+
+tr:hover {
   background-color: #f5f5f5;
 }
 
-.optionColl {
-  padding: 0.4em 0 0 0.5em;
-  width: 12em;
-}
-
-.optionCat {
-  padding: 0.4em 0 0 0.5em;
-  width: 12em;
-}
-
-.optionPro {
-  padding-left: 0.5em;
-  width: 7em;
-}
-
-.optionTag {
-  padding-left: 3em;
+.selected {
+  font-weight: bold;
 }
 
 .notChosen {
