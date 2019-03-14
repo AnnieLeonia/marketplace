@@ -37,16 +37,6 @@ main {
   text-align: center;
 }
 
-.workspace {
-  margin: 0 auto;
-  padding: 0.1em;
-  width: fit-content;
-  min-width: calc(8em + 4px);
-  min-height: calc(4.5em + 4px);
-  background-color: lightgray;
-  border-radius: 15px;
-}
-
 .placeholder {
   color: gray;
   position: relative;
