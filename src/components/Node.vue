@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      list: this.root,
+      list: this.root.options,
       settings: {
         group: { name: "options" },
         ghostClass: "ghostOption",

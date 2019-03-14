@@ -28,9 +28,9 @@ export default {
 }
 
 body {
-  /* background-image: url("assets/clouds2.jpg");
+  background-image: url("assets/clouds3.jpg");
   background-size: cover;
-  background-attachment: fixed; */
+  background-attachment: fixed;
   margin: 10em 0 56px 0;
 }
 

@@ -1,9 +1,12 @@
 <template>
   <div class="sideMeny">
-    <p class="sideTitle">Summary:</p>
-    <div v-for="option in this.$store.state.tree" v-bind:key="option.id">
+    <h1>Summary</h1>
+    <div
+      v-for="option in this.$store.state.tree.options"
+      v-bind:key="option.id"
+    >
       <div class="sideOption" v-if="option.display">
-        <img class="iconOption" v-bind:src="option.path" alt="icon">
+        <img class="iconOption" v-bind:src="option.path" alt="icon" />
         <p class="titleOption">{{ option.display }}</p>
       </div>
     </div>
@@ -20,21 +23,25 @@ export default {
 
 <style scoped>
 .sideMeny {
-  border-left: 1px solid black;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  padding: 1em;
+  border-left: 0.1em solid black;
   float: right;
-  width: 25%;
+  width: calc(25% - 2em);
   height: 40em;
 }
-.sideTitle {
-  padding-left: 1em;
+
+h1 {
+  font-size: 24px;
+  font-weight: bolder;
+  margin: 0 0 0.5em 0;
 }
+
 .sideOption {
-  padding: 0 0 1.5em 1em;
+  padding: 0.5em 0;
 }
 .iconOption {
   height: 1.3em;
-  float: left;
-  margin: 0px 5px 20px 0px;
 }
 .titleOption {
   display: initial;

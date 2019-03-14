@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export const Store = new Vuex.Store({
   state: {
-    tree: [],
+    tree: { options: [], children: [] },
     openModal: false,
     currentOption: null
   }
