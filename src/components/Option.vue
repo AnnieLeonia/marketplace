@@ -20,16 +20,18 @@ import Promotion from "./options/Promotion";
 import Routes from "./options/Routes";
 import Time from "./options/Time";
 export default {
-  props: ["editOption"],
+  props: ["editOption", "currentDepth"],
   data() {
     return {
       option: this.editOption,
+      depth: this.currentDepth,
       attr: { width: "1000px", height: "600px" }
     };
   },
   methods: {
     open: function() {
       const option = this.option;
+      this.$store.state.currentDepth = this.currentDepth;
       switch (option.name) {
         case "Dates":
           this.$modal.show(Dates, { option }, this.attr);

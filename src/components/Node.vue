@@ -12,6 +12,8 @@
         class="option"
         v-for="option in list"
         v-bind:key="option.id"
+        :currentDepth="id"
+        :moved="setDepth(option)"
         :editOption="option"
       />
     </draggable>
@@ -45,13 +47,23 @@ export default {
   methods: {
     add: function(event) {
       this.open = true;
-      this.$store.state.tree.push({ options: this.list, id: this.id });
+      let index = this.$store.state.tree.indexOf(
+        this.$store.state.tree.find(option => option.id === this.id)
+      );
+      if (index === -1) {
+        this.$store.state.tree.push({ options: this.list, id: this.id });
+      } else {
+        this.$store.state.tree[index].options = this.list;
+      }
     },
     checkEmpty: function() {
       return this.list.length > 0 || this.$store.state.tree.length === 0;
     },
     createID: function(i) {
       return this.id + "." + i;
+    },
+    setDepth(option) {
+      option.depth = this.id;
     }
   },
   created: function() {}

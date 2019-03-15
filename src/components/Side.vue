@@ -1,10 +1,7 @@
 <template>
   <div class="sideMeny">
     <h1>Summary</h1>
-    <div
-      v-for="option in this.$store.state.tree.options"
-      v-bind:key="option.id"
-    >
+    <div v-for="option in sideOptions" v-bind:key="option.id">
       <div class="sideOption" v-if="option.display">
         <img class="iconOption" v-bind:src="option.path" alt="icon" />
         <p class="titleOption">{{ option.display }}</p>
@@ -17,6 +14,30 @@
 export default {
   data() {
     return {};
+  },
+  computed: {
+    sideOptions: function() {
+      const currentDepth = this.$store.state.currentDepth;
+      const nbrOfSteps = currentDepth.length - 1;
+      const validOptions = [];
+      for (var i = 0; i < this.$store.state.tree.length; i++) {
+        const listDepth = this.$store.state.tree[i].id;
+        if (this.validOption(listDepth, currentDepth)) {
+          validOptions.push(...this.$store.state.tree[i].options);
+        }
+      }
+      return validOptions;
+    }
+  },
+  methods: {
+    validOption: function(listDepth, currentDepth) {
+      for (var i = 0; i < listDepth.length; i++) {
+        if (listDepth.charAt(i) !== currentDepth.charAt(i)) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 };
 </script>

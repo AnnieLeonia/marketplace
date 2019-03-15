@@ -3,7 +3,7 @@
     <div v-bind:class="[emptyList ? 'placeholder' : 'hidden']">
       Drag option here
     </div>
-    <Node :id="1" />
+    <Node :id="id" />
   </main>
 </template>
 

@@ -44,7 +44,8 @@ export default {
           path: require("../assets/product.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         },
         {
           id: 0,
@@ -52,7 +53,8 @@ export default {
           path: require("../assets/discount.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         },
         {
           id: 0,
@@ -60,7 +62,8 @@ export default {
           path: require("../assets/promotion.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         },
         {
           id: 0,
@@ -68,7 +71,8 @@ export default {
           path: require("../assets/routes.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         },
         {
           id: 0,
@@ -76,7 +80,8 @@ export default {
           path: require("../assets/dates.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         },
         {
           id: 0,
@@ -84,7 +89,8 @@ export default {
           path: require("../assets/time.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         },
         {
           id: 0,
@@ -92,7 +98,8 @@ export default {
           path: require("../assets/inventory.svg"),
           edited: false,
           display: "",
-          value: ""
+          value: "",
+          depth: 0
         }
       ]
     };
