@@ -7,11 +7,12 @@
     <hr />
     <Side />
     <div class="modalBody">
-      <div clas="product">
+      <div class="products">
         <el-radio class="radio" v-model="optionSelected" :label="0"
           >Single Product
         </el-radio>
         <el-select
+          class="select"
           v-model="productSelected"
           filterable
           placeholder="Search product by name"
@@ -393,14 +394,8 @@ export default {
 }
 
 .radio {
-  width: 150px;
+  flex: 1;
   margin: 0;
-}
-
-el-select {
-  width: 35em;
-  margin-top: 0.5em;
-  margin-left: -1.5em;
 }
 
 .header {
@@ -442,15 +437,17 @@ el-select {
 .searchField {
   height: 3em;
 }
-
+.products,
 .collection,
 .categories {
   margin-top: 0.5em;
   display: flex;
 }
 
-table {
+table,
+.select {
   width: 100%;
+  flex: 5;
 }
 
 .tableList {

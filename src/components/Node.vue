@@ -6,11 +6,17 @@
       :list="list"
       :options="settings"
       @add="add($event)"
+      ref="vert"
     >
-      <Option class="option" v-for="option in list" v-bind:key="option.id" :editOption="option"/>
+      <Option
+        class="option"
+        v-for="option in list"
+        v-bind:key="option.id"
+        :editOption="option"
+      />
     </draggable>
     <draggable class="workspace horizontal" v-if="this.open">
-      <Node v-for="i in 2" v-bind:key="i" :id="createID(i)"/>
+      <Node v-for="i in 2" v-bind:key="i" :id="createID(i)" />
     </draggable>
   </div>
 </template>
@@ -40,11 +46,8 @@ export default {
     add: function(event) {
       this.open = true;
       this.$store.state.tree.push({ options: this.list, id: this.id });
-      console.log("id", this.id, "local list", this.list);
-      console.log("STORE", this.$store.state.tree);
     },
     checkEmpty: function() {
-      console.log("filled", this.list);
       return this.list.length > 0 || this.$store.state.tree.length === 0;
     },
     createID: function(i) {
@@ -71,14 +74,10 @@ export default {
 }
 
 .empty {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .filled {
   background-color: lightgray;
-}
-
-.empty:hover {
-  background-color: red;
 }
 </style>
