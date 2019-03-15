@@ -37,7 +37,7 @@ main {
 .placeholder {
   color: gray;
   position: relative;
-  top: 2.5em;
+  top: 3em;
 }
 
 .hidden {
