@@ -1,9 +1,7 @@
 <template>
   <main>
-    <div v-bind:class="[emptyList ? 'placeholder' : 'hidden']">
-      Drag option here
-    </div>
-    <Node :id="id" />
+    <div v-bind:class="[emptyList ? 'placeholder' : 'hidden']">Drag option here</div>
+    <Node :id="id"/>
   </main>
 </template>
 
@@ -37,7 +35,8 @@ main {
 .placeholder {
   color: gray;
   position: relative;
-  top: 3em;
+  top: 2.5em;
+  z-index: 1;
 }
 
 .hidden {
