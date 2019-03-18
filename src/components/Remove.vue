@@ -1,5 +1,5 @@
 <template>
-  <div class="remove">
+  <div class="remove" v-if="moving">
     <draggable
       class="trash"
       :list="list"
@@ -28,6 +28,11 @@ export default {
       }
     };
   },
+  computed: {
+    moving: function() {
+      return this.$store.state.moving;
+    }
+  },
   methods: {
     remove: function(event) {
       console.log(this.$store.state.tree);
@@ -40,21 +45,35 @@ export default {
 .remove {
   position: fixed;
   text-align: center;
-  margin: 0 calc(50% - 4em);
-  height: 100px;
+  margin: 0 calc(50% - 3em - 1em - 6px);
   bottom: 56px;
+  animation: moveup 0.5s;
+}
+
+@keyframes moveup {
+  from {
+    transform: translateY(100px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .trash {
+  margin: 0 calc(50% - 2em);
   position: absolute;
   min-width: 8em;
   min-height: 4em;
 }
 
 img {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 0.5em;
+  border: solid black 3px;
+  border-radius: 50%;
   position: relative;
   margin: 0 50%;
-  width: 4em;
+  width: 3em;
   z-index: -1;
 }
 </style>

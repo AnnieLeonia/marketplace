@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export const Store = new Vuex.Store({
   state: {
     tree: [],
-    currentDepth: "1"
+    currentDepth: "1",
+    moving: false
   }
 });
