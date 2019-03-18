@@ -73,6 +73,8 @@ export default {
       if (this.dates.length !== 0) {
         this.$props.option.edited = true;
         returnValue = this.displayDate(this.dates[0]);
+      } else {
+        this.$props.option.edited = false;
       }
       if (this.dates.length > 1) {
         returnValue += " + "

@@ -1,16 +1,14 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/product.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/product.svg" alt="icon">
       <h1>Product</h1>
     </div>
-    <hr />
-    <Side />
+    <hr>
+    <Side/>
     <div class="modalBody">
       <div class="products">
-        <el-radio class="radio" v-model="optionSelected" :label="0"
-          >Single Product
-        </el-radio>
+        <el-radio class="radio" v-model="optionSelected" :label="0">Single Product</el-radio>
         <el-select
           class="select"
           v-model="productSelected"
@@ -24,10 +22,7 @@
             <p>Tags</p>
           </div>
           <template v-if="productSelected.length > 0" slot="prefix">
-            <img
-              class="prefix"
-              :src="products.find(o => o.product === productSelected).path"
-            />
+            <img class="prefix" :src="products.find(o => o.product === productSelected).path">
           </template>
           <template v-else slot="prefix"></template>
           <el-option
@@ -40,7 +35,7 @@
           >
             <div class="proText" @click="selectProduct()">
               <p class="prod">
-                <img class="optionIcon" v-bind:src="item.path" alt="icon" />
+                <img class="optionIcon" v-bind:src="item.path" alt="icon">
                 {{ item.product }}
               </p>
               <p>{{ item.vendors }}</p>
@@ -51,9 +46,7 @@
         </el-select>
       </div>
       <div class="collection">
-        <el-radio class="radio" v-model="optionSelected" :label="1">
-          Collections
-        </el-radio>
+        <el-radio class="radio" v-model="optionSelected" :label="1">Collections</el-radio>
 
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
           <table cellspacing="0" cellpadding="0">
@@ -75,15 +68,9 @@
                         optionSelected === 1
                     "
                   >
-                    <td id="optionFrom">
-                      {{ option.collection }}
-                    </td>
-                    <td id="optionTo">
-                      {{ option.product }}
-                    </td>
-                    <td id="optionDescription">
-                      {{ option.tag }}
-                    </td>
+                    <td id="optionFrom">{{ option.collection }}</td>
+                    <td id="optionTo">{{ option.product }}</td>
+                    <td id="optionDescription">{{ option.tag }}</td>
                   </div>
                   <div
                     class="notChosen"
@@ -108,9 +95,7 @@
         </table>
       </div>
       <div class="categories">
-        <el-radio class="radio" v-model="optionSelected" :label="2"
-          >Categories</el-radio
-        >
+        <el-radio class="radio" v-model="optionSelected" :label="2">Categories</el-radio>
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
           <table cellspacing="0" cellpadding="0">
             <tr>
@@ -130,12 +115,8 @@
                         optionSelected === 2
                     "
                   >
-                    <td class="optionCat" id="optionFrom">
-                      {{ option.categories }}
-                    </td>
-                    <td class="optionPro2" id="optionTo">
-                      {{ option.product }}
-                    </td>
+                    <td class="optionCat" id="optionFrom">{{ option.categories }}</td>
+                    <td class="optionPro2" id="optionTo">{{ option.product }}</td>
                   </div>
                   <div
                     class="notChosen"
@@ -339,22 +320,31 @@ export default {
     confirm: function() {
       this.$props.option.edited = true;
       let returnValue = "";
-      if (this.optionSelected === 0) {
+      if (this.optionSelected === 0 && this.productSelected.length > 0) {
         returnValue = this.products.find(
           o => o.product === this.productSelected
         ).product;
         this.$props.option.path = this.products.find(
           o => o.product === this.productSelected
         ).path;
-      } else if (this.optionSelected === 1) {
+      } else if (
+        this.optionSelected === 1 &&
+        this.collectionSelected.length > 0
+      ) {
         returnValue = this.collections.find(
           o => o.collection === this.collectionSelected[0]
         ).collection;
         this.$props.option.path = require("../../assets/product.svg");
-      } else if (this.optionSelected === 2) {
+      } else if (
+        this.optionSelected === 2 &&
+        this.categorieSelected.length > 0
+      ) {
         returnValue = this.categories.find(
           o => o.categories === this.categorieSelected[0]
         ).categories;
+        this.$props.option.path = require("../../assets/product.svg");
+      } else {
+        this.$props.option.edited = false;
         this.$props.option.path = require("../../assets/product.svg");
       }
       this.$props.option.display = returnValue;

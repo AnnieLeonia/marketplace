@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/discount.svg" alt="icon" />
+      <img class="modalIcon" src="../../assets/discount.svg" alt="icon">
       <h1>Discount</h1>
     </div>
-    <hr />
-    <Side />
+    <hr>
+    <Side/>
     <div class="modalBody">
       <h2>Select discount</h2>
       <div class="discount">
@@ -43,6 +43,9 @@ export default {
         let returnValue = this.displayDiscount(this.value);
         this.$props.option.display = returnValue;
         this.$props.option.value = this.value;
+      } else {
+        this.$props.option.edited = false;
+        this.$props.option.display = "";
       }
       this.$emit("close");
     },

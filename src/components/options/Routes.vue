@@ -196,18 +196,23 @@ export default {
       }
     },
     confirm: function() {
-      this.$props.option.edited = true;
-      let returnValue = this.routes.find(o => o.id === this.selected[0]).from;
-      returnValue += " - ".concat(
-        this.routes.find(o => o.id === this.selected[0]).to
-      );
-      if (this.selected.length > 1) {
-        returnValue += " + "
-          .concat(this.selected.length - 1)
-          .concat(" more routes");
+      if (this.selected.length === 0) {
+        this.$props.option.edited = false;
+        this.$props.option.display = "";
+      } else {
+        this.$props.option.edited = true;
+        let returnValue = this.routes.find(o => o.id === this.selected[0]).from;
+        returnValue += " - ".concat(
+          this.routes.find(o => o.id === this.selected[0]).to
+        );
+        if (this.selected.length > 1) {
+          returnValue += " + "
+            .concat(this.selected.length - 1)
+            .concat(" more routes");
+        }
+        this.$props.option.display = returnValue;
+        this.$props.option.value = this.selected;
       }
-      this.$props.option.display = returnValue;
-      this.$props.option.value = this.selected;
       this.$emit("close");
     },
     close: function() {

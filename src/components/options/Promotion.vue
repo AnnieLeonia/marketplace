@@ -47,21 +47,25 @@ export default {
   },
   methods: {
     confirm: function() {
-      this.$props.option.edited = true;
-      let returnValue = "";
-      if (this.radio === 1) {
-        returnValue = "Home page";
-      } else if (this.radio === 2) {
-        returnValue = "Game page";
-      } else if (this.radio === 3) {
-        returnValue = "Movie page";
+      if (this.radio === 0 && this.textarea === "") {
+        this.$props.option.edited = false;
+      } else {
+        this.$props.option.edited = true;
+        let returnValue = "";
+        if (this.radio === 1) {
+          returnValue = "Home page";
+        } else if (this.radio === 2) {
+          returnValue = "Game page";
+        } else if (this.radio === 3) {
+          returnValue = "Movie page";
+        }
+        returnValue += " - ".concat(this.textarea);
+        this.$props.option.display = returnValue;
+        this.$props.option.value = {
+          radio: this.radio,
+          txt: this.textarea
+        };
       }
-      returnValue += " - ".concat(this.textarea);
-      this.$props.option.display = returnValue;
-      this.$props.option.value = {
-        radio: this.radio,
-        txt: this.textarea
-      };
       this.$emit("close");
     },
     close: function() {
