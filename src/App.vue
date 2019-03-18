@@ -2,6 +2,7 @@
   <div id="app">
     <Menu />
     <Workspace />
+    <Remove />
     <Footer />
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import Menu from "./components/Menu";
 import Workspace from "./components/Workspace";
+import Remove from "./components/Remove";
 import Footer from "./components/Footer";
 
 export default {
@@ -16,6 +18,7 @@ export default {
   components: {
     Menu,
     Workspace,
+    Remove,
     Footer
   }
 };
@@ -47,6 +50,11 @@ body {
 
 .workspace .option {
   box-shadow: 5px 10px 18px #888888;
+}
+
+.trash .option {
+  background-color: red;
+  opacity: 0.5;
 }
 
 .ghostOption {
