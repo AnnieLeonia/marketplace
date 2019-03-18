@@ -2,8 +2,8 @@
   <header>
     <div class="titleBar">
       <label for="title">Title:</label>
-      <input type="text" id="title" placeholder="Enter title..." />
-      <button class="btnOverview">Overview</button>
+      <input type="text" id="title" placeholder="Enter title...">
+      <button class="btnOverview" v-on:click="open()">Overview</button>
     </div>
     <nav>
       <p class="menuTitle">Options</p>
@@ -18,12 +18,8 @@
           sort: false
         }"
       >
-        <div
-          class="option"
-          v-for="option in menuOptions"
-          v-bind:key="option.name"
-        >
-          <img class="optionIcon" v-bind:src="option.path" alt="icon" />
+        <div class="option" v-for="option in menuOptions" v-bind:key="option.name">
+          <img class="optionIcon" v-bind:src="option.path" alt="icon">
           <p class="optionTitle">{{ option.name }}</p>
         </div>
       </draggable>
@@ -33,12 +29,14 @@
 
 <script>
 import draggable from "vuedraggable";
+import Overview from "./Overview";
 export default {
   components: {
     draggable
   },
   data() {
     return {
+      attr: { width: "1000px", height: "600px" },
       menuOptions: [
         {
           id: 0,
@@ -117,6 +115,9 @@ export default {
     },
     end() {
       this.$store.state.moving = false;
+    },
+    open: function() {
+      this.$modal.show(Overview, this.attr);
     }
   }
 };

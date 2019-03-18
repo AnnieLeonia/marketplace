@@ -68,7 +68,7 @@ export default {
       return this.list.length === 0 && this.$store.state.tree.length != 0;
     },
     createID: function(i) {
-      return this.id + "." + i;
+      return this.id + i;
     },
     setDepth(option) {
       option.depth = this.id;
