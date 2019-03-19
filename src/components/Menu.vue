@@ -2,7 +2,7 @@
   <header>
     <div class="titleBar">
       <label for="title">Title:</label>
-      <input type="text" id="title" placeholder="Enter title..." />
+      <input type="text" id="title" placeholder="Enter title...">
       <button class="btnOverview" v-on:click="open()">Overview</button>
     </div>
     <nav>
@@ -18,12 +18,8 @@
           sort: false
         }"
       >
-        <div
-          class="option"
-          v-for="option in menuOptions"
-          v-bind:key="option.name"
-        >
-          <img class="optionIcon" v-bind:src="option.path" alt="icon" />
+        <div class="option" v-for="option in menuOptions" v-bind:key="option.name">
+          <img class="optionIcon" v-bind:src="option.path" alt="icon">
           <p class="optionTitle">{{ option.name }}</p>
         </div>
       </draggable>
@@ -160,12 +156,12 @@ input::placeholder {
 
 input[type="text"]:focus {
   outline: none;
-  border-bottom: solid 3px #bd9fc4;
+  border-bottom: solid 3px #c269a1;
 }
 
 .btnOverview {
   float: right;
-  background-color: #bd9fc4;
+  background-color: #c269a1;
 }
 
 nav {

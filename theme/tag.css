@@ -225,17 +225,17 @@
 /* Break-point
 --------------------------*/
 .el-tag {
-  background-color: rgba(204, 32, 112, 0.1);
+  background-color: rgba(194, 105, 161, 0.1);
   display: inline-block;
   padding: 0 10px;
   height: 32px;
   line-height: 30px;
   font-size: 12px;
-  color: #cc2070;
+  color: #c269a1;
   border-radius: 4px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid rgba(204, 32, 112, 0.2);
+  border: 1px solid rgba(194, 105, 161, 0.2);
   white-space: nowrap; }
   .el-tag .el-icon-close {
     border-radius: 50%;
@@ -249,11 +249,11 @@
     vertical-align: middle;
     top: -1px;
     right: -5px;
-    color: #cc2070; }
+    color: #c269a1; }
     .el-tag .el-icon-close::before {
       display: block; }
     .el-tag .el-icon-close:hover {
-      background-color: #cc2070;
+      background-color: #c269a1;
       color: #ffffff; }
   .el-tag--info {
     background-color: rgba(144, 147, 153, 0.1);

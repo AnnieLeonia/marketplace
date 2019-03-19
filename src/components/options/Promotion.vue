@@ -92,6 +92,10 @@ export default {
 .radioOption {
   margin: 1em;
 }
+.radioOption:nth-child(odd) {
+  background-color: rgb(250, 250, 250);
+  width: 75%;
+}
 .textArea {
   width: 45em;
 }

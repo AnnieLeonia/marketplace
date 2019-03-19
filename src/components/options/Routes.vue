@@ -45,7 +45,7 @@
                 <td>
                   <label class="form-checkbox">
                     <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
-                    <i class="form-icon" :for="option.id"></i>
+                    <i class="form-icon"></i>
                   </label>
                 </td>
                 <label class="optionText" :for="option.id">
@@ -247,7 +247,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  border-bottom: solid 3px darkblue;
+  border-bottom: solid 3px #18477f;
 }
 
 .wholeTable {
@@ -258,7 +258,7 @@ input[type="text"]:focus {
 }
 .header {
   color: white;
-  background-color: gray;
+  background-color: #18477f;
   font-size: 24px;
   height: 2.2em;
 }

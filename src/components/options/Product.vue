@@ -448,7 +448,7 @@ table,
 
 th {
   color: white;
-  background-color: gray;
+  background-color: #18477f;
   padding-left: 0.5em;
   font-size: 20px;
   padding: 0.2em 0.5em;
