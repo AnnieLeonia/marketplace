@@ -52,6 +52,11 @@ body {
   box-shadow: 5px 10px 18px #888888;
 }
 
+.workspace .option:hover {
+  box-shadow: 6px 12px 20px #555555;
+  border: solid #555555 2px;
+}
+
 .trash .option {
   background-color: red;
   opacity: 0.5;
@@ -82,13 +87,14 @@ body {
   padding: 0.5em;
 }
 
-.btnCanel {
+.btnCancel {
+  background-color: #aaaaaa;
   float: left;
 }
 
 .btnConfirm {
   float: right;
-  background-color: limegreen;
+  background-color: #00c455;
 }
 
 .v--modal {
@@ -129,7 +135,7 @@ button {
   width: 6em;
   height: 1.7em;
   font-size: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

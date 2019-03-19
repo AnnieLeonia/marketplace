@@ -62,9 +62,10 @@ h1 {
   padding: 0.5em 0;
 }
 .iconOption {
-  height: 1.3em;
+  height: 1em;
 }
 .titleOption {
   display: initial;
+  font-size: 14px;
 }
 </style>

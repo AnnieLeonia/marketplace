@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1>Overview</h1>
-    <hr>
+    <hr />
     <div class="modalBody">
-      <div class="nameDisplay" v-for="option in root" v-bind:key="option.id">{{option}}</div>
+      <div class="nameDisplay" v-for="option in root" v-bind:key="option.id">
+        {{ option }}
+      </div>
     </div>
   </div>
 </template>
@@ -58,11 +60,12 @@ export default {
 </script>
 
     
-<style>
+<style scoped>
 .modalBody {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   padding: 1em;
 }
+
 .nameDisplay {
   white-space: pre;
   font-size: 16px;

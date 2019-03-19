@@ -95,7 +95,7 @@ export default {
 }
 
 .filled {
-  background-color: lightgray;
+  background-color: #aaa;
 }
 
 .shadow {

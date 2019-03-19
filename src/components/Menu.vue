@@ -2,7 +2,7 @@
   <header>
     <div class="titleBar">
       <label for="title">Title:</label>
-      <input type="text" id="title" placeholder="Enter title...">
+      <input type="text" id="title" placeholder="Enter title..." />
       <button class="btnOverview" v-on:click="open()">Overview</button>
     </div>
     <nav>
@@ -18,8 +18,12 @@
           sort: false
         }"
       >
-        <div class="option" v-for="option in menuOptions" v-bind:key="option.name">
-          <img class="optionIcon" v-bind:src="option.path" alt="icon">
+        <div
+          class="option"
+          v-for="option in menuOptions"
+          v-bind:key="option.name"
+        >
+          <img class="optionIcon" v-bind:src="option.path" alt="icon" />
           <p class="optionTitle">{{ option.name }}</p>
         </div>
       </draggable>
@@ -133,34 +137,39 @@ header {
 }
 
 .titleBar {
-  background-color: white;
+  color: white;
+  background-color: #18477f;
   padding: 0.5em;
-  font-size: 1.5em;
   height: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 input[type="text"] {
   width: 40%;
-  font-size: 1em;
+  font-size: 1.2em;
   padding-left: 5px;
   border: none;
-  border-bottom: solid 2px #888;
+  color: white;
+  background-color: transparent;
+  border-bottom: solid 2px #fff;
+}
+input::placeholder {
+  color: #ccc;
 }
 
 input[type="text"]:focus {
   outline: none;
-  border-bottom: solid 3px darkblue;
+  border-bottom: solid 3px #bd9fc4;
 }
 
 .btnOverview {
   float: right;
-  background-color: #b3dcff;
-  border-right-color: #c5c5ff;
-  border-bottom-color: #c5c5ff;
+  background-color: #bd9fc4;
 }
 
 nav {
-  background-color: darkblue;
+  background-image: linear-gradient(#18477f, #7994c5);
   text-align: center;
 }
 

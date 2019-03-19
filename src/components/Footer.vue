@@ -29,8 +29,7 @@ export default {
 
  <style scoped>
 footer {
-  background-color: white;
-  border-top: 1.5px solid black;
+  background-color: #45699a;
   position: fixed;
   width: 100%;
   height: 56px;
@@ -45,18 +44,16 @@ button {
   float: right;
   margin: 13px;
   border-radius: 15px;
-  background-color: red;
+  background-color: #aaaaaa;
   filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
 }
 
 .toggled {
-  background-color: green;
+  background-color: #00c455;
 }
 
 .btnSave {
   float: right;
-  background-color: #b3dcff;
-  border-right-color: #c5c5ff;
-  border-bottom-color: #c5c5ff;
+  background-color: #00c455;
 }
 </style>
