@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/product.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/product.svg" alt="icon" />
       <h1>Product</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <div class="products">
-        <el-radio class="radio" v-model="optionSelected" :label="0">Single Product</el-radio>
+        <el-radio class="radio" v-model="optionSelected" :label="0"
+          >Single Product</el-radio
+        >
         <el-select
           class="select"
           v-model="productSelected"
@@ -21,7 +23,10 @@
             <p>Tags</p>
           </div>
           <template v-if="productSelected.length > 0" slot="prefix">
-            <img class="prefix" :src="products.find(o => o.product === productSelected).path">
+            <img
+              class="prefix"
+              :src="products.find(o => o.product === productSelected).path"
+            />
           </template>
           <template v-else slot="prefix"></template>
           <el-option
@@ -34,7 +39,7 @@
           >
             <div class="proText" @click="selectProduct()">
               <p class="prod">
-                <img class="optionIcon" v-bind:src="item.path" alt="icon">
+                <img class="optionIcon" v-bind:src="item.path" alt="icon" />
                 {{ item.product }}
               </p>
               <p>{{ item.vendors }}</p>
@@ -45,7 +50,9 @@
         </el-select>
       </div>
       <div class="collection">
-        <el-radio class="radio" v-model="optionSelected" :label="1">Collections</el-radio>
+        <el-radio class="radio" v-model="optionSelected" :label="1"
+          >Collections</el-radio
+        >
 
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
           <table cellspacing="0" cellpadding="0">
@@ -94,7 +101,9 @@
         </table>
       </div>
       <div class="categories">
-        <el-radio class="radio" v-model="optionSelected" :label="2">Categories</el-radio>
+        <el-radio class="radio" v-model="optionSelected" :label="2"
+          >Categories</el-radio
+        >
         <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
           <table cellspacing="0" cellpadding="0">
             <tr>
@@ -114,8 +123,12 @@
                         optionSelected === 2
                     "
                   >
-                    <td class="optionCat" id="optionFrom">{{ option.categories }}</td>
-                    <td class="optionPro2" id="optionTo">{{ option.product }}</td>
+                    <td class="optionCat" id="optionFrom">
+                      {{ option.categories }}
+                    </td>
+                    <td class="optionPro2" id="optionTo">
+                      {{ option.product }}
+                    </td>
                   </div>
                   <div
                     class="notChosen"
@@ -430,11 +443,20 @@ export default {
 .searchField {
   height: 3em;
 }
+
 .products,
 .collection,
 .categories {
-  margin-top: 0.5em;
   display: flex;
+}
+
+.collection,
+.categories {
+  height: 180px;
+}
+
+.products {
+  height: 60px;
 }
 
 table,
@@ -446,7 +468,8 @@ table,
 .tableList {
   overflow: auto;
   font-size: 16px;
-  height: 8.5em;
+  height: 8em;
+  border: 1px solid rgb(218, 218, 218);
 }
 
 th {
@@ -455,6 +478,12 @@ th {
   padding-left: 0.5em;
   font-size: 20px;
   padding: 0.2em 0.5em;
+}
+
+table > table > tr:first-child {
+  border-top: 1px solid rgb(218, 218, 218);
+  border-left: 1px solid rgb(218, 218, 218);
+  border-right: 1px solid rgb(218, 218, 218);
 }
 
 .collection th {
@@ -477,8 +506,19 @@ td {
   width: 300px;
 }
 
+tr {
+  display: flex;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(250, 250, 250);
+}
+tr:nth-child(odd) {
+  background: #fff;
+}
+
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: #ccc;
 }
 
 .selected {

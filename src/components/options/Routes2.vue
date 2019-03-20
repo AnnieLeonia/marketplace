@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
+      <img
+        class="modalIcon color"
+        src="../../assets/promotion.svg"
+        alt="icon"
+      />
       <h1>Select routes</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <div class="search">
         <p class="label from">From:</p>
@@ -21,12 +25,11 @@
         @row-click="add($event)"
         @select-all="addAll($event)"
         class="table"
-        :height="340"
       >
-        <el-table-column type="selection" width="55"/>
-        <el-table-column property="from" sortable label="From" width="120"/>
-        <el-table-column property="to" sortable label="To" width="120"/>
-        <el-table-column property="description" label="Desciption"/>
+        <el-table-column type="selection" width="55" />
+        <el-table-column property="from" sortable label="From" width="120" />
+        <el-table-column property="to" sortable label="To" width="120" />
+        <el-table-column property="description" label="Desciption" />
       </el-table>
     </div>
     <div class="modalFooter">
@@ -193,12 +196,13 @@ export default {
 
 .table {
   width: 700px;
-  border: solid black 1px;
-  margin-top: 1.5em;
+  height: calc(400px - 6em);
+  border: 1px solid rgb(218, 218, 218);
 }
 
 .search {
   display: flex;
+  height: 4em;
 }
 
 .label,
