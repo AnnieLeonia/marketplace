@@ -1,15 +1,16 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon" />
       <h1>Dates</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <v-date-picker
         is-inline
         class="calendar"
         mode="range"
+        :theme-styles="themeStyles"
         :value="value"
         @input="addDates($event)"
       />
@@ -21,7 +22,7 @@
             src="../../assets/remove.svg"
             alt="icon"
             v-on:click="removeDates(index)"
-          >
+          />
           <p class="listDate">{{ displayDate(date) }}</p>
         </li>
       </ul>
@@ -46,7 +47,12 @@ export default {
   data() {
     return {
       value: null,
-      dates: []
+      dates: [],
+      themeStyles: {
+        headerHorizontalDivider: {
+          margin: "0 0 20px 0px"
+        }
+      }
     };
   },
   methods: {
@@ -107,14 +113,15 @@ export default {
 
 .calendar {
   float: left;
-  height: 382px;
+  height: 402px;
 }
 
 ul {
   color: #393d46;
   padding: 0;
   margin-left: 1em;
-  height: 380px;
+  height: 400px;
+  width: 300px;
   overflow: auto;
   border: 1px solid rgb(218, 218, 218);
 }

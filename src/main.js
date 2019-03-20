@@ -16,7 +16,8 @@ Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 Vue.use(VCalendar, {
   firstDayOfWeek: 2,
   paneWidth: 400,
-  datePickerShowDayPopover: false
+  datePickerShowDayPopover: false,
+  datePickerTintColor: "#c269a1"
 });
 
 Vue.config.productionTip = false;
