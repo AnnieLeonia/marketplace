@@ -256,6 +256,7 @@ input[type="text"]:focus {
   margin: 1em 0 0 0.5em;
   height: 14em;
 }
+
 .header {
   color: white;
   background-color: #18477f;

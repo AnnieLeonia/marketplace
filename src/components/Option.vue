@@ -18,6 +18,7 @@ import Inventory from "./options/Inventory";
 import Product from "./options/Product";
 import Promotion from "./options/Promotion";
 import Routes from "./options/Routes";
+import Routes2 from "./options/Routes2";
 import Time from "./options/Time";
 export default {
   props: ["editOption", "currentDepth"],
@@ -49,7 +50,7 @@ export default {
           this.$modal.show(Promotion, { option }, this.attr);
           break;
         case "Routes":
-          this.$modal.show(Routes, { option }, this.attr);
+          this.$modal.show(Routes2, { option }, this.attr);
           break;
         case "Time":
           this.$modal.show(Time, { option }, this.attr);

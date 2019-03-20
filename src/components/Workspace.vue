@@ -37,7 +37,7 @@ main {
 .placeholder {
   color: #404040;
   position: relative;
-  top: 2.5em;
+  top: 3em;
   z-index: 1;
 }
 
