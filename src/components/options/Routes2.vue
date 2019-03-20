@@ -107,6 +107,18 @@ export default {
         result = result.filter(item => item.to.toLowerCase().includes(this.to));
       }
       return result;
+    },
+    displayRoutes: function() {
+      let modifier = 1;
+      if (!this.ascending) modifier = -1;
+      function surnameName(a, b) {
+        if (a.from < b.from) return -1;
+        if (a.from > b.from) return 1;
+        if (a.to < b.to) return -1;
+        if (a.to > b.to) return 1;
+        return 0;
+      }
+      return this.routes.sort(surnameName);
     }
   },
   methods: {
@@ -152,6 +164,9 @@ export default {
       this.$emit("close");
     }
   },
+  beforeMount() {
+    this.displayRoutes;
+  },
   mounted: function() {
     if (this.$props.option.edited) {
       const values = this.$props.option.value;
@@ -179,6 +194,7 @@ export default {
 .table {
   width: 700px;
   border: solid black 1px;
+  margin-top: 1.5em;
 }
 
 .search {
