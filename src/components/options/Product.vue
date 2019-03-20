@@ -54,7 +54,7 @@
           >Collections</el-radio
         >
 
-        <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
+        <table class="wholeTable" cellspacing="0" cellpadding="0">
           <table cellspacing="0" cellpadding="0">
             <tr>
               <th>Collections</th>
@@ -104,7 +104,7 @@
         <el-radio class="radio" v-model="optionSelected" :label="2"
           >Categories</el-radio
         >
-        <table class="wholeTable" cellspacing="0" cellpadding="0" border="1">
+        <table class="wholeTable" cellspacing="0" cellpadding="0">
           <table cellspacing="0" cellpadding="0">
             <tr>
               <th>Categories</th>

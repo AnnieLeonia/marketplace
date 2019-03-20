@@ -108,6 +108,10 @@ export default {
   margin: 1em;
 }
 
+h2 {
+  margin-bottom: 0;
+}
+
 .label {
   margin-left: 1em;
   font-size: 20px;
