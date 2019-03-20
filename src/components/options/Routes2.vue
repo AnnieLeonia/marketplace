@@ -21,7 +21,6 @@
         @row-click="add($event)"
         @select-all="addAll($event)"
         class="table"
-        :height="340"
       >
         <el-table-column type="selection" width="55"/>
         <el-table-column property="from" sortable label="From" width="120"/>
@@ -193,12 +192,13 @@ export default {
 
 .table {
   width: 700px;
-  border: solid black 1px;
-  margin-top: 1.5em;
+  height: calc(400px - 6em);
+  border: 1px solid rgb(218, 218, 218);
 }
 
 .search {
   display: flex;
+  height: 4em;
 }
 
 .label,
