@@ -433,6 +433,7 @@ export default {
   width: 2em;
   height: 2em;
   margin-top: 0.4em;
+  padding-right: 2em;
 }
 
 .optionIcon {
@@ -522,7 +523,7 @@ tr:hover {
 }
 
 .selected {
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .notChosen {

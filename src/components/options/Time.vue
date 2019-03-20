@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/time.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/time.svg" alt="icon" />
       <h1 v-on:click="addTime()">Select Time</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <div class="radioOption">
         <el-radio v-model="radio" :label="0">Time from take off</el-radio>
@@ -14,7 +14,9 @@
           :max="10"
           :disabled="this.radio == 0 ? false : true"
         />
-        <span v-bind:class="this.radio == 0 ? 'suffix' : 'suffix hidden'">h</span>
+        <span v-bind:class="this.radio == 0 ? 'suffix' : 'suffix hidden'"
+          >h</span
+        >
       </div>
       <div class="radioOption">
         <el-radio v-model="radio" :label="1">Time to destination</el-radio>
@@ -24,7 +26,9 @@
           :max="10"
           :disabled="this.radio == 1 ? false : true"
         />
-        <span v-bind:class="this.radio == 1 ? 'suffix' : 'suffix hidden'">h</span>
+        <span v-bind:class="this.radio == 1 ? 'suffix' : 'suffix hidden'"
+          >h</span
+        >
       </div>
       <div class="radioOption">
         <el-radio v-model="radio" :label="2">Altitude</el-radio>
@@ -35,7 +39,9 @@
           :step="5000"
           :disabled="this.radio == 2 ? false : true"
         />
-        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix hidden'">ft</span>
+        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix hidden'"
+          >ft</span
+        >
       </div>
       <div class="radioOption">
         <el-radio v-model="radio" :label="3">Meal served</el-radio>
@@ -136,7 +142,7 @@ export default {
 .suffix {
   position: absolute;
   right: 0;
-  margin: 1.3em 22.5em;
+  margin: 1.3em 23em;
   z-index: 1;
   font-size: 14px;
 }

@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
+      <img
+        class="modalIcon color"
+        src="../../assets/promotion.svg"
+        alt="icon"
+      />
       <h1>Select Promotion</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <h2>Chose placement and text for promotion</h2>
       <div class="radioOption">
@@ -98,22 +102,28 @@ export default {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
     brightness(102%) contrast(102%);
 }
+
 .modalBody {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin: 1em;
 }
+
 .label {
   margin-left: 1em;
   font-size: 20px;
 }
+
 .radioOption {
-  margin: 1em 0;
+  padding: 1em 0.5em;
 }
+
 .radioOption:nth-child(odd) {
   background-color: rgb(250, 250, 250);
   width: 75%;
 }
+
 .textArea {
   width: 45em;
+  margin-top: 0.5em;
 }
 </style>
