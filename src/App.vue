@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Menu />
-    <Workspace />
-    <Remove />
-    <Footer />
+    <Menu/>
+    <Workspace/>
+    <Remove/>
+    <Footer/>
   </div>
 </template>
 

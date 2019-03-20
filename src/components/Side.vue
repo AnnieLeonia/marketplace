@@ -3,7 +3,7 @@
     <h1>Summary</h1>
     <div v-for="option in sideOptions" v-bind:key="option.id">
       <div class="sideOption" v-if="option.display">
-        <img class="iconOption" v-bind:src="option.path" alt="icon" />
+        <img class="iconOption" v-bind:src="option.path" alt="icon">
         <p class="titleOption">{{ option.display }}</p>
       </div>
     </div>
@@ -46,7 +46,8 @@ export default {
 .sideMeny {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   padding: 1em;
-  border-left: 0.1em solid black;
+  border-left: 0.1em solid lightgray;
+  background-color: #cdcde45e;
   float: right;
   width: calc(25% - 2em);
   height: 40em;
