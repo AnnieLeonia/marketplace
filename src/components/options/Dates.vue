@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon" />
-      <h1>Dates</h1>
+      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon">
+      <h1>Select Dates</h1>
     </div>
-    <Side />
+    <Side/>
     <div class="modalBody">
       <v-date-picker
         is-inline
@@ -22,7 +22,7 @@
             src="../../assets/remove.svg"
             alt="icon"
             v-on:click="removeDates(index)"
-          />
+          >
           <p class="listDate">{{ displayDate(date) }}</p>
         </li>
       </ul>

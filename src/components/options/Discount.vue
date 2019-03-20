@@ -2,11 +2,11 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon color" src="../../assets/discount.svg" alt="icon">
-      <h1>Discount</h1>
+      <h1>Select Discount</h1>
     </div>
     <Side/>
     <div class="modalBody">
-      <h2>Select discount</h2>
+      <h2>Drag slider to the desired discount</h2>
       <div class="discount">
         <el-slider v-model="value" :step="5"></el-slider>
         <el-input-number v-model="value" :min="0" :max="100"></el-input-number>
@@ -87,9 +87,5 @@ export default {
   margin: 1.15em 22.5em;
   z-index: 1;
   font-size: 14px;
-}
-
-h2 {
-  text-align: center;
 }
 </style>

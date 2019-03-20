@@ -2,7 +2,7 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon color" src="../../assets/time.svg" alt="icon">
-      <h1 v-on:click="addTime()">Time</h1>
+      <h1 v-on:click="addTime()">Select Time</h1>
     </div>
     <Side/>
     <div class="modalBody">

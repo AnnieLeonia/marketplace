@@ -2,11 +2,11 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
-      <h1>Select promotion</h1>
+      <h1>Select Promotion</h1>
     </div>
     <Side/>
     <div class="modalBody">
-      <p class="label">Chose placement and text for promotion</p>
+      <h2>Chose placement and text for promotion</h2>
       <div class="radioOption">
         <el-radio v-model="radio" :label="1">Home page</el-radio>
       </div>
@@ -107,7 +107,7 @@ export default {
   font-size: 20px;
 }
 .radioOption {
-  margin: 1em;
+  margin: 1em 0;
 }
 .radioOption:nth-child(odd) {
   background-color: rgb(250, 250, 250);

@@ -2,7 +2,7 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
-      <h1>Select routes</h1>
+      <h1>Select Routes</h1>
     </div>
     <Side/>
     <div class="modalBody">

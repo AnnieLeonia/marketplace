@@ -2,7 +2,7 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon color" src="../../assets/inventory.svg" alt="icon">
-      <h1>Inventory</h1>
+      <h1>Select Onboard Inventory</h1>
     </div>
     <Side/>
     <div class="modalBody">
