@@ -1,10 +1,9 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/dates.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon">
       <h1>Dates</h1>
     </div>
-    <hr>
     <Side/>
     <div class="modalBody">
       <v-date-picker
@@ -98,6 +97,10 @@ export default {
 </script>
 
 <style scoped>
+.color {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+    brightness(102%) contrast(102%);
+}
 .modalBody {
   margin: 1em;
 }

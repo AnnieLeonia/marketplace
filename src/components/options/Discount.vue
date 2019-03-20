@@ -1,10 +1,9 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon" src="../../assets/discount.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/discount.svg" alt="icon">
       <h1>Discount</h1>
     </div>
-    <hr>
     <Side/>
     <div class="modalBody">
       <h2>Select discount</h2>
@@ -62,6 +61,10 @@ export default {
 </script>
 
 <style scoped>
+.color {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+    brightness(102%) contrast(102%);
+}
 .modalBody {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin: 1em;

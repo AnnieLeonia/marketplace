@@ -104,6 +104,9 @@ body {
 
 .modalHeader {
   display: flex;
+  background-image: linear-gradient(#74496f, #8d3a6f);
+  color: white;
+  border-bottom: 0.1em solid lightgray;
 }
 
 .modalIcon {
