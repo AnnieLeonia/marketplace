@@ -2,7 +2,7 @@
   <div>
     <div class="modalHeader">
       <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
-      <h1>Promotion</h1>
+      <h1>Select promotion</h1>
     </div>
     <Side/>
     <div class="modalBody">
@@ -19,6 +19,7 @@
       <el-input
         class="textArea"
         type="textarea"
+        resize="none"
         :rows="4"
         placeholder="Write promotion..."
         v-model="textarea"
@@ -46,6 +47,7 @@ export default {
   },
   methods: {
     confirm: function() {
+      var textA = '"'.concat(this.textarea) + '"';
       if (this.radio === 0 && this.textarea === "") {
         this.$props.option.edited = false;
       } else {
@@ -53,12 +55,23 @@ export default {
         let returnValue = "";
         if (this.radio === 1) {
           returnValue = "Home page";
+          if (this.textarea !== "") {
+            returnValue += " - ".concat(textA);
+          }
         } else if (this.radio === 2) {
           returnValue = "Game page";
+          if (this.textarea !== "") {
+            returnValue += " - ".concat(textA);
+          }
         } else if (this.radio === 3) {
           returnValue = "Movie page";
+          if (this.textarea !== "") {
+            returnValue += " - ".concat(textA);
+          }
+        } else if (this.radio === 0) {
+          returnValue = textA;
         }
-        returnValue += " - ".concat(this.textarea);
+        //returnValue += " - " + '"'.concat(this.textarea) + '"';
         this.$props.option.display = returnValue;
         this.$props.option.value = {
           radio: this.radio,
@@ -86,6 +99,7 @@ export default {
     brightness(102%) contrast(102%);
 }
 .modalBody {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin: 1em;
 }
 .label {
