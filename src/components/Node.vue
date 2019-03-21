@@ -8,6 +8,7 @@
       @start="start()"
       @end="end()"
       @add="add()"
+      @remove="remove()"
     >
       <Option
         class="option"
@@ -19,8 +20,17 @@
       />
       <div class="shadow" v-if="checkEmpty()"></div>
     </draggable>
+    <div class="high" v-if="hasChildren() && paths" />
+    <div class="space" v-else />
     <draggable class="workspace horizontal" v-if="this.open">
-      <Node v-for="i in 2" v-bind:key="i" :id="createID(i)"/>
+      <div class="name" v-for="i in 2" v-bind:key="i">
+        <div class="lines" v-if="visibleNode(createID(i)) && paths">
+          <div v-bind:class="createID(i) % 2 == 0 ? 'long even' : 'long odd'" />
+          <div class="high" />
+          <img class="down" src="../assets/down.svg" alt="down" />
+        </div>
+        <Node :id="createID(i)" />
+      </div>
     </draggable>
   </div>
 </template>
@@ -38,6 +48,7 @@ export default {
   data() {
     return {
       open: false,
+      paths: true,
       list: [],
       settings: {
         group: { name: "options" },
@@ -47,6 +58,28 @@ export default {
     };
   },
   methods: {
+    hasChildren: function() {
+      const tree = this.$store.state.tree;
+      const id = this.$props.id.toString();
+      for (var i = 0; i < tree.length; i++) {
+        const treeId = tree[i].id.toString().substring(0, id.length);
+        const rootId = this.$props.id.toString();
+        if (treeId == rootId && tree[i].id != this.$props.id) {
+          return true;
+        }
+      }
+      return false;
+    },
+    visibleNode: function(id) {
+      const tree = this.$store.state.tree;
+      const idString = id.toString();
+      for (var i = 0; i < tree.length; i++) {
+        if (tree[i].id == id && tree[i].options.length > 0) {
+          return true;
+        }
+      }
+      return false;
+    },
     add: function() {
       this.open = true;
       let index = this.$store.state.tree.indexOf(
@@ -58,11 +91,10 @@ export default {
         this.$store.state.tree[index].options = this.list;
       }
     },
-    start() {
-      this.$store.state.moving = true;
-    },
-    end() {
-      this.$store.state.moving = false;
+    remove: function() {
+      if ((this.list.length = 0)) {
+        this.open = false;
+      }
     },
     checkEmpty(option) {
       if (this.$store.state.tree.length === 0) {
@@ -99,8 +131,8 @@ export default {
 }
 
 .horizontal {
-  margin-top: 2em;
   display: flex;
+  height: 100%;
 }
 
 .filled {
@@ -118,6 +150,40 @@ export default {
 }
 
 .empty .ghostOption + .shadow {
-  background: lightgray;
+  background: #aaa;
+}
+
+.lines {
+  position: relative;
+}
+
+.long {
+  position: absolute;
+  height: 0.1em;
+  background-color: #444;
+  width: 50%;
+}
+
+.odd {
+  right: 0;
+}
+
+.high {
+  background-color: #444;
+  width: 0.1em;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.down {
+  height: 10px;
+  margin-top: -9px;
+  margin-left: -5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.space {
+  margin-top: 2em;
 }
 </style>
