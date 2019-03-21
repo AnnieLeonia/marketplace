@@ -97,11 +97,11 @@ export default {
         this.$store.state.tree[index].options = this.list;
       }
     },
-    remove: function() {
-      if ((this.list.length = 0)) {
-        this.open = false;
-      }
-    },
+    // remove: function() {
+    //   if ((this.list.length = 0)) {
+    //     this.open = false;
+    //   }
+    // },
     checkEmpty(option) {
       if (this.$store.state.tree.length === 0) {
         return false;
