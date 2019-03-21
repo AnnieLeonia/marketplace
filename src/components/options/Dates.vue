@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/dates.svg" alt="icon" />
       <h1>Select Dates</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <v-date-picker
         is-inline
@@ -16,13 +16,13 @@
       />
       <ul>
         <p class="placeholder" v-if="dates.length == 0">No dates added</p>
-        <li v-for="(date, index) in this.dates" :key="index">
+        <li v-for="(date, index) in dates" :key="index">
           <img
             class="removeIcon"
             src="../../assets/remove.svg"
             alt="icon"
             v-on:click="removeDates(index)"
-          >
+          />
           <p class="listDate">{{ displayDate(date) }}</p>
         </li>
       </ul>
@@ -96,7 +96,7 @@ export default {
   },
   created: function() {
     if (this.$props.option.edited) {
-      this.dates = this.$props.option.value;
+      this.dates = [...this.$props.option.value];
     }
   }
 };
