@@ -80,6 +80,12 @@ export default {
       }
       return false;
     },
+    start() {
+      this.$store.state.moving = true;
+    },
+    end() {
+      this.$store.state.moving = false;
+    },
     add: function() {
       this.open = true;
       let index = this.$store.state.tree.indexOf(
@@ -91,17 +97,11 @@ export default {
         this.$store.state.tree[index].options = this.list;
       }
     },
-    remove: function() {
-      if ((this.list.length = 0)) {
-        this.open = false;
-      }
-    },
-    start() {
-      this.$store.state.moving = true;
-    },
-    end() {
-      this.$store.state.moving = false;
-    },
+    // remove: function() {
+    //   if ((this.list.length = 0)) {
+    //     this.open = false;
+    //   }
+    // },
     checkEmpty(option) {
       if (this.$store.state.tree.length === 0) {
         return false;

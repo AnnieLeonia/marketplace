@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Menu/>
-    <Workspace/>
-    <Remove/>
-    <Footer/>
+    <Menu />
+    <Workspace />
+    <Remove />
+    <Footer />
   </div>
 </template>
 
@@ -39,6 +39,7 @@ body {
 
 .option {
   display: table;
+  cursor: pointer;
   background-color: white;
   margin: 0.5em;
   padding: 0 0.5em;
