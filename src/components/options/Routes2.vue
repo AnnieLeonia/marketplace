@@ -1,14 +1,10 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img
-        class="modalIcon color"
-        src="../../assets/promotion.svg"
-        alt="icon"
-      />
+      <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
       <h1>Select Routes</h1>
     </div>
-    <Side />
+    <Side/>
     <div class="modalBody">
       <div class="search">
         <p class="label from">From:</p>
@@ -27,10 +23,13 @@
         @select-all="addAll($event)"
         class="table"
       >
-        <el-table-column type="selection" width="55" />
-        <el-table-column property="from" sortable label="From" width="120" />
-        <el-table-column property="to" sortable label="To" width="120" />
-        <el-table-column property="description" label="Desciption" />
+        <!-- :property="description("cityFrom", "cityTo")" -->
+        <el-table-column type="selection" width="55"/>
+        <el-table-column property="from" sortable label="From" width="120"/>
+        <el-table-column property="to" sortable label="To" width="120"/>
+        <el-table-column label="Desciption">
+          <template slot-scope="scope">{{ scope.row.cityFrom + " to " + scope.row.cityTo }}</template>
+        </el-table-column>
       </el-table>
     </div>
     <div class="modalFooter">
@@ -53,49 +52,132 @@ export default {
       to: "",
       selected: [],
       routes: [
-        { id: 0, from: "LHR", to: "BOS", description: "London to Boston" },
-        { id: 1, from: "ARN", to: "CIC", description: "Stockholm to Chicago" },
+        {
+          id: 0,
+          from: "LHR",
+          to: "BOS",
+          cityFrom: "London",
+          cityTo: "Boston"
+        },
+        {
+          id: 1,
+          from: "ARN",
+          to: "CIC",
+          cityFrom: "Stockholm",
+          cityTo: "Chicago"
+        },
         {
           id: 2,
           from: "NRT",
           to: "SFO",
-          description: "Tokyo to San Francisco"
+          cityFrom: "Tokyo",
+          cityTo: "San Francisco"
         },
         {
           id: 3,
           from: "SFO",
           to: "ARN",
-          description: "San Francisco to Stockholm"
+          cityFrom: "San Francisco",
+          cityTo: "Stockholm"
         },
         {
           id: 4,
           from: "SFO",
           to: "BFL",
-          description: "San Francisco to Bakersfield"
+          cityFrom: "San Francisco",
+          cityTo: "Bakersfield"
         },
         {
           id: 5,
           from: "SFO",
           to: "BOS",
-          description: "San Francisco to Boston"
+          cityFrom: "San Francisco",
+          cityTo: "Boston"
         },
         {
           id: 6,
           from: "SFO",
           to: "AMS",
-          description: "San Francisco to Amsterdam"
+          cityFrom: "San Francisco",
+          cityTo: "Amsterdam"
         },
-        { id: 7, from: "ARN", to: "BUD", description: "Stockholm to Budapest" },
-        { id: 8, from: "ARN", to: "PRG", description: "Stockholm to Prag" },
-        { id: 9, from: "LHR", to: "BJS", description: "London to Beijing" },
-        { id: 10, from: "LHR", to: "AMS", description: "London to Amsterdam" },
-        { id: 11, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 12, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 13, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 14, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 15, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 16, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 17, from: "SFO", to: "BOS", description: "London to Boston" }
+        {
+          id: 7,
+          from: "ARN",
+          to: "BUD",
+          cityFrom: "Stockholm",
+          cityTo: "Budapest"
+        },
+        {
+          id: 8,
+          from: "ARN",
+          to: "PRG",
+          cityFrom: "Stockholm",
+          cityTo: "Prag"
+        },
+        {
+          id: 9,
+          from: "LHR",
+          to: "BJS",
+          cityFrom: "London",
+          cityTo: "Beijing"
+        },
+        {
+          id: 10,
+          from: "LHR",
+          to: "AMS",
+          cityFrom: "London",
+          cityTo: "Amsterdam"
+        },
+        {
+          id: 11,
+          from: "SFO",
+          to: "ATH",
+          cityFrom: "San Francisco",
+          cityTo: "Aten"
+        },
+        {
+          id: 12,
+          from: "SFO",
+          to: "ZRH",
+          cityFrom: "San Francisco",
+          cityTo: "Zürich"
+        },
+        {
+          id: 13,
+          from: "SFO",
+          to: "BOM",
+          cityFrom: "London",
+          cityTo: "Bombay"
+        },
+        {
+          id: 14,
+          from: "NRT",
+          to: "BOM",
+          cityFrom: "Tokyo",
+          cityTo: "Bombay"
+        },
+        {
+          id: 15,
+          from: "NRT",
+          to: "ICN",
+          cityFrom: "Tokyo",
+          cityTo: "Seoul"
+        },
+        {
+          id: 16,
+          from: "SFO",
+          to: "SIN",
+          cityFrom: "San Francisco",
+          cityTo: "Singapore"
+        },
+        {
+          id: 17,
+          from: "LHR",
+          to: "ICN",
+          cityFrom: "London",
+          cityTo: "Seoul"
+        }
       ]
     };
   },
@@ -103,12 +185,18 @@ export default {
     filteredRoutes: function() {
       let result = this.routes;
       if (this.from) {
-        result = result.filter(item =>
-          item.from.toLowerCase().includes(this.from)
+        result = result.filter(
+          item =>
+            item.from.toLowerCase().includes(this.from) ||
+            item.cityFrom.toLowerCase().includes(this.from)
         );
       }
       if (this.to) {
-        result = result.filter(item => item.to.toLowerCase().includes(this.to));
+        result = result.filter(
+          item =>
+            item.to.toLowerCase().includes(this.to) ||
+            item.cityTo.toLowerCase().includes(this.to)
+        );
       }
       return result;
     },
@@ -145,6 +233,7 @@ export default {
         }
       }
     },
+    description: function(option) {},
     confirm: function() {
       let returnValue;
       if (this.selected.length === 0) {
