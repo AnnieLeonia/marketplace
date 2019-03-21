@@ -11,14 +11,14 @@
     <Side />
     <div class="modalBody">
       <h2>Chose placement and text for promotion</h2>
-      <div class="radioOption">
-        <el-radio v-model="radio" :label="1">Home page</el-radio>
+      <div class="radioOption" v-on:click="toggle(0)">
+        <el-radio v-model="radio" :label="0">Home page</el-radio>
       </div>
-      <div class="radioOption">
-        <el-radio v-model="radio" :label="2">Game page</el-radio>
+      <div class="radioOption" v-on:click="toggle(1)">
+        <el-radio v-model="radio" :label="1">Game page</el-radio>
       </div>
-      <div class="radioOption">
-        <el-radio v-model="radio" :label="3">Movie page</el-radio>
+      <div class="radioOption" v-on:click="toggle(2)">
+        <el-radio v-model="radio" :label="2">Movie page</el-radio>
       </div>
       <el-input
         class="textArea"
@@ -45,34 +45,37 @@ export default {
   },
   data() {
     return {
-      radio: 0,
+      radio: -1,
       textarea: ""
     };
   },
   methods: {
+    toggle: function(nbr) {
+      this.radio = nbr;
+    },
     confirm: function() {
       var textA = '"'.concat(this.textarea) + '"';
-      if (this.radio === 0 && this.textarea === "") {
+      if (this.radio === -1 && this.textarea === "") {
         this.$props.option.edited = false;
       } else {
         this.$props.option.edited = true;
         let returnValue = "";
-        if (this.radio === 1) {
+        if (this.radio === 0) {
           returnValue = "Home page";
           if (this.textarea !== "") {
             returnValue += " - ".concat(textA);
           }
-        } else if (this.radio === 2) {
+        } else if (this.radio === 1) {
           returnValue = "Game page";
           if (this.textarea !== "") {
             returnValue += " - ".concat(textA);
           }
-        } else if (this.radio === 3) {
+        } else if (this.radio === 2) {
           returnValue = "Movie page";
           if (this.textarea !== "") {
             returnValue += " - ".concat(textA);
           }
-        } else if (this.radio === 0) {
+        } else if (this.radio === -1) {
           returnValue = textA;
         }
         //returnValue += " - " + '"'.concat(this.textarea) + '"';
@@ -119,15 +122,15 @@ h2 {
 
 .radioOption {
   padding: 1em 0.5em;
+  width: 75%;
 }
 
 .radioOption:nth-child(odd) {
   background-color: rgb(250, 250, 250);
-  width: 75%;
 }
 
 .textArea {
-  width: 45em;
+  width: calc(75% - 1em);
   margin-top: 0.5em;
 }
 </style>

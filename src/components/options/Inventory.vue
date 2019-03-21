@@ -1,13 +1,19 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/inventory.svg" alt="icon">
+      <img
+        class="modalIcon color"
+        src="../../assets/inventory.svg"
+        alt="icon"
+      />
       <h1>Select Onboard Inventory</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
-      <div class="radioOption">
-        <el-radio v-model="radio" :label="0">Onboard inventory is more than</el-radio>
+      <div class="radioOption" v-on:click="toggle(0)">
+        <el-radio v-model="radio" :label="0">
+          Onboard inventory is more than
+        </el-radio>
         <el-input-number
           v-model="nbrs[0]"
           :min="1"
@@ -15,8 +21,10 @@
           :disabled="this.radio == 0 ? false : true"
         />
       </div>
-      <div class="radioOption">
-        <el-radio v-model="radio" :label="1">Onboard inventory is less than</el-radio>
+      <div class="radioOption" v-on:click="toggle(1)">
+        <el-radio v-model="radio" :label="1">
+          Onboard inventory is less than
+        </el-radio>
         <el-input-number
           v-model="nbrs[1]"
           :min="1"
@@ -46,6 +54,9 @@ export default {
     };
   },
   methods: {
+    toggle: function(nbr) {
+      this.radio = nbr;
+    },
     displayInventory(number) {
       return number == 0
         ? "More than " + this.nbrs[0] + " left "

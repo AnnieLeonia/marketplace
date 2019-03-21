@@ -6,7 +6,7 @@
     </div>
     <Side />
     <div class="modalBody">
-      <div class="radioOption">
+      <div class="radioOption" v-on:click="toggle(0)">
         <el-radio v-model="radio" :label="0">Time from take off</el-radio>
         <el-input-number
           v-model="nbrs[0]"
@@ -14,11 +14,11 @@
           :max="10"
           :disabled="this.radio == 0 ? false : true"
         />
-        <span v-bind:class="this.radio == 0 ? 'suffix' : 'suffix hidden'"
+        <span v-bind:class="this.radio == 0 ? 'suffix' : 'suffix faded'"
           >h</span
         >
       </div>
-      <div class="radioOption">
+      <div class="radioOption" v-on:click="toggle(1)">
         <el-radio v-model="radio" :label="1">Time to destination</el-radio>
         <el-input-number
           v-model="nbrs[1]"
@@ -26,11 +26,11 @@
           :max="10"
           :disabled="this.radio == 1 ? false : true"
         />
-        <span v-bind:class="this.radio == 1 ? 'suffix' : 'suffix hidden'"
+        <span v-bind:class="this.radio == 1 ? 'suffix' : 'suffix faded'"
           >h</span
         >
       </div>
-      <div class="radioOption">
+      <div class="radioOption" v-on:click="toggle(2)">
         <el-radio v-model="radio" :label="2">Altitude</el-radio>
         <el-input-number
           v-model="nbrs[2]"
@@ -39,17 +39,17 @@
           :step="5000"
           :disabled="this.radio == 2 ? false : true"
         />
-        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix hidden'"
+        <span v-bind:class="this.radio == 2 ? 'suffix' : 'suffix faded'"
           >ft</span
         >
       </div>
-      <div class="radioOption">
+      <div class="radioOption" v-on:click="toggle(3)">
         <el-radio v-model="radio" :label="3">Meal served</el-radio>
       </div>
-      <div class="radioOption">
+      <div class="radioOption" v-on:click="toggle(4)">
         <el-radio v-model="radio" :label="4">Doors closed</el-radio>
       </div>
-      <div class="radioOption">
+      <div class="radioOption" v-on:click="toggle(5)">
         <el-radio v-model="radio" :label="5">Weight on wheels</el-radio>
       </div>
     </div>
@@ -74,6 +74,9 @@ export default {
     };
   },
   methods: {
+    toggle: function(nbr) {
+      this.radio = nbr;
+    },
     displayTime(number) {
       switch (number) {
         case 0: {
@@ -147,7 +150,7 @@ export default {
   font-size: 14px;
 }
 
-.hidden {
+.faded {
   color: #c0c4cc;
 }
 
