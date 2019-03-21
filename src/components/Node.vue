@@ -20,7 +20,7 @@
       <div class="shadow" v-if="checkEmpty()"></div>
     </draggable>
     <draggable class="workspace horizontal" v-if="this.open">
-      <Node v-for="i in 2" v-bind:key="i" :id="createID(i)" />
+      <Node v-for="i in 2" v-bind:key="i" :id="createID(i)"/>
     </draggable>
   </div>
 </template>
@@ -64,8 +64,17 @@ export default {
     end() {
       this.$store.state.moving = false;
     },
-    checkEmpty() {
-      return this.list.length === 0 && this.$store.state.tree.length != 0;
+    checkEmpty(option) {
+      if (this.$store.state.tree.length === 0) {
+        return false;
+      } else if (
+        this.$store.state.tree[0].options.length === 0 &&
+        this.list.length === 0
+      ) {
+        return this.id !== "1";
+      } else {
+        return this.list.length === 0 && this.$store.state.tree.length != 0;
+      }
     },
     createID: function(i) {
       return this.id + i;

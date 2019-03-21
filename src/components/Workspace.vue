@@ -1,9 +1,7 @@
 <template>
   <main>
-    <div v-bind:class="emptyList ? 'placeholder' : 'hidden'">
-      Drag option here
-    </div>
-    <Node :id="id" />
+    <div v-bind:class="emptyList ? 'placeholder' : 'hidden'">Drag option here</div>
+    <Node :id="id"/>
   </main>
 </template>
 
@@ -23,6 +21,9 @@ export default {
   },
   computed: {
     emptyList: function() {
+      if (this.$store.state.tree.length > 0) {
+        return this.$store.state.tree[0].options.length === 0;
+      }
       return this.$store.state.tree.length === 0;
     }
   }
