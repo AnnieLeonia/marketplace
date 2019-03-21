@@ -20,16 +20,16 @@
       />
       <div class="shadow" v-if="checkEmpty()"></div>
     </draggable>
-    <div class="high" v-if="hasChildren() && paths" />
-    <div class="space" v-else />
+    <div class="high" v-if="hasChildren() && paths"/>
+    <div class="space" v-else/>
     <draggable class="workspace horizontal" v-if="this.open">
       <div class="name" v-for="i in 2" v-bind:key="i">
         <div class="lines" v-if="visibleNode(createID(i)) && paths">
-          <div v-bind:class="createID(i) % 2 == 0 ? 'long even' : 'long odd'" />
-          <div class="high" />
-          <img class="down" src="../assets/down.svg" alt="down" />
+          <div v-bind:class="createID(i) % 2 == 0 ? 'long even' : 'long odd'"/>
+          <div class="high"/>
+          <img class="down" src="../assets/down.svg" alt="down">
         </div>
-        <Node :id="createID(i)" />
+        <Node :id="createID(i)"/>
       </div>
     </draggable>
   </div>
@@ -96,6 +96,12 @@ export default {
         this.open = false;
       }
     },
+    start() {
+      this.$store.state.moving = true;
+    },
+    end() {
+      this.$store.state.moving = false;
+    },
     checkEmpty(option) {
       if (this.$store.state.tree.length === 0) {
         return false;
@@ -148,7 +154,6 @@ export default {
   bottom: 0;
   left: 0;
 }
-
 .empty .ghostOption + .shadow {
   background: #aaa;
 }
