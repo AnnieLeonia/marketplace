@@ -34,9 +34,7 @@ export default {
     }
   },
   methods: {
-    remove: function(event) {
-      console.log(this.$store.state.tree);
-    }
+    remove: function(event) {}
   }
 };
 </script>

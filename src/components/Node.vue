@@ -80,6 +80,12 @@ export default {
       }
       return false;
     },
+    start() {
+      this.$store.state.moving = true;
+    },
+    end() {
+      this.$store.state.moving = false;
+    },
     add: function() {
       this.open = true;
       let index = this.$store.state.tree.indexOf(
