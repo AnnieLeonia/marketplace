@@ -20,6 +20,7 @@
         ref="multipleTable"
         empty-text="No routes found"
         stripe
+        height="320"
         :data="filteredRoutes"
         @select="hello($event)"
         @row-click="add($event)"
@@ -195,7 +196,6 @@ export default {
 }
 
 .table {
-  overflow: auto;
   width: 700px;
   height: calc(400px - 6em);
   border: 1px solid rgb(218, 218, 218);
