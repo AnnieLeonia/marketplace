@@ -1,11 +1,9 @@
 <template>
   <div>
-    <h1>Overview</h1>
-    <hr />
+    <h1 class="overviewTitle">Overview</h1>
+    <hr>
     <div class="modalBody">
-      <div class="nameDisplay" v-for="option in root" v-bind:key="option.id">
-        {{ option }}
-      </div>
+      <div class="nameDisplay" v-for="option in root" v-bind:key="option.id">{{ option }}</div>
     </div>
   </div>
 </template>
@@ -41,11 +39,14 @@ export default {
           temp += "\x09";
         }
         for (var j = 0; j < node.length; j++) {
-          if (node.length > 1) {
-            var nameStr = " ".concat(node[j].display + "");
-            name.push(nameStr);
-          } else {
-            name.push(node[j].display);
+          console.log("node name", node[j].display);
+          if (node[j].display !== "") {
+            if (node.length > 1) {
+              var nameStr = " ".concat(node[j].display + "");
+              name.push(nameStr);
+            } else {
+              name.push(" " + node[j].display);
+            }
           }
         }
         this.root.push(temp + name);
@@ -61,6 +62,9 @@ export default {
 
     
 <style scoped>
+.overviewTitle {
+  margin-left: 1em;
+}
 .modalBody {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   padding: 1em;
