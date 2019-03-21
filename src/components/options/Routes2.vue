@@ -22,8 +22,8 @@
         @row-click="add($event)"
         @select-all="addAll($event)"
         class="table"
-      >
-        <!-- :property="description("cityFrom", "cityTo")" -->
+        :cell-style="boldCell"
+      >>
         <el-table-column type="selection" width="55"/>
         <el-table-column property="from" sortable label="From" width="120"/>
         <el-table-column property="to" sortable label="To" width="120"/>
@@ -187,8 +187,8 @@ export default {
       if (this.from) {
         result = result.filter(
           item =>
-            item.from.toLowerCase().includes(this.from) ||
-            item.cityFrom.toLowerCase().includes(this.from)
+            item.from.includes(this.from.toUpperCase()) ||
+            item.cityFrom.toUpperCase().includes(this.from.toUpperCase())
         );
       }
       if (this.to) {
@@ -233,7 +233,11 @@ export default {
         }
       }
     },
-    description: function(option) {},
+    boldCell: function({ row }) {
+      if (this.selected.some(el => el.id === row.id)) {
+        return "font-family: 'AvenirBold'";
+      }
+    },
     confirm: function() {
       let returnValue;
       if (this.selected.length === 0) {

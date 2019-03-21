@@ -147,4 +147,8 @@ button {
   font-family: "Avenir";
   src: url("assets/AvenirLTStd-Roman.otf"); /* IE9 Compat Modes */
 }
+@font-face {
+  font-family: "AvenirBold";
+  src: url("assets/AvenirLTStd-Black.otf");
+}
 </style>
