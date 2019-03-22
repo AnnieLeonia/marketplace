@@ -98,6 +98,10 @@ body {
   background-color: #00c455;
 }
 
+.indent .el-input__inner {
+  padding-left: 40px !important;
+}
+
 .v--modal {
   width: 60em;
   min-height: 20em;
