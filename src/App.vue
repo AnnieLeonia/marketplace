@@ -127,6 +127,17 @@ body {
   background-color: white;
 }
 
+.save {
+  text-align: center;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  left: calc(50% - 100px) !important;
+  width: 200px;
+}
+
+.save p {
+  text-align: center;
+}
+
 h1 {
   font-size: 2.7em;
   font-family: "Avenir";
@@ -143,6 +154,7 @@ button {
   width: 6em;
   height: 1.7em;
   font-size: 20px;
+  cursor: pointer;
   border-radius: 10px;
   box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
