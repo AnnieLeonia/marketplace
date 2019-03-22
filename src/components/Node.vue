@@ -24,7 +24,7 @@
     <div class="space" v-else />
     <draggable class="workspace horizontal" v-if="this.open" :id="this.id">
       <div class="name" v-for="i in 2" v-bind:key="i">
-        <div class="lines" v-if="visibleNode(createID(i)) && paths">
+        <div class="lines" v-if="hasChildren() && paths">
           <div
             v-bind:class="
               (createID(i) % 2 == 0 && !moved) ||
