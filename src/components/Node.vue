@@ -119,7 +119,9 @@ export default {
         this.$store.state.tree = this.$store.state.tree.filter(
           item => item.id !== this.id
         );
-        this.open = false;
+        if (!this.hasChildren()) {
+          this.open = false;
+        }
       }
     },
     checkEmpty(option) {
@@ -174,6 +176,7 @@ export default {
   bottom: 0;
   left: 0;
 }
+
 .empty .ghostOption + .shadow {
   background: #aaa;
 }
@@ -196,7 +199,7 @@ export default {
 .high {
   background-color: #444;
   width: 0.1em;
-  height: 30px;
+  height: 20px;
   margin: 0 auto;
 }
 
