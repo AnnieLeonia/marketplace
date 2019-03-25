@@ -23,7 +23,8 @@
         @select-all="addAll($event)"
         class="table"
         :cell-style="boldCell"
-      >>
+      >
+        >
         <el-table-column type="selection" width="55"/>
         <el-table-column property="from" sortable label="From" width="120"/>
         <el-table-column property="to" sortable label="To" width="120"/>
@@ -145,7 +146,7 @@ export default {
         },
         {
           id: 13,
-          from: "SFO",
+          from: "LHR",
           to: "BOM",
           cityFrom: "London",
           cityTo: "Bombay"
@@ -153,9 +154,9 @@ export default {
         {
           id: 14,
           from: "NRT",
-          to: "BOM",
+          to: "AUH",
           cityFrom: "Tokyo",
-          cityTo: "Bombay"
+          cityTo: "Abu Dhabi"
         },
         {
           id: 15,
@@ -177,6 +178,13 @@ export default {
           to: "ICN",
           cityFrom: "London",
           cityTo: "Seoul"
+        },
+        {
+          id: 18,
+          from: "DXB",
+          to: "NRT",
+          cityFrom: "Dubai",
+          cityTo: "Tokyo"
         }
       ]
     };
