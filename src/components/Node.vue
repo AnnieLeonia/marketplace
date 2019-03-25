@@ -18,10 +18,15 @@
         :moved="setDepth(option)"
         :editOption="option"
       />
-      <div class="shadow" v-if="checkEmpty()"></div>
+
+      <div
+        id="shadow"
+        v-bind:class="this.$store.state.moving ? 'shadow visible' : 'shadow'"
+        v-if="checkEmpty()"
+      ></div>
     </draggable>
-    <div class="high" v-if="hasChildren() && paths" />
-    <div class="space" v-else />
+    <div class="high" v-if="hasChildren() && paths"/>
+    <div class="space" v-else/>
     <draggable class="workspace horizontal" v-if="this.open" :id="this.id">
       <div class="name" v-for="i in 2" v-bind:key="i">
         <div class="lines" v-if="visibleNode(createID(i)) && paths">
@@ -33,10 +38,10 @@
                 : 'long odd'
             "
           />
-          <div class="high" />
-          <img class="down" src="../assets/down.svg" alt="down" />
+          <div class="high"/>
+          <img class="down" src="../assets/down.svg" alt="down">
         </div>
-        <Node :id="createID(i)" />
+        <Node :id="createID(i)"/>
       </div>
     </draggable>
   </div>
@@ -173,9 +178,13 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
+  background: none;
+  margin-right: 7px;
+  opacity: 0.7;
 }
-.empty .ghostOption + .shadow {
-  background: #aaa;
+
+.visible {
+  background: lightgray;
 }
 
 .lines {
