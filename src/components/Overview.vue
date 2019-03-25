@@ -1,9 +1,13 @@
 <template>
   <div>
-    <h1 class="overviewTitle">Overview</h1>
-    <hr>
+    <div class="modalHeader">
+      <h1 class="overviewTitle">Overview</h1>
+    </div>
     <div class="modalBody">
       <div class="nameDisplay" v-for="option in root" v-bind:key="option.id">{{ option }}</div>
+    </div>
+    <div class="modalFooter">
+      <button class="btnCancel" v-on:click="confirm()">Close</button>
     </div>
   </div>
 </template>
@@ -39,7 +43,6 @@ export default {
           temp += "\x09";
         }
         for (var j = 0; j < node.length; j++) {
-          console.log("node name", node[j].display);
           if (node[j].display !== "") {
             if (node.length > 1) {
               var nameStr = " ".concat(node[j].display + "");
@@ -51,6 +54,9 @@ export default {
         }
         this.root.push(temp + name);
       }
+    },
+    confirm: function() {
+      this.$emit("close");
     }
   },
   created: function() {

@@ -117,7 +117,7 @@ export default {
       this.$store.state.moving = false;
     },
     open: function() {
-      this.$modal.show(Overview, this.attr);
+      this.$modal.show(Overview, {}, { width: "800px", height: "500px" });
     }
   }
 };
