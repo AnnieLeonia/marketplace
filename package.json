@@ -4,15 +4,19 @@
   "description": "A Vue.js project",
   "author": "Annie & Erica",
   "private": true,
+  "homepage": "https://annieleonia.github.io/marketplace",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "dateformat": "^3.0.3",
     "element-theme": "^2.0.1",
     "element-ui": "^2.6.1",
+    "gh-pages": "^2.0.1",
     "i": "^0.3.6",
     "npm": "^6.8.0",
     "v-calendar": "^0.9.7",
