@@ -157,6 +157,7 @@ export default {
   margin: 0 auto;
   padding: 0.1em;
   width: fit-content;
+  width: -moz-fit-content;
   min-width: calc(8em + 4px);
   min-height: calc(4.5em + 4px);
   border-radius: 15px;
