@@ -67,6 +67,10 @@ button {
   filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
 }
 
+.vue-js-switch:hover {
+  border: solid black 1px;
+}
+
 .toggled {
   background-color: #00c455;
 }

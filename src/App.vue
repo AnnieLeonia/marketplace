@@ -156,8 +156,13 @@ button {
   font-size: 20px;
   cursor: pointer;
   border-radius: 10px;
-  box-shadow: 2px 2px 16px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-color: #aaaaaa;
+}
+
+button:hover {
+  box-shadow: 3px 3px 30px 0 rgba(0, 0, 0, 0.2),
+    0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  border-color: black;
 }
 
 @font-face {
