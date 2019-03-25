@@ -1,76 +1,37 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/routes.svg" alt="icon">
+      <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
       <h1>Select Routes</h1>
     </div>
     <Side/>
-    <div class="inputField">
-      <label for="title">From:</label>
-      <input type="text" fromTo="from" v-model="searchFrom" placeholder="Enter depature...">
-      <label for="title">To:</label>
-      <input type="text" fromTo="to" v-model="searchTo" placeholder="Enter destination...">
+    <div class="modalBody">
+      <div class="search">
+        <p class="label from">From:</p>
+        <el-input placeholder="Enter depature" v-model="from"></el-input>
+        <p class="label to">To:</p>
+        <el-input placeholder="Enter destination" v-model="to"></el-input>
+      </div>
+      <el-table
+        ref="multipleTable"
+        empty-text="No routes found"
+        stripe
+        height="320"
+        :data="filteredRoutes"
+        @select="hello($event)"
+        @row-click="add($event)"
+        @select-all="addAll($event)"
+        class="table"
+        :cell-style="boldCell"
+      >>
+        <el-table-column type="selection" width="55"/>
+        <el-table-column property="from" sortable label="From" width="120"/>
+        <el-table-column property="to" sortable label="To" width="120"/>
+        <el-table-column label="Desciption">
+          <template slot-scope="scope">{{ scope.row.cityFrom + " to " + scope.row.cityTo }}</template>
+        </el-table-column>
+      </el-table>
     </div>
-    <table class="wholeTable" cellspacing="0" cellpadding="0" border="1" width="325">
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" width="698">
-            <tr class="header">
-              <th>
-                <label class="form-checkbox">
-                  <input type="checkbox" name="checkAll" v-model="selectAll" @click="select">
-                  <i class="form-icon"></i>
-                </label>
-              </th>
-              <th class="from" @click="sort('from')">From
-                <div
-                  v-if="'from' == sortColumn"
-                  v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"
-                ></div>
-              </th>
-              <th class="to" @click="sort('to')">To
-                <div v-if="'to' == sortColumn" v-bind:class="ascending ? 'arrow-up' : 'arrow-down'"></div>
-              </th>
-              <th class="description">Description</th>
-            </tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td class="noMore">
-          <div class="modalBody">
-            <table cellspacing="0" cellpadding="0" width="695">
-              <tr class="body" v-for="option in sortedRoutes" v-bind:key="option.id">
-                <td>
-                  <label class="form-checkbox">
-                    <input type="checkbox" :value="option.id" :id="option.id" v-model="selected">
-                    <i class="form-icon"></i>
-                  </label>
-                </td>
-                <label class="optionText" :for="option.id">
-                  <div class="bolded" v-if="selected.includes(option.id)">
-                    <td class="optionFrom" id="optionFrom">
-                      <b>{{ option.from }}</b>
-                    </td>
-                    <td class="optionTo" id="optionTo">
-                      <b>{{ option.to }}</b>
-                    </td>
-                    <td class="optionDescription" id="optionDescription">
-                      <b>{{ option.description }}</b>
-                    </td>
-                  </div>
-                  <div class="notBolded" v-else>
-                    <td class="optionFrom">{{ option.from }}</td>
-                    <td class="optionTo">{{ option.to }}</td>
-                    <td class="optionDescription">{{ option.description }}</td>
-                  </div>
-                </label>
-              </tr>
-            </table>
-          </div>
-        </td>
-      </tr>
-    </table>
     <div class="modalFooter">
       <button class="btnCancel" v-on:click="close()">Cancel</button>
       <button class="btnConfirm" v-on:click="confirm()">Confirm</button>
@@ -87,81 +48,157 @@ export default {
   },
   data() {
     return {
+      from: "",
+      to: "",
+      selected: [],
       routes: [
-        { id: 0, from: "LHR", to: "BOS", description: "London to Boston" },
-        { id: 1, from: "ARN", to: "CIC", description: "Stockholm to Chicago" },
+        {
+          id: 0,
+          from: "LHR",
+          to: "BOS",
+          cityFrom: "London",
+          cityTo: "Boston"
+        },
+        {
+          id: 1,
+          from: "ARN",
+          to: "CIC",
+          cityFrom: "Stockholm",
+          cityTo: "Chicago"
+        },
         {
           id: 2,
           from: "NRT",
           to: "SFO",
-          description: "Tokyo to San Francisco"
+          cityFrom: "Tokyo",
+          cityTo: "San Francisco"
         },
         {
           id: 3,
           from: "SFO",
           to: "ARN",
-          description: "San Francisco to Stockholm"
+          cityFrom: "San Francisco",
+          cityTo: "Stockholm"
         },
         {
           id: 4,
           from: "SFO",
           to: "BFL",
-          description: "San Francisco to Bakersfield"
+          cityFrom: "San Francisco",
+          cityTo: "Bakersfield"
         },
         {
           id: 5,
           from: "SFO",
           to: "BOS",
-          description: "San Francisco to Boston"
+          cityFrom: "San Francisco",
+          cityTo: "Boston"
         },
         {
           id: 6,
           from: "SFO",
           to: "AMS",
-          description: "San Francisco to Amsterdam"
+          cityFrom: "San Francisco",
+          cityTo: "Amsterdam"
         },
-        { id: 7, from: "ARN", to: "BUD", description: "Stockholm to Budapest" },
-        { id: 8, from: "ARN", to: "PRG", description: "Stockholm to Prag" },
-        { id: 9, from: "LHR", to: "BJS", description: "London to Beijing" },
-        { id: 10, from: "LHR", to: "AMS", description: "London to Amsterdam" },
-        { id: 11, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 12, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 13, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 14, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 15, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 16, from: "SFO", to: "SIN", description: "London to Boston" },
-        { id: 17, from: "SFO", to: "BOS", description: "London to Boston" }
-      ],
-      selected: [],
-      selectAll: false,
-      searchFrom: "",
-      searchTo: "",
-      ascending: true,
-      sortColumn: "from"
+        {
+          id: 7,
+          from: "ARN",
+          to: "BUD",
+          cityFrom: "Stockholm",
+          cityTo: "Budapest"
+        },
+        {
+          id: 8,
+          from: "ARN",
+          to: "PRG",
+          cityFrom: "Stockholm",
+          cityTo: "Prag"
+        },
+        {
+          id: 9,
+          from: "LHR",
+          to: "BJS",
+          cityFrom: "London",
+          cityTo: "Beijing"
+        },
+        {
+          id: 10,
+          from: "LHR",
+          to: "AMS",
+          cityFrom: "London",
+          cityTo: "Amsterdam"
+        },
+        {
+          id: 11,
+          from: "SFO",
+          to: "ATH",
+          cityFrom: "San Francisco",
+          cityTo: "Aten"
+        },
+        {
+          id: 12,
+          from: "SFO",
+          to: "ZRH",
+          cityFrom: "San Francisco",
+          cityTo: "Zürich"
+        },
+        {
+          id: 13,
+          from: "SFO",
+          to: "BOM",
+          cityFrom: "London",
+          cityTo: "Bombay"
+        },
+        {
+          id: 14,
+          from: "NRT",
+          to: "BOM",
+          cityFrom: "Tokyo",
+          cityTo: "Bombay"
+        },
+        {
+          id: 15,
+          from: "NRT",
+          to: "ICN",
+          cityFrom: "Tokyo",
+          cityTo: "Seoul"
+        },
+        {
+          id: 16,
+          from: "SFO",
+          to: "SIN",
+          cityFrom: "San Francisco",
+          cityTo: "Singapore"
+        },
+        {
+          id: 17,
+          from: "LHR",
+          to: "ICN",
+          cityFrom: "London",
+          cityTo: "Seoul"
+        }
+      ]
     };
   },
   computed: {
-    sortedRoutes: function() {
+    filteredRoutes: function() {
       let result = this.routes;
-      if (this.searchFrom) {
-        result = result.filter(item =>
-          item.from.toLowerCase().includes(this.searchFrom)
+      if (this.from) {
+        result = result.filter(
+          item =>
+            item.from.includes(this.from.toUpperCase()) ||
+            item.cityFrom.toUpperCase().includes(this.from.toUpperCase())
         );
       }
-      if (this.searchTo) {
-        result = result.filter(item =>
-          item.to.toLowerCase().includes(this.searchTo)
+      if (this.to) {
+        result = result.filter(
+          item =>
+            item.to.toLowerCase().includes(this.to) ||
+            item.cityTo.toLowerCase().includes(this.to)
         );
       }
-      var ascending = this.ascending;
-      return result.sort((a, b) => {
-        if (a[this.sortColumn] > b[this.sortColumn]) {
-          return ascending ? 1 : -1;
-        } else if (a[this.sortColumn] < b[this.sortColumn]) {
-          return ascending ? -1 : 1;
-        }
-        return 0;
-      });
+      return result;
     },
     displayRoutes: function() {
       let modifier = 1;
@@ -173,37 +210,43 @@ export default {
         if (a.to > b.to) return 1;
         return 0;
       }
-      // return this.users.sort(surnameName); // sorts in-place
-      return this.routes.sort(surnameName); // shallow clone + sort
+      return this.routes.sort(surnameName);
     }
   },
   methods: {
-    select() {
+    hello: function(event, event2) {
+      this.addAll(event);
+    },
+    add: function(row) {
+      this.$refs.multipleTable.toggleRowSelection(row);
+      if (this.selected.some(route => route.id === row.id)) {
+        this.selected.splice(this.selected.indexOf(row), 1);
+      } else {
+        this.selected.push(row);
+      }
+    },
+    addAll: function(rows) {
       this.selected = [];
-      if (!this.selectAll) {
-        for (let i in this.routes) {
-          this.selected.push(this.routes[i].id);
+      for (var i = 0; i < rows.length; i++) {
+        if (!this.selected.includes(rows[i])) {
+          this.selected.push(rows[i]);
         }
       }
     },
-    sort: function(col) {
-      if (this.sortColumn === col) {
-        this.ascending = !this.ascending;
-      } else {
-        this.ascending = true;
-        this.sortColumn = col;
+    boldCell: function({ row }) {
+      if (this.selected.some(el => el.id === row.id)) {
+        return "font-family: 'AvenirBold'";
       }
     },
     confirm: function() {
+      let returnValue;
       if (this.selected.length === 0) {
         this.$props.option.edited = false;
-        this.$props.option.display = "";
       } else {
         this.$props.option.edited = true;
-        let returnValue = this.routes.find(o => o.id === this.selected[0]).from;
-        returnValue += " - ".concat(
-          this.routes.find(o => o.id === this.selected[0]).to
-        );
+        returnValue = this.selected[0].from
+          .concat(" - ")
+          .concat(this.selected[0].to);
         if (this.selected.length > 1) {
           returnValue += " + "
             .concat(this.selected.length - 1)
@@ -221,9 +264,14 @@ export default {
   beforeMount() {
     this.displayRoutes;
   },
-  created: function() {
+  mounted: function() {
     if (this.$props.option.edited) {
-      this.selected = this.$props.option.value;
+      const values = this.$props.option.value;
+      for (var i = 0; i < this.filteredRoutes.length; i++) {
+        if (values.find(route => route.id === this.filteredRoutes[i].id)) {
+          this.add(this.filteredRoutes[i]);
+        }
+      }
     }
   }
 };
@@ -234,116 +282,37 @@ export default {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
     brightness(102%) contrast(102%);
 }
-.inputField {
-  padding: 0.5em;
-  font-size: 1.5em;
-  height: 32px;
-}
-
-input[type="text"] {
-  width: 25%;
-  font-size: 1em;
-  padding-left: 5px;
-  border: none;
-  border-bottom: solid 2px #888;
-}
-
-input[type="text"]:focus {
-  outline: none;
-  border-bottom: solid 3px #18477f;
-}
-
-.wholeTable {
-  table-layout: fixed;
-  width: 70%;
-  margin: 1em 0 0 0.5em;
-  height: 14em;
-}
-
-.header {
-  color: white;
-  background-color: #18477f;
-  font-size: 24px;
-  height: 2.2em;
-}
-input[type="checkbox"] {
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  margin-left: 1em;
-}
-
-.from {
-  padding-left: 0.4em;
-  width: 3.4em;
-  cursor: pointer;
-}
-
-.to {
-  margin: none;
-  width: 2em;
-  padding-left: 1em;
-  cursor: pointer;
-}
-.arrow-up {
-  width: 0;
-  height: 0;
-  float: right;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 7px solid black;
-  margin-top: 0.5em;
-}
-
-.arrow-down {
-  width: 0;
-  height: 0;
-  float: right;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 7px solid black;
-  margin-top: 0.5em;
-}
-
-.description {
-  padding-left: 3.2em;
-}
-.td {
-  padding: 0em;
-}
 .modalBody {
-  width: 715px;
-  overflow: auto;
-  height: 15em;
-}
-.noMore {
-  padding: 0em;
-}
-.body {
-  font-size: 20px;
-}
-.body:hover {
-  background-color: #f5f5f5;
-}
-.optionFrom {
-  padding: 0.4em 0 0 2.5em;
-  width: 4.5em;
-}
-.optionTo {
-  padding-left: 0.6em;
-  width: 4.5em;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  position: absolute;
+  margin: 1em;
 }
 
-.optionDescription {
-  padding-left: 1.7em;
-  width: 13em;
+.table {
+  width: 700px;
+  height: calc(400px - 6em);
+  border: 1px solid rgb(218, 218, 218);
+}
+
+.search {
+  display: flex;
+  height: 4em;
+}
+
+.label,
+.el-input {
   display: inline-block;
 }
 
-.bolded,
-.notBolded {
-  display: inline-table;
+.label {
+  margin-right: 0.2em;
+}
+
+.to {
+  margin-left: 1em;
+}
+
+.el-input {
+  margin-top: 12px;
 }
 </style>

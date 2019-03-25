@@ -1,7 +1,7 @@
 <template>
   <footer>
-    <button class="btnCancel">Cancel</button>
-    <button class="btnSave">Save</button>
+    <button class="btnCancel" v-on:click="clear()">Clear</button>
+    <button class="btnSave" v-on:click="save()">Save</button>
     <toggle-button
       :value="onOff"
       :labels="{ checked: 'On', unchecked: 'Off' }"
@@ -23,6 +23,25 @@ export default {
     return {
       onOff: true
     };
+  },
+  methods: {
+    clear: function() {
+      location.reload();
+    },
+    save() {
+      this.$notify({
+        title: "Success",
+        message: "Your rule has been saved successfully",
+        type: "success",
+        customClass: "save",
+        showClose: false,
+        duration: 2000,
+        position: "top-left"
+      });
+      setTimeout(function() {
+        location.reload();
+      }, 2000);
+    }
   }
 };
 </script>
