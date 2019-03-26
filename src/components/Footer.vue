@@ -34,6 +34,7 @@ export default {
         "Saved!",
         {
           customClass: "messagebox",
+          showClose: false,
           distinguishCancelAndClose: true,
           confirmButtonText: "Finsih",
           cancelButtonText: "Cancel"

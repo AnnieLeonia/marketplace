@@ -106,13 +106,10 @@ body {
   height: 2.3em;
 }
 
-.el-message-box {
-  width: 440px;
-}
-
 .messagebox {
   white-space: pre;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+  width: 500px;
 }
 
 .v--modal {
