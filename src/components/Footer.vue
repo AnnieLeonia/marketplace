@@ -33,6 +33,7 @@ export default {
         "Your rule has been successfully saved! \nBy pressing finish the current rule will be replaced with a new empty rule. \nBy pressing cancel you will continue with your current rule.",
         "Saved!",
         {
+          customClass: "messagebox",
           distinguishCancelAndClose: true,
           confirmButtonText: "Finsih",
           cancelButtonText: "Cancel"

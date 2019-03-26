@@ -101,14 +101,18 @@ body {
 .indent .el-input__inner {
   padding-left: 40px !important;
 }
+
 .el-button--small {
   height: 2.3em;
 }
+
 .el-message-box {
   width: 440px;
 }
-.el-message-box__message {
+
+.messagebox {
   white-space: pre;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
 
 .v--modal {
