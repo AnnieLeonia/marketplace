@@ -29,18 +29,19 @@ export default {
       location.reload();
     },
     save() {
-      this.$notify({
-        title: "Success",
-        message: "Your rule has been saved successfully",
-        type: "success",
-        customClass: "save",
-        showClose: false,
-        duration: 2000,
-        position: "top-left"
-      });
-      setTimeout(function() {
-        location.reload();
-      }, 2000);
+      this.$confirm(
+        "Your rule has been successfully saved! \nBy pressing finish the current rule will be replaced with a new empty rule. \nBy pressing cancel you will continue with your current rule.",
+        "Saved!",
+        {
+          distinguishCancelAndClose: true,
+          confirmButtonText: "Finsih",
+          cancelButtonText: "Cancel"
+        }
+      )
+        .then(() => {
+          location.reload();
+        })
+        .catch(action => {});
     }
   }
 };

@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Menu />
-    <Workspace />
-    <Remove />
-    <Footer />
+    <Menu/>
+    <Workspace/>
+    <Remove/>
+    <Footer/>
   </div>
 </template>
 
@@ -100,6 +100,15 @@ body {
 
 .indent .el-input__inner {
   padding-left: 40px !important;
+}
+.el-button--small {
+  height: 2.3em;
+}
+.el-message-box {
+  width: 440px;
+}
+.el-message-box__message {
+  white-space: pre;
 }
 
 .v--modal {
