@@ -70,7 +70,7 @@ export default {
         {
           id: 1,
           from: "ARN",
-          to: "CIC",
+          to: "ORD",
           cityFrom: "Stockholm",
           cityTo: "Chicago"
         },
@@ -256,14 +256,18 @@ export default {
         this.$props.option.edited = false;
       } else {
         this.$props.option.edited = true;
-        returnValue = this.selected[0].from
+        returnValue = this.selected[0].cityFrom
           .concat(" - ")
-          .concat(this.selected[0].to);
+          .concat(this.selected[0].cityTo);
         if (this.selected.length > 1) {
           returnValue += " + "
             .concat(this.selected.length - 1)
-            .concat(" more routes");
+            .concat(" more route");
+          if (this.selected.length > 2) {
+            returnValue += "s";
+          }
         }
+
         this.$props.option.display = returnValue;
         this.$props.option.value = this.selected;
       }

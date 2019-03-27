@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Menu/>
-    <Workspace/>
-    <Remove/>
-    <Footer/>
+    <Menu />
+    <Workspace />
+    <Remove />
+    <Footer />
   </div>
 </template>
 
@@ -55,7 +55,7 @@ body {
 
 .workspace .option:hover {
   box-shadow: 6px 12px 20px #555555;
-  border: solid #555555 2px;
+  border: solid #c269a1 2px;
 }
 
 .trash .option {

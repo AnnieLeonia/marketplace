@@ -19,7 +19,7 @@
         >
       </div>
       <div class="radioOption" v-on:click="toggle(1)">
-        <el-radio v-model="radio" :label="1">Time to destination</el-radio>
+        <el-radio v-model="radio" :label="1">Time left to destination</el-radio>
         <el-input-number
           v-model="nbrs[1]"
           :min="1"
