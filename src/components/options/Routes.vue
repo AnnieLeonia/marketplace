@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/promotion.svg" alt="icon">
+      <img
+        class="modalIcon color"
+        src="../../assets/promotion.svg"
+        alt="icon"
+      />
       <h1>Select Routes</h1>
     </div>
-    <Side/>
+    <Side />
     <div class="modalBody">
       <div class="search">
         <p class="label from">From:</p>
@@ -18,18 +22,21 @@
         stripe
         height="320"
         :data="filteredRoutes"
-        @select="hello($event)"
+        row-key="id"
+        @select="addAll($event)"
         @row-click="add($event)"
         @select-all="addAll($event)"
         class="table"
         :cell-style="boldCell"
       >
         >
-        <el-table-column type="selection" width="55"/>
-        <el-table-column property="from" sortable label="From" width="120"/>
-        <el-table-column property="to" sortable label="To" width="120"/>
+        <el-table-column type="selection" reserve-selection width="55" />
+        <el-table-column property="from" sortable label="From" width="120" />
+        <el-table-column property="to" sortable label="To" width="120" />
         <el-table-column label="Desciption">
-          <template slot-scope="scope">{{ scope.row.cityFrom + " to " + scope.row.cityTo }}</template>
+          <template slot-scope="scope">{{
+            scope.row.cityFrom + " to " + scope.row.cityTo
+          }}</template>
         </el-table-column>
       </el-table>
     </div>
@@ -222,9 +229,6 @@ export default {
     }
   },
   methods: {
-    hello: function(event, event2) {
-      this.addAll(event);
-    },
     add: function(row) {
       this.$refs.multipleTable.toggleRowSelection(row);
       if (this.selected.some(route => route.id === row.id)) {
