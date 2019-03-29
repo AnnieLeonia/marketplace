@@ -31,7 +31,7 @@ export default {
 }
 
 body {
-  background-image: url("assets/clouds3.jpg");
+  background-image: url("./assets/clouds3.jpg");
   background-size: cover;
   background-attachment: fixed;
   margin: 10em 0 56px 0;
@@ -178,11 +178,11 @@ button:hover {
 
 @font-face {
   font-family: "Avenir";
-  src: url("assets/AvenirLTStd-Roman.otf"); /* IE9 Compat Modes */
+  src: url("./assets/AvenirLTStd-Roman.otf"); /* IE9 Compat Modes */
 }
 
 @font-face {
   font-family: "AvenirBold";
-  src: url("assets/AvenirLTStd-Black.otf");
+  src: url("./assets/AvenirLTStd-Black.otf");
 }
 </style>
