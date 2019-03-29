@@ -1,15 +1,13 @@
 <template>
   <div>
     <div class="modalHeader">
-      <img class="modalIcon color" src="../../assets/product.svg" alt="icon" />
+      <img class="modalIcon color" src="../../assets/product.svg" alt="icon">
       <h1>Product</h1>
     </div>
-    <Side />
+    <Side/>
     <div class="modalBody">
       <div class="products">
-        <el-radio class="radio" v-model="optionSelected" :label="0"
-          >Single Product</el-radio
-        >
+        <el-radio class="radio" v-model="optionSelected" :label="0">Single Product</el-radio>
         <el-select
           class="select"
           v-bind:class="productSelected.length > 0 ? ' indent' : ''"
@@ -25,10 +23,7 @@
             <p>Tags</p>
           </div>
           <template v-if="productSelected.length > 0" slot="prefix">
-            <img
-              class="prefix"
-              :src="products.find(o => o.product === productSelected).path"
-            />
+            <img class="prefix" :src="products.find(o => o.product === productSelected).path">
           </template>
           <template v-else slot="prefix"></template>
           <el-option
@@ -41,7 +36,7 @@
           >
             <div class="proText" @click="selectProduct()">
               <p class="prod">
-                <img class="optionIcon" v-bind:src="item.path" alt="icon" />
+                <img class="optionIcon" v-bind:src="item.path" alt="icon">
                 {{ item.product }}
               </p>
               <p>{{ item.vendors }}</p>
@@ -52,9 +47,7 @@
         </el-select>
       </div>
       <div class="collection">
-        <el-radio class="radio" v-model="optionSelected" :label="1"
-          >Collections</el-radio
-        >
+        <el-radio class="radio" v-model="optionSelected" :label="1">Collections</el-radio>
         <table class="wholeTable" cellspacing="0" cellpadding="0">
           <table cellspacing="0" cellpadding="0">
             <tr>
@@ -102,9 +95,7 @@
         </table>
       </div>
       <div class="categories">
-        <el-radio class="radio" v-model="optionSelected" :label="2"
-          >Categories</el-radio
-        >
+        <el-radio class="radio" v-model="optionSelected" :label="2">Categories</el-radio>
         <table class="wholeTable" cellspacing="0" cellpadding="0">
           <table cellspacing="0" cellpadding="0">
             <tr>
@@ -124,12 +115,8 @@
                         optionSelected === 2
                     "
                   >
-                    <td class="optionCat" id="optionFrom">
-                      {{ option.categories }}
-                    </td>
-                    <td class="optionPro2" id="optionTo">
-                      {{ option.product }}
-                    </td>
+                    <td class="optionCat" id="optionFrom">{{ option.categories }}</td>
+                    <td class="optionPro2" id="optionTo">{{ option.product }}</td>
                   </div>
                   <div
                     class="notChosen"
@@ -171,40 +158,40 @@ export default {
       products: [
         {
           id: 0,
-          path: require("../../assets/mensbeauty-aquadiparma.jpg"),
-          product: "Acqua Di Parma",
+          path: require("../../assets/benJerrys.jpg"),
+          product: "Ben & Jerry’s",
           vendors: "PanaShop",
-          category: "Beauty",
-          tags: "For him"
+          category: "Food",
+          tags: "Snacks, Ice cream"
         },
         {
           id: 1,
-          path: require("../../assets/mensbeauty-victorrolf.jpg"),
-          product: "Victor & Rolf Spicebomb",
+          path: require("../../assets/toblerone.jpg"),
+          product: "Toblerone chocolate",
           vendors: "PanaShop",
-          category: "Beauty",
-          tags: "For him"
+          category: "Food",
+          tags: "Candy, Gifts"
         },
         {
           id: 2,
-          path: require("../../assets/mensbeauty-lacostel12.jpg"),
-          product: "Lacoste L.12.12 Neon",
+          path: require("../../assets/foundation.jpg"),
+          product: "Fusion Foundation",
           vendors: "PanaShop",
           category: "Beauty",
           tags: "For her"
         },
         {
           id: 3,
-          path: require("../../assets/mensbuty-jackblacktravelerkit.jpg"),
-          product: "Jack Black SuperFly",
+          path: require("../../assets/men-burberry-wallet.jpg"),
+          product: "Burberry Wallet",
           vendors: "PanaShop",
-          category: "Beauty",
-          tags: "For him"
+          category: "Accessories",
+          tags: "For her, For him"
         },
         {
           id: 4,
           path: require("../../assets/clothing-bosshugojonnetexture.jpg"),
-          product: "Hugo Boss Jonne Shirt",
+          product: "Hugo Boss Shirt",
           vendors: "PanaShop",
           category: "Apparel",
           tags: "Men's clothing"
