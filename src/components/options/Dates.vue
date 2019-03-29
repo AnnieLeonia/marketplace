@@ -128,7 +128,7 @@ ul {
 
 li {
   list-style: none;
-  padding: 0.5em;
+  padding: 1em 0.5em;
   margin: 1px;
 }
 

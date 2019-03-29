@@ -1,5 +1,5 @@
 <template>
-  <div class="remove" v-if="moving">
+  <div class="remove">
     <draggable
       class="trash"
       :list="list"
@@ -43,22 +43,11 @@ export default {
 .remove {
   position: fixed;
   text-align: center;
-  margin: 0 calc(50% - 3em - 1em - 6px);
   bottom: 56px;
-  animation: moveup 0.5s;
-}
-
-@keyframes moveup {
-  from {
-    transform: translateY(100px);
-  }
-  to {
-    transform: translateY(0);
-  }
+  margin-bottom: 1em;
 }
 
 .trash {
-  margin: 0 calc(50% - 2em);
   position: absolute;
   min-width: 8em;
   min-height: 4em;
@@ -70,8 +59,9 @@ img {
   border: solid black 3px;
   border-radius: 50%;
   position: relative;
-  margin: 0 50%;
-  width: 3em;
+  margin-left: 1.2em;
+  margin-top: 0.4em;
+  width: 2.5em;
   z-index: -1;
 }
 </style>

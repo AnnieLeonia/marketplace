@@ -10,6 +10,7 @@
       :width="100"
       :height="30"
     />
+    <div class="statusText">Active status:</div>
   </footer>
 </template>
 
@@ -36,7 +37,7 @@ export default {
           customClass: "messagebox",
           showClose: false,
           distinguishCancelAndClose: true,
-          confirmButtonText: "Finsih",
+          confirmButtonText: "Finish",
           cancelButtonText: "Cancel"
         }
       )
@@ -64,9 +65,10 @@ button {
 
 .vue-js-switch {
   float: right;
-  margin: 13px;
+  margin: 13px 4em 13px 13px;
   border-radius: 15px;
   background-color: #aaaaaa;
+  border: solid #45699a 1px;
   filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
 }
 
@@ -81,5 +83,13 @@ button {
 .btnSave {
   float: right;
   background-color: #00c455;
+}
+
+.statusText {
+  float: right;
+  font-size: 20px;
+  margin-top: 0.8em;
+  font-family: "Avenir";
+  color: white;
 }
 </style>
