@@ -2,7 +2,11 @@
   <div @change="move($event)">
     <draggable
       class="workspace"
-      v-bind:class="checkEmpty() ? 'empty' : 'filled'"
+      draggable="option"
+      v-bind:class="[
+        checkEmpty() ? 'empty' : 'filled ',
+        !checkEmpty() && list.length != 0 ? 'padding darkPlus' : ''
+      ]"
       :list="list"
       :options="settings"
       @start="start()"
@@ -18,15 +22,21 @@
         :moved="setDepth(option)"
         :editOption="option"
       />
-
       <div
         id="shadow"
-        v-bind:class="this.$store.state.moving ? 'shadow visible' : 'shadow'"
+        v-bind:class="moving ? 'shadow visible' : 'shadow'"
         v-if="checkEmpty()"
-      ></div>
+      >
+        <img
+          v-if="moving"
+          class="lightPlus"
+          src="../assets/light-plus.png"
+          alt="plus"
+        />
+      </div>
     </draggable>
-    <div class="high" v-if="hasChildren() && paths"/>
-    <div class="space" v-else/>
+    <div class="high" v-if="hasChildren() && paths" />
+    <div class="space" v-else />
     <draggable class="workspace horizontal" v-if="this.open" :id="this.id">
       <div class="name" v-for="i in 2" v-bind:key="i">
         <div class="lines" v-if="hasChildren() && paths">
@@ -38,10 +48,10 @@
                 : 'long odd'
             "
           />
-          <div class="high"/>
-          <img class="down" src="../assets/down.svg" alt="down">
+          <div class="high" />
+          <img class="down" src="../assets/down.svg" alt="down" />
         </div>
-        <Node :id="createID(i)"/>
+        <Node :id="createID(i)" />
       </div>
     </draggable>
   </div>
@@ -69,6 +79,11 @@ export default {
         animation: 400
       }
     };
+  },
+  computed: {
+    moving: function() {
+      return this.$store.state.moving;
+    }
   },
   methods: {
     hasChildren: function() {
@@ -164,6 +179,10 @@ export default {
   position: relative;
 }
 
+.padding {
+  padding-bottom: 1.5em;
+}
+
 .horizontal {
   display: flex;
   height: 100%;
@@ -183,7 +202,8 @@ export default {
   left: 0;
   background: none;
   margin-right: 7px;
-  opacity: 0.7;
+  opacity: 0.4;
+  transition: 0.5s;
 }
 
 .visible {
@@ -217,10 +237,21 @@ export default {
   margin-top: -9px;
   margin-left: -5px;
   position: absolute;
-  z-index: 1;
 }
 
 .space {
   margin-top: 2em;
+}
+
+.lightPlus {
+  margin: 2em;
+  height: 1em;
+}
+
+.darkPlus {
+  background-position: 50% calc(100% - 0.3em);
+  background-image: url("./../assets/dark-plus.png");
+  background-repeat: no-repeat;
+  background-size: 1em;
 }
 </style>
