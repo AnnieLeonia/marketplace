@@ -45,13 +45,21 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|gif|svg)(\?.*)?$/,
         loader: "url-loader",
         options: {
           limit: 10000,
           name: utils.assetsPath("img/[name].[hash:7].[ext]"),
           // workaround for vuejs-templates webpack issue 1266
           publicPath: process.env.NODE_ENV === "production" ? "../../" : "/"
+        }
+      },
+      {
+        test: /\.(jpe?g)(\?.*)?$/,
+        loader: "url-loader",
+        options: {
+          limit: 10000,
+          name: utils.assetsPath("img/[name].[hash:7].[ext]")
         }
       },
       {
